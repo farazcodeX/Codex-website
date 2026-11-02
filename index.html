@@ -1,0 +1,3164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CODEX — Faraz · Computer Science / Software / Interfaces</title>
+  <meta name="description"
+    content="CODEX — Faraz builds software, products, interfaces and games. Computer Science student at Amirkabir University of Technology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============================================================
+   TOKENS
+   ============================================================ */
+    :root {
+      --bg: #f5f5f3;
+      --bg-alt: #efeeea;
+      --ink: #15140f;
+      --ink-soft: #58564d;
+      --ink-faint: #9a978c;
+      --surface: #ffffff;
+      --border: #e5e3db;
+      --border-soft: #edece5;
+      --accent: #2f45c7;
+      --accent-ink: #1e2e8f;
+      --accent-tint: #eaedfb;
+      --shadow-sm: 0 1px 2px rgba(21, 20, 15, 0.04), 0 1px 1px rgba(21, 20, 15, 0.03);
+      --shadow-md: 0 12px 28px -12px rgba(21, 20, 15, 0.12), 0 2px 8px -2px rgba(21, 20, 15, 0.06);
+      --shadow-lg: 0 30px 60px -20px rgba(21, 20, 15, 0.18), 0 8px 20px -8px rgba(21, 20, 15, 0.08);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --ease: cubic-bezier(.16, .8, .24, 1);
+      --ease-soft: cubic-bezier(.4, 0, .2, 1);
+      --dur-fast: 320ms;
+      --dur-med: 620ms;
+      --dur-slow: 1100ms;
+      --container: 1280px;
+      --gutter: clamp(20px, 4vw, 64px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin: 0;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ============================================================
+   TYPE UTILITIES
+   ============================================================ */
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: none;
+    }
+
+    .display-huge {
+      font-size: clamp(64px, 13vw, 200px);
+      font-weight: 650;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+    }
+
+    .display-lg {
+      font-size: clamp(38px, 6vw, 84px);
+      font-weight: 600;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .display-md {
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+
+    .body-lg {
+      font-size: clamp(17px, 1.7vw, 21px);
+      line-height: 1.55;
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    .body-md {
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .caption {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    /* ============================================================
+   NAV
+   ============================================================ */
+    .nav-holder {
+      position: fixed;
+      top: 22px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .nav {
+      pointer-events: all;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 7px 7px 7px 18px;
+      border-radius: 100px;
+      background: rgba(245, 245, 243, 0.6);
+      border: 1px solid rgba(21, 20, 15, 0.08);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      transition: background var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft), border-color var(--dur-fast) var(--ease-soft);
+    }
+
+    .nav.scrolled {
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav .brand {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      padding: 8px 14px 8px 4px;
+      margin-right: 2px;
+    }
+
+    .nav a.nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      padding: 8px 14px;
+      border-radius: 100px;
+      transition: color var(--dur-fast) var(--ease-soft), background var(--dur-fast) var(--ease-soft);
+      white-space: nowrap;
+    }
+
+    .nav a.nav-link:hover {
+      color: var(--ink);
+      background: rgba(21, 20, 15, 0.05);
+    }
+
+    .nav a.nav-link.active {
+      color: #fff;
+      background: var(--ink);
+    }
+
+    @media (max-width: 720px) {
+      .nav .nav-link-label {
+        display: none;
+      }
+
+      .nav {
+        gap: 2px;
+        padding: 6px 6px 6px 14px;
+      }
+
+      .nav a.nav-link {
+        padding: 9px 11px;
+        font-size: 11px;
+      }
+    }
+
+    /* ============================================================
+   PAGE SWITCHING
+   ============================================================ */
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .page-enter {
+      animation: pageIn var(--dur-med) var(--ease) both;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 90ms;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 180ms;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 270ms;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 360ms;
+    }
+
+    /* ============================================================
+   CARDS (shared floating-card language — the site's signature)
+   ============================================================ */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 6px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+    }
+
+    .card-tag.accent {
+      background: var(--accent-tint);
+      color: var(--accent-ink);
+      border-color: transparent;
+    }
+
+    /* generic UI mock (abstract screen inside a card, used across projects) */
+    .mock {
+      position: relative;
+      border-radius: calc(var(--radius-md) - 4px);
+      overflow: hidden;
+      background: linear-gradient(180deg, #fbfbfa, #f1f0ec);
+      border: 1px solid var(--border-soft);
+    }
+
+    .mock .mock-bar {
+      display: flex;
+      gap: 6px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .mock .mock-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .mock .mock-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mock .mock-line {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border-soft);
+    }
+
+    .mock .mock-block {
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+    }
+
+    /* ============================================================
+   HERO — HOME
+   ============================================================ */
+    .home-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 232px var(--gutter) 140px;
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .home-hero.hero-dark {
+      max-width: none;
+      border-radius: 0;
+      background: #000;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 130px var(--gutter) 90px;
+    }
+
+    .home-hero.hero-dark>.home-hero-grid {
+      max-width: var(--container);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./images/wallpaperflare.com_wallpaper.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      transform-origin: 50% 50%;
+      animation: heroDrift 70s ease-in-out infinite alternate;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.88) 24%, rgba(0, 0, 0, 0.55) 46%, rgba(0, 0, 0, 0.16) 68%, rgba(0, 0, 0, 0.04) 86%),
+        linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 30%),
+        radial-gradient(ellipse 65% 55% at 100% 100%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.22) 100%);
+    }
+
+    @keyframes heroDrift {
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.025);
+      }
+    }
+
+    .hero-dark .display-huge {
+      color: #ffffff;
+    }
+
+    .hero-dark .home-hero-sub .caption {
+      color: rgba(255, 255, 255, 0.66);
+    }
+
+    .hero-dark .home-hero-title>.caption {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .hero-dark .id-card {
+      box-shadow: 0 40px 90px -24px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .home-hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: 32px;
+      align-items: start;
+      position: relative;
+    }
+
+    .home-hero-title {
+      grid-column: 1 / 9;
+    }
+
+    .home-hero-title .display-huge {
+      position: relative;
+    }
+
+    .home-hero-sub {
+      margin-top: 36px;
+      max-width: 480px;
+    }
+
+    .home-hero-sub .caption {
+      color: var(--ink-soft);
+      letter-spacing: 0.14em;
+    }
+
+    .id-card {
+      grid-column: 9 / 13;
+      margin-top: 26px;
+      padding: 26px 26px 24px;
+      min-height: 208px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: rotate(1.4deg);
+      transition: transform var(--dur-fast) var(--ease-soft);
+    }
+
+    .id-card:hover {
+      transform: rotate(0deg) translateY(-2px);
+    }
+
+    .id-card .id-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .id-card .id-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-tint);
+    }
+
+    .id-cycle {
+      position: relative;
+      height: 58px;
+      margin-top: 14px;
+    }
+
+    .id-cycle-line {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 620ms var(--ease-soft), transform 620ms var(--ease-soft);
+    }
+
+    .id-cycle-line.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .id-cycle-line .l1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .id-cycle-line .l2 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--ink-faint);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .id-card .id-foot {
+      margin-top: 16px;
+    }
+
+    .id-card .id-school {
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-bottom: 10px;
+    }
+
+    .id-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .home-hero.hero-dark {
+        padding-top: 128px;
+        padding-bottom: 70px;
+        align-items: flex-end;
+      }
+
+      .home-hero-grid {
+        display: block;
+      }
+
+      .home-hero-title {
+        grid-column: auto;
+      }
+
+      .id-card {
+        grid-column: auto;
+        margin-top: 44px;
+        transform: none;
+        max-width: 360px;
+      }
+    }
+
+    /* ============================================================
+   HOME — WORK PREVIEW
+   ============================================================ */
+    .section {
+      padding: 190px var(--gutter);
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      margin-bottom: 84px;
+      flex-wrap: wrap;
+    }
+
+    .section-head .display-lg {
+      margin-top: 18px;
+      max-width: 640px;
+    }
+
+    .view-link {
+      margin-top: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .view-link .arrow {
+      transition: transform var(--dur-fast) var(--ease-soft);
+      display: inline-block;
+    }
+
+    .view-link:hover .arrow {
+      transform: translate(3px, -3px);
+    }
+
+    /* Home project preview — exhibition-style, image-first, asymmetric pair */
+    .exhibit-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 64px;
+    }
+
+    .exhibit-item {
+      display: block;
+      grid-column: 1 / 13;
+    }
+
+    .exhibit-01 {
+      grid-column: 1 / 9;
+    }
+
+    .exhibit-02 {
+      grid-column: 6 / 13;
+      margin-top: 140px;
+    }
+
+    .exhibit-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      background: var(--bg-alt);
+      transition: box-shadow var(--dur-med) var(--ease-soft);
+    }
+
+    .exhibit-01 .exhibit-frame {
+      aspect-ratio: 16 / 10;
+    }
+
+    .exhibit-02 .exhibit-frame {
+      aspect-ratio: 5 / 4;
+    }
+
+    .exhibit-item:hover .exhibit-frame {
+      box-shadow: var(--shadow-md);
+    }
+
+    .exhibit-img {
+      position: absolute;
+      inset: 0;
+      transition: transform 1100ms var(--ease-soft);
+    }
+
+    .exhibit-item:hover .exhibit-img {
+      transform: scale(1.015);
+    }
+
+    .exhibit-img--neonbook {
+      background: linear-gradient(148deg, #f4f3ee 0%, #e7e6dd 55%, #eaedf9 100%);
+    }
+
+    .exhibit-img--codate {
+      background: linear-gradient(148deg, #eeede6 0%, #e2e1d8 55%, #e8ebf6 100%);
+    }
+
+    .exhibit-caption {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .exhibit-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+    }
+
+    .exhibit-name {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    @media (max-width: 900px) {
+      .exhibit-grid {
+        gap: 76px;
+      }
+
+      .exhibit-01,
+      .exhibit-02 {
+        grid-column: 1 / 13;
+        margin-top: 0;
+      }
+    }
+
+    /* ============================================================
+   WORK PAGE
+   ============================================================ */
+    .work-hero {
+      padding: 232px var(--gutter) 90px;
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .work-list {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 40px var(--gutter) 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj {
+      padding: 56px;
+      position: relative;
+      margin-top: 64px;
+    }
+
+    .proj:first-child {
+      margin-top: 0;
+    }
+
+    .proj.featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      padding: 64px;
+    }
+
+    .proj .num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+    }
+
+    .proj h3 {
+      margin-top: 16px;
+    }
+
+    .proj p.desc {
+      margin-top: 20px;
+      max-width: 440px;
+    }
+
+    .proj-meta {
+      display: flex;
+      gap: 28px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .proj-meta .m-block .caption {
+      margin-bottom: 8px;
+    }
+
+    .proj-meta .m-block .val {
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .proj-simple {
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr;
+      gap: 44px;
+      align-items: center;
+      padding: 48px 56px;
+    }
+
+    .proj-simple:nth-child(even) {
+      transform: translateX(18px);
+    }
+
+    .proj-simple:nth-child(odd) {
+      transform: translateX(-8px);
+    }
+
+    .proj-simple .num {
+      font-size: 13px;
+    }
+
+    .proj-simple .mock {
+      height: 150px;
+    }
+
+    @media (max-width: 900px) {
+      .proj.featured {
+        grid-template-columns: 1fr;
+        padding: 30px;
+      }
+
+      .proj-simple {
+        grid-template-columns: 1fr;
+        padding: 26px;
+        transform: none !important;
+      }
+
+      .proj-simple .mock {
+        order: -1;
+      }
+    }
+
+    /* ============================================================
+   NEONBOOK PAGE
+   ============================================================ */
+    .nb-hero {
+      padding: 176px var(--gutter) 50px;
+      max-width: var(--container);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .nb-hero .display-huge {
+      font-size: clamp(48px, 10vw, 130px);
+    }
+
+    .nb-hero .body-lg {
+      max-width: 560px;
+      margin: 32px auto 0;
+    }
+
+    .nb-hero-visual {
+      max-width: 980px;
+      margin: 84px auto 0;
+      padding: 26px;
+    }
+
+    .nb-hero-visual .mock {
+      height: clamp(220px, 40vw, 420px);
+    }
+
+    .nb-section {
+      padding: 132px var(--gutter);
+      max-width: var(--container);
+      margin: 0 auto;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .nb-explore-section {
+      padding-top: 220px;
+      padding-bottom: 220px;
+    }
+
+    .nb-explore-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .nb-explore-heading {
+      font-size: clamp(32px, 4.4vw, 50px);
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-top: 16px;
+    }
+
+    .nb-explore-sub {
+      max-width: 300px;
+      text-align: right;
+    }
+
+    .nb-explore-index {
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nb-explore-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 38px 6px;
+      border-top: 1px solid var(--border);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .nb-explore-index .nb-explore-row:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nb-explore-row::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -1px;
+      height: 1px;
+      background: var(--accent);
+      transition: right 600ms var(--ease-soft);
+    }
+
+    .nb-explore-row:hover::after {
+      right: 0;
+    }
+
+    .nb-explore-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 240px;
+      height: 240px;
+      margin-top: -120px;
+      margin-left: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 83, 214, .13) 0%, rgba(59, 83, 214, 0) 70%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 450ms var(--ease-soft);
+      z-index: 0;
+    }
+
+    .nb-explore-row:hover .nb-explore-glow {
+      opacity: 1;
+    }
+
+    .nb-explore-num {
+      position: relative;
+      z-index: 1;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-faint);
+      font-variant-numeric: tabular-nums;
+      flex: none;
+      width: 26px;
+    }
+
+    .nb-explore-name {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(32px, 5.2vw, 58px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: transparent;
+      -webkit-text-stroke: 1.3px var(--ink);
+      transition: color 550ms var(--ease-soft), -webkit-text-stroke-color 550ms var(--ease-soft), transform 550ms var(--ease-soft);
+    }
+
+    .nb-explore-name::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      -webkit-text-stroke: 0;
+      opacity: 0;
+      transition: opacity 420ms ease;
+      pointer-events: none;
+    }
+
+    .nb-explore-row:hover .nb-explore-name {
+      color: var(--accent);
+      -webkit-text-stroke: 1.3px var(--accent);
+      transform: translateX(8px);
+    }
+
+    .nb-explore-row:hover .nb-explore-name::after {
+      opacity: 1;
+    }
+
+    .nb-explore-row--telegram .nb-explore-name::after {
+      color: #3e92c7;
+    }
+
+    .nb-explore-row--instagram .nb-explore-name::after,
+    .nb-explore-row--website .nb-explore-name::after {
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .nb-explore-row--instagram .nb-explore-name::after {
+      background-image: linear-gradient(135deg, #f5a623 0%, #e1306c 48%, #7b3fd1 100%);
+    }
+
+    .nb-explore-row--website .nb-explore-name::after {
+      background-image: linear-gradient(90deg, #00f0ff, #b026ff);
+    }
+
+    @supports not (-webkit-text-stroke: 1px black) {
+      .nb-explore-name {
+        color: var(--ink);
+      }
+
+      .nb-explore-row:hover .nb-explore-name {
+        color: var(--accent);
+      }
+    }
+
+    .nb-explore-meta {
+      position: relative;
+      z-index: 1;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: none;
+    }
+
+    .nb-explore-hint {
+      font-size: 13px;
+      color: var(--ink-soft);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 480ms var(--ease-soft), transform 480ms var(--ease-soft);
+      white-space: nowrap;
+    }
+
+    .nb-explore-row:hover .nb-explore-hint {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .nb-explore-icon {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      flex: none;
+      border-radius: 9px;
+      background: var(--accent-tint);
+      color: var(--ink-faint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: color 420ms var(--ease-soft), transform 420ms var(--ease-soft);
+    }
+
+    .nb-explore-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 420ms ease;
+    }
+
+    .nb-explore-row:hover .nb-explore-icon::after {
+      opacity: 1;
+    }
+
+    .nb-explore-row--telegram .nb-explore-icon::after {
+      background: #3e92c7;
+    }
+
+    .nb-explore-row--instagram .nb-explore-icon::after {
+      background-image: linear-gradient(135deg, #f5a623 0%, #e1306c 48%, #7b3fd1 100%);
+    }
+
+    .nb-explore-row--website .nb-explore-icon::after {
+      background-image: linear-gradient(90deg, #00f0ff, #b026ff);
+    }
+
+    .nb-explore-icon svg {
+      position: relative;
+      z-index: 1;
+      width: 16px;
+      height: 16px;
+    }
+
+    .nb-explore-row:hover .nb-explore-icon {
+      color: #fff;
+      transform: scale(1.06);
+    }
+
+    .nb-explore-arrow {
+      font-size: 19px;
+      color: var(--ink-faint);
+      opacity: 0.45;
+      transform: translate(-4px, 4px);
+      transition: transform 480ms var(--ease-soft), opacity 480ms var(--ease-soft), color 480ms var(--ease-soft);
+    }
+
+    .nb-explore-row:hover .nb-explore-arrow {
+      transform: translate(0, 0);
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    @media (max-width: 760px) {
+      .nb-explore-intro {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .nb-explore-sub {
+        text-align: left;
+        max-width: 420px;
+      }
+
+      .nb-explore-index {
+        margin-top: 70px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nb-explore-row {
+        flex-wrap: wrap;
+        padding: 28px 4px;
+        gap: 6px 16px;
+      }
+
+      .nb-explore-name {
+        color: var(--ink);
+        -webkit-text-stroke: 0;
+        font-size: clamp(26px, 8vw, 34px);
+      }
+
+      .nb-explore-row:hover .nb-explore-name {
+        transform: none;
+      }
+
+      .nb-explore-hint {
+        opacity: 0.75;
+        transform: none;
+        order: 99;
+        width: 100%;
+        margin-top: 2px;
+      }
+
+      .nb-explore-glow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nb-explore-icon {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nb-explore-section {
+        padding-top: 140px;
+        padding-bottom: 140px;
+      }
+    }
+
+    .nb-section-head {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 48px;
+      margin-bottom: 68px;
+    }
+
+    .nb-section-head .display-md {
+      max-width: 360px;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .flow-step {
+      padding: 20px 16px;
+      text-align: left;
+    }
+
+    .flow-step .fnum,
+    .fnum {
+      font-size: 11px;
+      color: var(--accent-ink);
+      font-weight: 700;
+    }
+
+    .flow-step .ftitle,
+    .ftitle {
+      font-size: 14.5px;
+      font-weight: 650;
+      margin-top: 10px;
+    }
+
+    .flow-step .fdesc,
+    .fdesc {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-faint);
+      font-size: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .flow-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-arrow {
+        display: none;
+      }
+
+      .nb-section-head {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Product flow — equal-size peel/reveal cards */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-left: -22px;
+      margin-right: -22px;
+      width: calc(100% + 44px);
+    }
+
+    .peel-card {
+      position: relative;
+      height: 208px;
+      perspective: 1100px;
+    }
+
+    .peel-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .peel-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 46%;
+      border-radius: var(--radius-md);
+      z-index: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--peel-bg, #3b53d6);
+      opacity: 0;
+      filter: brightness(1);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      transition: opacity 750ms cubic-bezier(.22, .61, .36, 1) 60ms,
+        box-shadow 750ms cubic-bezier(.22, .61, .36, 1) 60ms,
+        filter 750ms cubic-bezier(.22, .61, .36, 1) 60ms;
+    }
+
+    .peel-card:hover .peel-panel {
+      opacity: 1;
+      filter: brightness(1.06);
+      box-shadow: 0 0 50px -6px var(--peel-glow, rgba(59, 83, 214, .5)), 0 0 14px -2px var(--peel-glow, rgba(59, 83, 214, .6));
+    }
+
+    .peel-text {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    .peel-arrow {
+      align-self: flex-end;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+    }
+
+    .peel-front {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      transform-origin: right center;
+      transform: perspective(1100px) rotateY(0deg) translateZ(0);
+      transition: width 850ms cubic-bezier(.22, .61, .36, 1),
+        transform 850ms cubic-bezier(.22, .61, .36, 1),
+        box-shadow 850ms cubic-bezier(.22, .61, .36, 1);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .peel-fold {
+      content: '';
+      position: absolute;
+      top: 7%;
+      bottom: 7%;
+      right: -3px;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(112deg, #ffffff 0%, #ffffff 32%, rgba(223, 226, 234, .95) 58%, rgba(172, 177, 190, .6) 100%);
+      box-shadow: 3px 0 16px -2px rgba(21, 20, 15, .22), -1px 0 5px rgba(255, 255, 255, .7) inset;
+      opacity: 0;
+      transition: width 850ms cubic-bezier(.22, .61, .36, 1), opacity 850ms cubic-bezier(.22, .61, .36, 1);
+      pointer-events: none;
+      display: block;
+    }
+
+    .peel-card:hover .peel-front {
+      width: 58%;
+      transform: perspective(1100px) rotateY(-14deg) translateZ(-3px);
+      box-shadow: 16px 10px 34px -14px rgba(21, 20, 15, .32);
+    }
+
+    .peel-card:hover .peel-fold {
+      width: 20px;
+      opacity: 1;
+    }
+
+    .flow-card-head {
+      display: flex;
+      align-items: center;
+    }
+
+    .flow-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--peel-tint, var(--accent-tint));
+      color: var(--peel-bg, var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+    }
+
+    .flow-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .peel-card--book {
+      --peel-bg: #3b53d6;
+      --peel-glow: rgba(59, 83, 214, .45);
+      --peel-tint: #e9edfc;
+    }
+
+    .peel-card--test {
+      --peel-bg: #7c3aed;
+      --peel-glow: rgba(124, 58, 237, .42);
+      --peel-tint: #f0e9fc;
+    }
+
+    .peel-card--score {
+      --peel-bg: #0891b2;
+      --peel-glow: rgba(8, 145, 178, .4);
+      --peel-tint: #e3f3f8;
+    }
+
+    .peel-card--points {
+      --peel-bg: #c98a12;
+      --peel-glow: rgba(201, 138, 18, .4);
+      --peel-tint: #faf0dc;
+    }
+
+    .peel-card--competition {
+      --peel-bg: #0d9488;
+      --peel-glow: rgba(13, 148, 136, .4);
+      --peel-tint: #e0f4f0;
+    }
+
+    .peel-card--leaderboard {
+      --peel-bg: #7e22ce;
+      --peel-glow: rgba(126, 34, 206, .42);
+      --peel-tint: #f1e6fb;
+    }
+
+    @media (max-width: 860px) {
+      .flow-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .flow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .peel-card {
+        height: 190px;
+      }
+
+      .peel-panel {
+        width: 52%;
+      }
+
+      .peel-card:hover .peel-front {
+        width: 50%;
+      }
+    }
+
+    .ui-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .ui-card {
+      padding: 24px;
+    }
+
+    .ui-card .ui-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .ui-card .ui-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ui-card h4 {
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .ui-card p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .ui-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .ui-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .role-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .role-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .role-item .rdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 8px;
+      flex: none;
+    }
+
+    @media (max-width: 860px) {
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .tech-pill {
+      padding: 10px 16px;
+      border-radius: 100px;
+    }
+
+    .nb-close {
+      text-align: center;
+      padding: 160px var(--gutter) 190px;
+    }
+
+    .nb-close .display-lg {
+      letter-spacing: -0.03em;
+    }
+
+    .nb-close .tag {
+      margin-top: 18px;
+    }
+
+    /* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+    .about-hero {
+      padding: 168px var(--gutter) 210px;
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .about-hero .display-lg {
+      max-width: 720px;
+    }
+
+    .about-cards-wrap {
+      padding: 110px 0 220px;
+      overflow: hidden;
+    }
+
+    .about-slider {
+      width: 100%;
+      overflow: hidden;
+      perspective: 1300px;
+    }
+
+    .about-slider-track {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(40px, 3.5vw, 64px);
+      width: max-content;
+      padding-top: 48px;
+      transform-style: preserve-3d;
+      will-change: transform;
+      animation: aboutSlide 46s linear infinite;
+    }
+
+    @keyframes aboutSlide {
+      from {
+        transform: translate3d(0, 0, 0);
+      }
+
+      to {
+        transform: translate3d(-50%, 0, 0);
+      }
+    }
+
+    .about-slider:hover .about-slider-track {
+      animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-slider-track {
+        animation: none;
+      }
+    }
+
+    .about-card {
+      width: clamp(400px, 34vw, 560px);
+      flex: none;
+      transform-style: preserve-3d;
+    }
+
+    .about-card-inner {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      padding: 34px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 380ms var(--ease-soft),
+        box-shadow 380ms var(--ease-soft),
+        border-color 380ms var(--ease-soft),
+        background 380ms var(--ease-soft);
+    }
+
+    .about-card-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+      transition: opacity 380ms var(--ease-soft);
+    }
+
+    .about-card-inner>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-card:hover .about-card-inner::before {
+      opacity: 0.85;
+    }
+
+    /* Per-card visual identity */
+    .about-card--about .about-card-inner::before {
+      background-image:
+        radial-gradient(circle at 85% 10%, rgba(47, 69, 199, .14), transparent 48%),
+        repeating-linear-gradient(135deg, rgba(47, 69, 199, .05) 0px, rgba(47, 69, 199, .05) 1px, transparent 1px, transparent 13px);
+    }
+
+    .about-card--stack .about-card-inner::before {
+      background-image:
+        repeating-linear-gradient(0deg, rgba(21, 20, 15, .05) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(90deg, rgba(21, 20, 15, .05) 0 1px, transparent 1px 22px);
+    }
+
+    .about-card--currently .about-card-inner::before {
+      background-image:
+        radial-gradient(circle at 20% 18%, rgba(140, 110, 230, .16), transparent 50%),
+        radial-gradient(circle at 85% 80%, rgba(140, 110, 230, .1), transparent 55%);
+    }
+
+    .about-card--education .about-card-inner::before {
+      background-image:
+        repeating-linear-gradient(100deg, rgba(150, 120, 60, .05) 0px, rgba(150, 120, 60, .05) 1px, transparent 1px, transparent 6px);
+      opacity: 0.4;
+    }
+
+    .about-card--about .about-card-inner {
+      background: #fbfbfd;
+    }
+
+    .about-card--stack .about-card-inner {
+      background: var(--surface);
+    }
+
+    .about-card--currently .about-card-inner {
+      background: #f7f5fc;
+    }
+
+    .about-card--education .about-card-inner {
+      background: #fbfaf6;
+    }
+
+    .about-slider-track .about-card:nth-child(4n+1) {
+      margin-top: 0;
+    }
+
+    .about-slider-track .about-card:nth-child(4n+2) {
+      margin-top: 36px;
+    }
+
+    .about-slider-track .about-card:nth-child(4n+3) {
+      margin-top: 8px;
+    }
+
+    .about-slider-track .about-card:nth-child(4n) {
+      margin-top: 40px;
+    }
+
+    .about-card:hover .about-card-inner {
+      transform: translateZ(30px) scale(1.045);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-card:hover {
+      z-index: 3;
+    }
+
+    .about-card h4.caption {
+      color: var(--accent-ink);
+    }
+
+    .about-card .body {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 560px) {
+      .about-card {
+        width: min(78vw, 340px);
+      }
+    }
+
+    .exp-head {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: var(--container);
+      margin: 40px auto 150px;
+      padding: 0 var(--gutter);
+    }
+
+    .exp-card {
+      padding: 22px;
+      transition: transform var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft);
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px) rotate(-0.4deg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .exp-card .caption {
+      color: var(--ink-faint);
+    }
+
+    .exp-card h5 {
+      font-size: 15.5px;
+      font-weight: 650;
+      margin-top: 8px;
+    }
+
+    .exp-card p {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 860px) {
+      .exp-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .exp-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
+   CONTACT
+   ============================================================ */
+    .contact-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 168px var(--gutter) 100px;
+      max-width: var(--container);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .contact-title {
+      letter-spacing: -0.05em;
+    }
+
+    .contact-links {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 640px;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 26px 4px;
+      border-top: 1px solid var(--border);
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      transition: padding-left var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft);
+    }
+
+    .contact-links .contact-link:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+      padding-left: 12px;
+    }
+
+    .contact-link .cl-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+    }
+
+    .contact-link:hover .cl-label {
+      color: var(--accent);
+    }
+
+    .contact-link .cl-arrow {
+      font-size: 18px;
+      transition: transform var(--dur-fast) var(--ease-soft);
+    }
+
+    .contact-link:hover .cl-arrow {
+      transform: translate(4px, -4px);
+    }
+
+    .contact-note {
+      margin-top: 46px;
+      max-width: 420px;
+    }
+
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      pointer-events: none;
+      z-index: 200;
+      transform: translate(-50%, -50%);
+      transition: width var(--dur-fast) var(--ease-soft), height var(--dur-fast) var(--ease-soft), background var(--dur-fast) var(--ease-soft);
+      mix-blend-mode: normal;
+      opacity: 0;
+    }
+
+    .cursor-dot.show {
+      opacity: 1;
+    }
+
+    .cursor-dot.big {
+      width: 54px;
+      height: 54px;
+      background: var(--accent-tint);
+    }
+
+    @media (max-width: 860px) {
+      .cursor-dot {
+        display: none;
+      }
+    }
+
+    /* ============================================================
+   ACADEMIC (Home only)
+   ============================================================ */
+    .academic-body {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .academic-col-main .caption {
+      color: var(--ink-faint);
+    }
+
+    .academic-col-main .body-lg {
+      margin-top: 24px;
+      max-width: 640px;
+    }
+
+    .academic-gpa {
+      margin-top: 12px;
+      font-size: clamp(44px, 5vw, 60px);
+      font-weight: 650;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .academic-gpa-max {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 860px) {
+      .academic-body {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    /* ============================================================
+   FOOTER
+   ============================================================ */
+    .mega-footer {
+      background: #000;
+      color: #ffffff;
+      padding: 180px var(--gutter) 0;
+    }
+
+    .mf-statement-wrap {
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+
+    .mf-statement {
+      font-size: clamp(48px, 9vw, 128px);
+      font-weight: 650;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+    }
+
+    .mf-info {
+      max-width: var(--container);
+      margin: 150px auto 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .mf-brand {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+
+    .mf-name {
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .mf-detail {
+      margin-top: 4px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .mf-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.42);
+      margin-bottom: 18px;
+    }
+
+    .mf-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .mf-icon-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      color: rgba(255, 255, 255, 0.7);
+      opacity: 0.85;
+      transition: color var(--dur-fast) var(--ease-soft), transform var(--dur-fast) var(--ease-soft), opacity var(--dur-fast) var(--ease-soft);
+    }
+
+    .mf-icon-link svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .mf-icon-link:hover {
+      color: #ffffff;
+      opacity: 1;
+      transform: scale(1.12);
+    }
+
+    .mf-bottom {
+      max-width: var(--container);
+      margin: 210px auto 0;
+      padding: 26px 0 44px;
+    }
+
+    .mf-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      margin-bottom: 24px;
+    }
+
+    .mf-copyright {
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    @media (max-width: 860px) {
+      .mega-footer {
+        padding-top: 120px;
+      }
+
+      .mf-info {
+        margin-top: 100px;
+        gap: 44px;
+      }
+
+      .mf-bottom {
+        margin-top: 130px;
+      }
+    }
+
+    .mega-footer--compact {
+      padding-top: 90px;
+    }
+
+    .mega-footer--compact .mf-info {
+      margin-top: 0;
+    }
+  </style>
+  <link rel="stylesheet" href="refinements.css">
+</head>
+
+<body>
+
+  <div class="nav-holder">
+    <nav class="nav" id="nav">
+      <a href="#home" class="brand nav-link" data-route="home">CODEX</a>
+      <a href="#work" class="nav-link" data-route="work"><span class="nav-link-label">WORK</span></a>
+      <a href="#neonbook" class="nav-link" data-route="neonbook"><span class="nav-link-label">NEONBOOK</span></a>
+      <a href="#about" class="nav-link" data-route="about"><span class="nav-link-label">ABOUT</span></a>
+      <a href="#contact" class="nav-link" data-route="contact"><span class="nav-link-label">CONTACT</span></a>
+    </nav>
+  </div>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <main id="main">
+
+    <!-- ======================= HOME ======================= -->
+    <section class="page" id="page-home" data-route="home">
+      <div class="home-hero hero-dark">
+        <div class="hero-bg-layer" aria-hidden="true">
+          <div class="hero-bg-img"></div>
+          <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="home-hero-grid">
+          <div class="home-hero-title reveal in">
+            <h1 class="display-huge">CODEX</h1>
+            <p class="caption" style="margin-top:14px;">FARAZ&nbsp;/&nbsp;COMPUTER&nbsp;SCIENCE</p>
+            <div class="home-hero-sub">
+
+            </div>
+          </div>
+          <div class="id-card card reveal in reveal-delay-2">
+            <div class="id-top">
+              <span class="caption">IDENTITY</span>
+              <span class="id-dot"></span>
+            </div>
+            <div class="id-cycle" id="idCycle">
+              <div class="id-cycle-line on">
+                <div class="l1">Faraz</div>
+                <div class="l2">CODEX · Computer Science</div>
+              </div>
+              <div class="id-cycle-line">
+                <div class="l1">Computer Science</div>
+                <div class="l2">C · C# · Java · Python</div>
+              </div>
+              <div class="id-cycle-line">
+                <div class="l1">Developer</div>
+                <div class="l2">Spring · Django · Web</div>
+              </div>
+              <div class="id-cycle-line">
+                <div class="l1">Builder</div>
+                <div class="l2">HTML · CSS · JavaScript · Tailwind</div>
+              </div>
+              <div class="id-cycle-line">
+                <div class="l1">Game Developer</div>
+                <div class="l2">Godot</div>
+              </div>
+              <div class="id-cycle-line">
+                <div class="l1">Currently</div>
+                <div class="l2">Learning Machine Learning</div>
+              </div>
+            </div>
+            <div class="id-foot">
+              <div class="id-school">Amirkabir University of Technology</div>
+              <div class="id-tags">
+                <span class="card-tag">C · C# · JAVA · PYTHON</span>
+                <span class="card-tag">SPRING · DJANGO</span>
+                <span class="card-tag">WEB · GAME · AI</span>
+              </div>
+              <p class="caption" style="margin-top:12px;">FULL-STACK&nbsp;/&nbsp;GAME&nbsp;DEV&nbsp;/&nbsp;ML</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">SELECTED WORK</p>
+            <h2 class="display-lg">Products, platforms, and the systems underneath them.</h2>
+          </div>
+          <a href="#work" class="view-link" data-route-link="work">View all work <span class="arrow">↗</span></a>
+        </div>
+
+        <div class="exhibit-grid">
+          <a href="#neonbook" class="exhibit-item exhibit-01 reveal" data-route-link="neonbook">
+            <div class="exhibit-frame">
+              <div class="exhibit-img exhibit-img--neonbook"></div>
+            </div>
+            <div class="exhibit-caption">
+              <span class="exhibit-num">01</span>
+              <span class="exhibit-name">NeonBook</span>
+            </div>
+          </a>
+
+          <a href="#work" class="exhibit-item exhibit-02 reveal reveal-delay-2" data-route-link="work">
+            <div class="exhibit-frame">
+              <div class="exhibit-img exhibit-img--codate"></div>
+            </div>
+            <div class="exhibit-caption">
+              <span class="exhibit-num">02</span>
+              <span class="exhibit-name">CODATE</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">ACADEMIC</p>
+            <h2 class="display-lg">Faraz Nourinia</h2>
+          </div>
+        </div>
+        <div class="academic-body">
+          <div class="academic-col-main reveal">
+            <p class="caption">
+              B.SC.&nbsp;COMPUTER&nbsp;SCIENCE&nbsp;·&nbsp;AMIRKABIR&nbsp;UNIVERSITY&nbsp;OF&nbsp;TECHNOLOGY&nbsp;</p>
+            <p class="body-lg">Computer Science student at Amirkabir University of Technology. Focused on frontend,
+              Django backend, and game development, currently exploring machine learning and international
+              opportunities.</p>
+          </div>
+          <div class="academic-col-gpa reveal reveal-delay-2">
+            <p class="caption">OVERALL GPA</p>
+            <p class="academic-gpa">17.6<span class="academic-gpa-max">&nbsp;/&nbsp;20</span></p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mega-footer">
+        <div class="mf-statement-wrap reveal">
+          <h2 class="mf-statement">LET'S<br>MAKE<br>SOMETHING.</h2>
+        </div>
+        <div class="mf-info">
+          <div class="mf-col-left reveal">
+            <div class="mf-brand">CODEX</div>
+            <div class="mf-name">Faraz Nourinia</div>
+            <div class="mf-detail">Computer Science</div>
+            <div class="mf-detail">Amirkabir University of Technology</div>
+          </div>
+          <div class="mf-col-right reveal reveal-delay-1">
+            <p class="mf-label">CONNECT</p>
+            <ul class="mf-links">
+              <li><a class="mf-icon-link" href="#" aria-label="LinkedIn" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.55 2.55 4.55 5.85V21h-4v-5.35c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.1 1.4-2.1 2.85V21H9z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://github.com/" target="_blank" rel="noopener"
+                  aria-label="GitHub" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 1C5.9 1 1 5.9 1 12c0 4.9 3.2 9.1 7.6 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.5-3.8-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6C19.8 21.1 23 16.9 23 12c0-6.1-4.9-11-11-11z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"
+                  data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M21.5 3.5 2.7 10.9c-.7.3-.7 1.3.1 1.5l4.6 1.4 1.7 5.5c.2.6.9.8 1.4.4l2.6-2.1 4.5 3.3c.6.4 1.4.1 1.6-.6l3.2-15.4c.2-.9-.7-1.6-1.5-1.4zM9 14.5l8.5-7.7c.2-.2.5.1.3.3L11 14.4l-.3 3.2-1.7-3.1z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="mailto:hello@faraz.dev" aria-label="Gmail" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                      d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-11z" />
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                      d="m4 6.5 8 6.2 8-6.2" />
+                  </svg>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mf-bottom">
+          <div class="mf-divider"></div>
+          <p class="mf-copyright">© 2026 CODEX — ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ======================= WORK ======================= -->
+    <section class="page" id="page-work" data-route="work">
+      <div class="work-hero">
+        <p class="eyebrow reveal in">WORK</p>
+        <h1 class="display-lg reveal in reveal-delay-1" style="margin-top:14px;">Five things I've shipped, tuned, and
+          occasionally rebuilt from scratch.</h1>
+      </div>
+
+      <div class="work-list">
+        <div class="proj featured card reveal">
+          <div class="p-copy">
+            <div class="num">PROJECT 01 — FLAGSHIP</div>
+            <h3 class="display-md">NeonBook</h3>
+            <p class="desc body-md">A platform for healthy competition among technology enthusiasts — read, test, score,
+              and climb a weekly leaderboard.</p>
+            <div class="proj-meta">
+              <div class="m-block">
+                <div class="caption">Stack</div>
+                <div class="val">Python · Django · DB</div>
+              </div>
+              <div class="m-block">
+                <div class="caption">Status</div>
+                <div class="val">Live</div>
+              </div>
+            </div>
+            <a href="#neonbook" class="view-link" data-route-link="neonbook">VIEW PROJECT <span
+                class="arrow">↗</span></a>
+          </div>
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span
+                class="mock-dot"></span></div>
+            <div class="mock-body">
+              <div style="display:flex;gap:10px;">
+                <div class="mock-block" style="height:96px;flex:1.4"></div>
+                <div class="mock-block" style="height:96px;flex:1"></div>
+              </div>
+              <div class="mock-line" style="width:60%"></div>
+              <div class="mock-line" style="width:30%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-simple card reveal">
+          <div class="num">02</div>
+          <div>
+            <h4 class="display-md" style="font-size:22px;">CODATE</h4>
+            <p class="body-md" style="margin-top:8px;">A production Telegram dating bot built in async Python — Clean
+              Architecture, PostgreSQL and Redis running underneath the conversation.</p>
+            <div class="p-tags" style="margin-top:14px;">
+              <span class="card-tag">PYTHON</span><span class="card-tag">AIOGRAM 3</span><span
+                class="card-tag">POSTGRESQL</span><span class="card-tag">REDIS</span>
+            </div>
+          </div>
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span></div>
+            <div class="mock-body">
+              <div class="mock-block" style="height:22px;width:70%;align-self:flex-end;"></div>
+              <div class="mock-block" style="height:22px;width:55%;"></div>
+              <div class="mock-block" style="height:22px;width:40%;align-self:flex-end;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-simple card reveal">
+          <div class="num">03</div>
+          <div>
+            <h4 class="display-md" style="font-size:22px;">CODEXX</h4>
+            <p class="body-md" style="margin-top:8px;">A full-stack social platform — 83 files of Django 5, with JWT
+              auth, a follow system, feeds, direct messages and notifications.</p>
+            <div class="p-tags" style="margin-top:14px;">
+              <span class="card-tag">DJANGO 5</span><span class="card-tag">JWT AUTH</span><span
+                class="card-tag">REALTIME</span>
+            </div>
+          </div>
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span
+                class="mock-dot"></span></div>
+            <div class="mock-body">
+              <div class="mock-line" style="width:80%"></div>
+              <div class="mock-line" style="width:65%"></div>
+              <div class="mock-line" style="width:70%"></div>
+              <div class="mock-line" style="width:35%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-simple card reveal">
+          <div class="num">04</div>
+          <div>
+            <h4 class="display-md" style="font-size:22px;">CryptoSage</h4>
+            <p class="body-md" style="margin-top:8px;">A CLI trading-signal tool reading the Binance public API — nine
+              weighted algorithms voting toward buy, sell, or hold.</p>
+            <div class="p-tags" style="margin-top:14px;">
+              <span class="card-tag">PYTHON</span><span class="card-tag">BINANCE API</span><span
+                class="card-tag">CLI</span>
+            </div>
+          </div>
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span></div>
+            <div class="mock-body" style="flex-direction:row;align-items:flex-end;gap:6px;height:80px;">
+              <div class="mock-block" style="width:10%;height:40%;"></div>
+              <div class="mock-block" style="width:10%;height:70%;"></div>
+              <div class="mock-block" style="width:10%;height:30%;"></div>
+              <div class="mock-block" style="width:10%;height:85%;"></div>
+              <div class="mock-block" style="width:10%;height:55%;"></div>
+              <div class="mock-block" style="width:10%;height:65%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-simple card reveal">
+          <div class="num">05</div>
+          <div>
+            <h4 class="display-md" style="font-size:22px;">MyBlog</h4>
+            <p class="body-md" style="margin-top:8px;">A personal weblog platform in Next.js 15, with a quiet
+              ollama.com-inspired aesthetic — Prisma, Auth.js and Tiptap doing the work behind it.</p>
+            <div class="p-tags" style="margin-top:14px;">
+              <span class="card-tag">NEXT.JS 15</span><span class="card-tag">PRISMA</span><span
+                class="card-tag">TIPTAP</span>
+            </div>
+          </div>
+          <div class="mock">
+            <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span
+                class="mock-dot"></span></div>
+            <div class="mock-body">
+              <div class="mock-line" style="width:50%;height:14px;"></div>
+              <div class="mock-line" style="width:90%"></div>
+              <div class="mock-line" style="width:85%"></div>
+              <div class="mock-line" style="width:60%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mega-footer">
+        <div class="mf-statement-wrap reveal">
+          <h2 class="mf-statement">LET'S<br>MAKE<br>SOMETHING.</h2>
+        </div>
+        <div class="mf-info">
+          <div class="mf-col-left reveal">
+            <div class="mf-brand">CODEX</div>
+            <div class="mf-name">Faraz Nourinia</div>
+            <div class="mf-detail">Computer Science</div>
+            <div class="mf-detail">Amirkabir University of Technology</div>
+          </div>
+          <div class="mf-col-right reveal reveal-delay-1">
+            <p class="mf-label">CONNECT</p>
+            <ul class="mf-links">
+              <li><a class="mf-icon-link" href="#" aria-label="LinkedIn" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.55 2.55 4.55 5.85V21h-4v-5.35c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.1 1.4-2.1 2.85V21H9z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://github.com/" target="_blank" rel="noopener"
+                  aria-label="GitHub" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 1C5.9 1 1 5.9 1 12c0 4.9 3.2 9.1 7.6 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.5-3.8-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6C19.8 21.1 23 16.9 23 12c0-6.1-4.9-11-11-11z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"
+                  data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M21.5 3.5 2.7 10.9c-.7.3-.7 1.3.1 1.5l4.6 1.4 1.7 5.5c.2.6.9.8 1.4.4l2.6-2.1 4.5 3.3c.6.4 1.4.1 1.6-.6l3.2-15.4c.2-.9-.7-1.6-1.5-1.4zM9 14.5l8.5-7.7c.2-.2.5.1.3.3L11 14.4l-.3 3.2-1.7-3.1z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="mailto:hello@faraz.dev" aria-label="Gmail" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                      d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-11z" />
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                      d="m4 6.5 8 6.2 8-6.2" />
+                  </svg>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mf-bottom">
+          <div class="mf-divider"></div>
+          <p class="mf-copyright">© 2026 CODEX — ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ======================= NEONBOOK ======================= -->
+    <section class="page" id="page-neonbook" data-route="neonbook">
+      <div class="nb-hero">
+        <p class="eyebrow reveal in" style="justify-content:center;">PROJECT 01 — NEONBOOK</p>
+        <h1 class="display-huge reveal in reveal-delay-1">NEONBOOK</h1>
+        <p class="body-lg reveal in reveal-delay-2">Learn. Test. Compete. Climb.</p>
+        <div class="nb-hero-visual card reveal reveal-delay-3">
+          <div class="nb-preview" aria-label="Illustrative NeonBook product preview">
+            <header class="preview-bar"><strong>neonbook<span> / </span></strong><span>Library &nbsp; / &nbsp; Weekly challenge</span><small>PRODUCT PREVIEW</small></header>
+            <div class="preview-main">
+              <div class="preview-library"><p class="caption">YOUR NEXT CHAPTER</p><h2>Read something.<br>Build understanding.</h2><p>Technology books. A new perspective with every chapter.</p>
+                <div class="preview-books"><article class="preview-book"><small>01 / DEVELOPMENT</small><strong>Frontend<br>development</strong><span>HTML · CSS · JavaScript</span></article><article class="preview-book"><small>02 / DEVELOPMENT</small><strong>Backend<br>development</strong><span>Python · Django</span></article></div>
+                <p class="preview-note">Illustrative subjects · Explore the book collection</p>
+              </div>
+              <aside class="preview-test"><p class="caption">THE LEARNING LOOP</p><h3>From reading<br>to understanding.</h3><div class="preview-assessment"><span>ASSESSMENT</span><strong>20 questions</strong><p>Test what you've learned from your book.</p><div class="preview-progress"><i></i></div><small>Read → Test → Review</small></div><div class="preview-outcome"><span>01</span><div><strong>Your score</strong><p>Based on your answers.</p></div></div><div class="preview-outcome"><span>02</span><div><strong>Points & ranking</strong><p>Keep learning. Follow your progress.</p></div></div></aside>
+            </div><footer class="preview-bottom"><span>WEEKLY CHALLENGE</span><p>A shared test. A reason to keep learning.</p><span>Leaderboard ↗</span></footer>
+          </div>
+        </div>
+      </div>
+
+      <div class="nb-section">
+        <div class="nb-section-head">
+          <p class="eyebrow">THE IDEA</p>
+          <h2 class="display-md reveal">Learning becomes more engaging when knowledge can be measured.</h2>
+        </div>
+        <p class="body-lg reveal" style="max-width:680px;">NeonBook is a startup launched by the Neon team,
+          particularly Ilya BOTO. The platform turns learning from technology books into a competitive experience
+          through tests, scores, points, and rankings.</p>
+      </div>
+
+      <div class="nb-section">
+        <div class="nb-section-head">
+          <p class="eyebrow">PRODUCT</p>
+          <h2 class="display-md reveal">Learn. Test. Compete. Climb.</h2>
+        </div>
+        <div class="flow-grid">
+          <div class="peel-card peel-card--book flow-card flow-card--book reveal" tabindex="0">
+            <div class="peel-panel flow-panel">
+              <p class="peel-text">Explore a curated collection of technology books, read at your own pace and build
+                your skills step by step.</p>
+              <span class="peel-arrow">→</span>
+            </div>
+            <div class="peel-front flow-card-content card">
+              <div class="flow-card-head">
+                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4z" />
+                    <path d="M4 4v13a3 3 0 0 0 3 3h11" />
+                  </svg></div>
+              </div>
+              <div class="ftitle">Book</div>
+              <div class="fdesc">Choose a technology book and start learning.</div>
+              <span class="peel-fold"></span>
+            </div>
+          </div>
+
+          <div class="peel-card peel-card--test flow-card flow-card--test reveal reveal-delay-1" tabindex="0">
+            <div class="peel-panel flow-panel">
+              <p class="peel-text">Test your knowledge with 20 carefully designed questions and see how much you've
+                learned.</p>
+              <span class="peel-arrow">→</span>
+            </div>
+            <div class="peel-front flow-card-content card">
+              <div class="flow-card-head">
+                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4" />
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                  </svg></div>
+              </div>
+              <div class="ftitle">Test</div>
+              <div class="fdesc">Take a 20-question test based on the book.</div>
+              <span class="peel-fold"></span>
+            </div>
+          </div>
+
+          <div class="peel-card peel-card--score flow-card flow-card--score reveal reveal-delay-2" tabindex="0">
+            <div class="peel-panel flow-panel">
+              <p class="peel-text">Get an instant score based on your answers and track your progress over time.</p>
+              <span class="peel-arrow">→</span>
+            </div>
+            <div class="peel-front flow-card-content card">
+              <div class="flow-card-head">
+                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9" />
+                    <circle cx="12" cy="12" r="5" />
+                    <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+                  </svg></div>
+              </div>
+              <div class="ftitle">Score</div>
+              <div class="fdesc">Your answers determine your test score.</div>
+              <span class="peel-fold"></span>
+            </div>
+          </div>
+
+          <div class="peel-card peel-card--points flow-card flow-card--points reveal" tabindex="0">
+            <div class="peel-panel flow-panel">
+              <p class="peel-text">Earn points for every test you complete and improve your rank as you progress.
+              </p>
+              <span class="peel-arrow">→</span>
+            </div>
+            <div class="peel-front flow-card-content card">
+              <div class="flow-card-head">
+                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2l2.9 6.3L21 9l-5 4.6L17.4 21 12 17.6 6.6 21 8 13.6 3 9l6.1-.7z" />
+                  </svg></div>
+              </div>
+              <div class="ftitle">Points</div>
+              <div class="fdesc">Your results contribute to your overall points.</div>
+              <span class="peel-fold"></span>
+            </div>
+          </div>
+
+          <div class="peel-card peel-card--competition flow-card flow-card--competition reveal reveal-delay-1" tabindex="0">
+            <div class="peel-panel flow-panel">
+              <p class="peel-text">Join the weekly challenge, compare your results with others and stay motivated.
+              </p>
+              <span class="peel-arrow">→</span>
+            </div>
+            <div class="peel-front flow-card-content card">
+              <div class="flow-card-head">
+                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 4h8v4a4 4 0 0 1-8 0V4z" />
+                    <path d="M8 5H5a2 2 0 0 0 2 4" />
+                    <path d="M16 5h3a2 2 0 0 1-2 4" />
+                    <path d="M12 12v3" />
+                    <path d="M9 19h6" />
+                    <path d="M10 15h4v2a2 2 0 0 1-4 0v-2z" />
+                  </svg></div>
+              </div>
+              <div class="ftitle">Competition</div>
+              <div class="fdesc">Weekly tests keep the learning process active and competitive.</div>
+              <span class="peel-fold"></span>
+            </div>
+          </div>
+
+          <div class="peel-card peel-card--leaderboard flow-card flow-card--leaderboard reveal reveal-delay-2" tabindex="0">
+            <div class="peel-panel flow-panel">
+              <p class="peel-text">See where you stand, climb the ranks and become a top learner in the community.
+              </p>
+              <span class="peel-arrow">→</span>
+            </div>
+            <div class="peel-front flow-card-content card">
+              <div class="flow-card-head">
+                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 20V10M12 20V4M20 20v-7" />
+                  </svg></div>
+              </div>
+              <div class="ftitle">Leaderboard</div>
+              <div class="fdesc">Your points determine your position among other learners.</div>
+              <span class="peel-fold"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="nb-section nb-explore-section">
+        <div class="nb-explore-intro">
+          <div class="reveal">
+            <p class="eyebrow">EXPLORE</p>
+            <p class="nb-explore-heading">Explore NeonBook</p>
+          </div>
+          <p class="body-md nb-explore-sub reveal reveal-delay-1">Learn more, explore the platform, and see NeonBook
+            for yourself.</p>
+        </div>
+        <div class="nb-explore-index">
+          <a class="nb-explore-row nb-explore-row--telegram reveal reveal-delay-1" href="https://t.me/"
+            target="_blank" rel="noopener">
+            <span class="nb-explore-glow"></span>
+            <span class="nb-explore-num">01</span>
+            <span class="nb-explore-name" data-text="Telegram">Telegram</span>
+            <span class="nb-explore-meta">
+              <span class="nb-explore-hint">Join the community</span>
+              <span class="nb-explore-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m21 4-9.5 9.5M21 4l-6.5 16-4-8.5L2 8.5 21 4Z" />
+                </svg>
+              </span>
+              <span class="nb-explore-arrow">↗</span>
+            </span>
+          </a>
+          <a class="nb-explore-row nb-explore-row--instagram reveal reveal-delay-2" href="https://instagram.com/"
+            target="_blank" rel="noopener">
+            <span class="nb-explore-glow"></span>
+            <span class="nb-explore-num">02</span>
+            <span class="nb-explore-name" data-text="Instagram">Instagram</span>
+            <span class="nb-explore-meta">
+              <span class="nb-explore-hint">Behind the scenes</span>
+              <span class="nb-explore-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4.2" />
+                  <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+              <span class="nb-explore-arrow">↗</span>
+            </span>
+          </a>
+          <a class="nb-explore-row nb-explore-row--website reveal reveal-delay-3" href="#" target="_blank"
+            rel="noopener">
+            <span class="nb-explore-glow"></span>
+            <span class="nb-explore-num">03</span>
+            <span class="nb-explore-name" data-text="Website">Website</span>
+            <span class="nb-explore-meta">
+              <span class="nb-explore-hint">Visit the platform</span>
+              <span class="nb-explore-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18M12 3c2.5 2.5 4 5.7 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.7-4-9s1.5-6.5 4-9Z" />
+                </svg>
+              </span>
+              <span class="nb-explore-arrow">↗</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nb-close">
+        <p class="eyebrow reveal" style="justify-content:center;">NEONBOOK</p>
+        <h2 class="display-lg reveal reveal-delay-1">BUILDING A BETTER<br>WAY TO LEARN.</h2>
+      </div>
+
+      <footer class="mega-footer">
+        <div class="mf-statement-wrap reveal">
+          <h2 class="mf-statement">LET'S<br>MAKE<br>SOMETHING.</h2>
+        </div>
+        <div class="mf-info">
+          <div class="mf-col-left reveal">
+            <div class="mf-brand">CODEX</div>
+            <div class="mf-name">Faraz Nourinia</div>
+            <div class="mf-detail">Computer Science</div>
+            <div class="mf-detail">Amirkabir University of Technology</div>
+          </div>
+          <div class="mf-col-right reveal reveal-delay-1">
+            <p class="mf-label">CONNECT</p>
+            <ul class="mf-links">
+              <li><a class="mf-icon-link" href="#" aria-label="LinkedIn" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.55 2.55 4.55 5.85V21h-4v-5.35c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.1 1.4-2.1 2.85V21H9z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://github.com/" target="_blank" rel="noopener"
+                  aria-label="GitHub" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 1C5.9 1 1 5.9 1 12c0 4.9 3.2 9.1 7.6 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.5-3.8-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6C19.8 21.1 23 16.9 23 12c0-6.1-4.9-11-11-11z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"
+                  data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M21.5 3.5 2.7 10.9c-.7.3-.7 1.3.1 1.5l4.6 1.4 1.7 5.5c.2.6.9.8 1.4.4l2.6-2.1 4.5 3.3c.6.4 1.4.1 1.6-.6l3.2-15.4c.2-.9-.7-1.6-1.5-1.4zM9 14.5l8.5-7.7c.2-.2.5.1.3.3L11 14.4l-.3 3.2-1.7-3.1z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="mailto:hello@faraz.dev" aria-label="Gmail" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                      d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-11z" />
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                      d="m4 6.5 8 6.2 8-6.2" />
+                  </svg>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mf-bottom">
+          <div class="mf-divider"></div>
+          <p class="mf-copyright">© 2026 CODEX — ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ======================= ABOUT ======================= -->
+    <section class="page" id="page-about" data-route="about">
+      <div class="about-hero">
+        <p class="eyebrow reveal in">ABOUT / EXPERIMENTS</p>
+        <h1 class="display-lg reveal in reveal-delay-1" style="margin-top:18px;">I BUILD SOFTWARE AND THINGS I FIND
+          INTERESTING.</h1>
+      </div>
+
+      <div class="about-cards-wrap">
+        <div class="orbit-controls"><p>FOUR PERSPECTIVES / DRAG TO EXPLORE</p><button id="orbitPause" type="button" aria-pressed="false">Pause motion</button></div>
+        <div class="about-slider" id="aboutSlider" tabindex="0" role="region" aria-label="About Faraz. Drag or use left and right arrow keys to explore.">
+          <div class="about-slider-track" id="aboutSliderTrack">
+            <div class="about-card about-card--about" data-tilt="-0.6">
+              <div class="about-card-inner card">
+                <h4 class="caption">ABOUT</h4>
+                <p class="body">Computer Science undergraduate at Amirkabir University of Technology. Interested in frontend development and design, backend development with Django, and game development.</p>
+              </div>
+            </div>
+            <div class="about-card about-card--stack" data-tilt="0.5">
+              <div class="about-card-inner card">
+                <h4 class="caption">STACK</h4>
+                <div class="id-tags" style="margin-top:6px;">
+                  <span class="card-tag">C</span><span class="card-tag">C#</span><span
+                    class="card-tag">JAVA</span><span class="card-tag">PYTHON</span><span
+                    class="card-tag">SPRING</span><span class="card-tag">DJANGO</span><span
+                    class="card-tag">HTML</span><span class="card-tag">CSS</span><span
+                    class="card-tag">JAVASCRIPT</span><span class="card-tag">TAILWIND CSS</span><span
+                    class="card-tag">GODOT</span><span class="card-tag">CLAUDE</span><span
+                    class="card-tag">N8N</span>
+                </div>
+              </div>
+            </div>
+            <div class="about-card about-card--currently" data-tilt="-0.4">
+              <div class="about-card-inner card">
+                <h4 class="caption">CURRENTLY</h4>
+                <p class="body">Currently exploring AI and machine learning while continuing to build digital products and experiences.</p>
+              </div>
+            </div>
+            <div class="about-card about-card--education" data-tilt="0.7">
+              <div class="about-card-inner card">
+                <h4 class="caption">EDUCATION</h4>
+                <p class="body">Computer Science<br>Amirkabir University of Technology<br><small>GPA · 17.6</small></p>
+              </div>
+            </div>
+            <div class="about-card about-card--about" data-tilt="-0.6" aria-hidden="true">
+              <div class="about-card-inner card">
+                <h4 class="caption">ABOUT</h4>
+                <p class="body">Computer Science undergraduate at Amirkabir University of Technology. Interested in frontend development and design, backend development with Django, and game development.</p>
+              </div>
+            </div>
+            <div class="about-card about-card--stack" data-tilt="0.5" aria-hidden="true">
+              <div class="about-card-inner card">
+                <h4 class="caption">STACK</h4>
+                <div class="id-tags" style="margin-top:6px;">
+                  <span class="card-tag">C</span><span class="card-tag">C#</span><span
+                    class="card-tag">JAVA</span><span class="card-tag">PYTHON</span><span
+                    class="card-tag">SPRING</span><span class="card-tag">DJANGO</span><span
+                    class="card-tag">HTML</span><span class="card-tag">CSS</span><span
+                    class="card-tag">JAVASCRIPT</span><span class="card-tag">TAILWIND CSS</span><span
+                    class="card-tag">GODOT</span><span class="card-tag">CLAUDE</span><span
+                    class="card-tag">N8N</span>
+                </div>
+              </div>
+            </div>
+            <div class="about-card about-card--currently" data-tilt="-0.4" aria-hidden="true">
+              <div class="about-card-inner card">
+                <h4 class="caption">CURRENTLY</h4>
+                <p class="body">Currently exploring AI and machine learning while continuing to build digital products and experiences.</p>
+              </div>
+            </div>
+            <div class="about-card about-card--education" data-tilt="0.7" aria-hidden="true">
+              <div class="about-card-inner card">
+                <h4 class="caption">EDUCATION</h4>
+                <p class="body">Computer Science<br>Amirkabir University of Technology<br><small>GPA · 17.6</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-head">
+        <p class="eyebrow">SMALLER EXPERIMENTS</p>
+        <h2 class="display-md reveal" style="margin-top:14px;max-width:520px;">Not everything needs to be a product to
+          be worth building.</h2>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-card card reveal">
+          <p class="caption">TRADING</p>
+          <h5>CryptoSage</h5>
+          <p>A CLI tool that reads the Binance API and runs nine weighted algorithms to vote buy, sell, or hold.</p>
+        </div>
+        <div class="exp-card card reveal reveal-delay-1">
+          <p class="caption">OPERATIONS RESEARCH</p>
+          <h5>Benders Decomposition</h5>
+          <p>A two-stage stochastic optimization problem, solved in GAMS by splitting it into master and subproblems.
+          </p>
+        </div>
+        <div class="exp-card card reveal reveal-delay-2">
+          <p class="caption">CONTENT</p>
+          <h5>CODEX</h5>
+          <p>Started as a developer blog, pivoted toward gaming hardware reviews and game guides.</p>
+        </div>
+        <div class="exp-card card reveal">
+          <p class="caption">WRITING</p>
+          <h5>MyBlog</h5>
+          <p>A Next.js weblog with a quiet, ollama.com-inspired aesthetic — Prisma and Tiptap underneath.</p>
+        </div>
+        <div class="exp-card card reveal reveal-delay-1">
+          <p class="caption">MESSAGING</p>
+          <h5>CODATE</h5>
+          <p>A Telegram dating bot with Clean Architecture, running on PostgreSQL and Redis.</p>
+        </div>
+        <div class="exp-card card reveal reveal-delay-2">
+          <p class="caption">SOCIAL</p>
+          <h5>CODEXX</h5>
+          <p>An 83-file Django social platform — auth, feeds, DMs and notifications, from scratch.</p>
+        </div>
+      </div>
+
+      <footer class="mega-footer">
+        <div class="mf-statement-wrap reveal">
+          <h2 class="mf-statement">LET'S<br>MAKE<br>SOMETHING.</h2>
+        </div>
+        <div class="mf-info">
+          <div class="mf-col-left reveal">
+            <div class="mf-brand">CODEX</div>
+            <div class="mf-name">Faraz Nourinia</div>
+            <div class="mf-detail">Computer Science</div>
+            <div class="mf-detail">Amirkabir University of Technology</div>
+          </div>
+          <div class="mf-col-right reveal reveal-delay-1">
+            <p class="mf-label">CONNECT</p>
+            <ul class="mf-links">
+              <li><a class="mf-icon-link" href="#" aria-label="LinkedIn" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.55 2.55 4.55 5.85V21h-4v-5.35c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.1 1.4-2.1 2.85V21H9z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://github.com/" target="_blank" rel="noopener"
+                  aria-label="GitHub" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 1C5.9 1 1 5.9 1 12c0 4.9 3.2 9.1 7.6 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.5-3.8-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6C19.8 21.1 23 16.9 23 12c0-6.1-4.9-11-11-11z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"
+                  data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M21.5 3.5 2.7 10.9c-.7.3-.7 1.3.1 1.5l4.6 1.4 1.7 5.5c.2.6.9.8 1.4.4l2.6-2.1 4.5 3.3c.6.4 1.4.1 1.6-.6l3.2-15.4c.2-.9-.7-1.6-1.5-1.4zM9 14.5l8.5-7.7c.2-.2.5.1.3.3L11 14.4l-.3 3.2-1.7-3.1z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="mailto:hello@faraz.dev" aria-label="Gmail" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                      d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-11z" />
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                      d="m4 6.5 8 6.2 8-6.2" />
+                  </svg>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mf-bottom">
+          <div class="mf-divider"></div>
+          <p class="mf-copyright">© 2026 CODEX — ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section class="page" id="page-contact" data-route="contact">
+      <div class="contact-page">
+        <p class="eyebrow reveal in">CONTACT</p>
+        <h1 class="display-huge contact-title reveal in reveal-delay-1">LET'S<br>MAKE<br>SOMETHING.</h1>
+
+        <div class="contact-links reveal in reveal-delay-2">
+          <a class="contact-link" href="mailto:hello@faraz.dev" data-cursor="big">
+            <span><span class="cl-label">Email</span><br>hello@faraz.dev</span>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <a class="contact-link" href="https://github.com/" target="_blank" rel="noopener" data-cursor="big">
+            <span><span class="cl-label">GitHub</span><br>github.com/faraz</span>
+            <span class="cl-arrow">↗</span>
+          </a>
+          <a class="contact-link" href="https://linkedin.com/" target="_blank" rel="noopener" data-cursor="big">
+            <span><span class="cl-label">LinkedIn</span><br>linkedin.com/in/faraz</span>
+            <span class="cl-arrow">↗</span>
+          </a>
+        </div>
+        <p class="body-md contact-note reveal in reveal-delay-3">Open to interesting problems, small collaborations, and
+          anything that involves building something from nothing.</p>
+      </div>
+      <footer class="mega-footer mega-footer--compact">
+        <div class="mf-info">
+          <div class="mf-col-left reveal">
+            <div class="mf-brand">CODEX</div>
+            <div class="mf-name">Faraz Nourinia</div>
+            <div class="mf-detail">Computer Science</div>
+            <div class="mf-detail">Amirkabir University of Technology</div>
+          </div>
+          <div class="mf-col-right reveal reveal-delay-1">
+            <p class="mf-label">CONNECT</p>
+            <ul class="mf-links">
+              <li><a class="mf-icon-link" href="#" aria-label="LinkedIn" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.6v1.7h.05c.5-.95 1.75-1.95 3.6-1.95 3.85 0 4.55 2.55 4.55 5.85V21h-4v-5.35c0-1.3-.02-2.95-1.8-2.95-1.8 0-2.1 1.4-2.1 2.85V21H9z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://github.com/" target="_blank" rel="noopener"
+                  aria-label="GitHub" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 1C5.9 1 1 5.9 1 12c0 4.9 3.2 9.1 7.6 10.6.6.1.8-.3.8-.6v-2.2c-3.1.7-3.8-1.5-3.8-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.2-5.1-5.5 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3 0 4.3-2.6 5.2-5.1 5.5.4.3.8 1 .8 2v3c0 .3.2.7.8.6C19.8 21.1 23 16.9 23 12c0-6.1-4.9-11-11-11z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram"
+                  data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M21.5 3.5 2.7 10.9c-.7.3-.7 1.3.1 1.5l4.6 1.4 1.7 5.5c.2.6.9.8 1.4.4l2.6-2.1 4.5 3.3c.6.4 1.4.1 1.6-.6l3.2-15.4c.2-.9-.7-1.6-1.5-1.4zM9 14.5l8.5-7.7c.2-.2.5.1.3.3L11 14.4l-.3 3.2-1.7-3.1z" />
+                  </svg>
+                </a></li>
+              <li><a class="mf-icon-link" href="mailto:hello@faraz.dev" aria-label="Gmail" data-cursor="big">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"
+                      d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-11z" />
+                    <path stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                      d="m4 6.5 8 6.2 8-6.2" />
+                  </svg>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mf-bottom">
+          <div class="mf-divider"></div>
+          <p class="mf-copyright">© 2026 CODEX — ALL RIGHTS RESERVED.</p>
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      if (typeof window.gsap === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      var cardsInitialized = false;
+      var exploreMagneticInitialized = false;
+
+      function initPeelCards() {
+        if (cardsInitialized) return;
+        cardsInitialized = true;
+        document.querySelectorAll('#page-neonbook .flow-card').forEach(function(card) {
+          card.addEventListener('click', function() { card.classList.toggle('is-open'); });
+          card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-open'); }
+            if (e.key === 'Escape') card.classList.remove('is-open');
+          });
+        });
+      }
+
+      function initScrollReveals() {
+        ScrollTrigger.getAll().forEach(function (st) {
+          if (st.vars && st.vars.id && st.vars.id.indexOf('nb-') === 0) st.kill();
+        });
+        if (reduceMotion) return;
+
+        var head = document.querySelector('#page-neonbook .nb-section-head');
+        if (head) {
+          gsap.fromTo(head, { opacity: 0, y: 26 }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { id: 'nb-head', trigger: head, start: 'top 85%', toggleActions: 'play none none none' }
+          });
+        }
+      }
+
+      function initExploreMagnetic() {
+        if (exploreMagneticInitialized) return;
+        exploreMagneticInitialized = true;
+        if (reduceMotion || !canHover) return;
+        document.querySelectorAll('#page-neonbook .nb-explore-row').forEach(function (row) {
+          var glow = row.querySelector('.nb-explore-glow');
+          if (!glow) return;
+          var qx = gsap.quickTo(glow, 'x', { duration: 0.45, ease: 'power3.out' });
+          var qy = gsap.quickTo(glow, 'y', { duration: 0.45, ease: 'power3.out' });
+          row.addEventListener('mousemove', function (e) {
+            var r = row.getBoundingClientRect();
+            qx(e.clientX - r.left);
+            qy(e.clientY - r.top);
+          });
+        });
+      }
+
+      function playHeroIntro() {
+        if (reduceMotion) return;
+        var hero = document.querySelector('#page-neonbook .nb-hero');
+        if (!hero) return;
+        gsap.killTweensOf(hero.querySelectorAll('.eyebrow, h1, .body-lg, .nb-hero-visual'));
+        var eyebrow = hero.querySelector('.eyebrow');
+        var title = hero.querySelector('h1');
+        var sub = hero.querySelector('.body-lg');
+        var visual = hero.querySelector('.nb-hero-visual');
+        var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        if (eyebrow) tl.fromTo(eyebrow, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.55 }, 0);
+        if (title) tl.fromTo(title, { opacity: 0, y: 38, scale: 0.98 }, { opacity: 1, y: 0, scale: 1, duration: 0.85 }, 0.1);
+        if (sub) tl.fromTo(sub, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6 }, 0.35);
+        if (visual) tl.fromTo(visual, { opacity: 0, y: 46, scale: 0.975 }, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'power2.out' }, 0.42);
+      }
+
+      window.__onRouteChange = function (route) {
+        ScrollTrigger.getAll().forEach(function(st) { if ((st.vars.id || '').startsWith('nb-')) { if (st.animation) st.animation.progress(1); st.kill(); } });
+        if (route !== 'neonbook') return;
+        initPeelCards();
+        initExploreMagnetic();
+        playHeroIntro();
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            if (!document.querySelector('#page-neonbook.active')) return;
+            initScrollReveals();
+            ScrollTrigger.refresh();
+          });
+        });
+      };
+    })();
+  </script>
+  <script src="refinements.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      var routes = ['home', 'work', 'neonbook', 'about', 'contact'];
+      var titles = {
+        home: 'CODEX — Faraz · Computer Science / Software / Interfaces',
+        work: 'Work — CODEX',
+        neonbook: 'NeonBook — CODEX',
+        about: 'About / Experiments — CODEX',
+        contact: 'Contact — CODEX'
+      };
+
+      var pages = {};
+      routes.forEach(function (r) { pages[r] = document.getElementById('page-' + r); });
+      var navLinks = document.querySelectorAll('.nav-link, [data-route-link]');
+
+      var io = null;
+      function setupReveal(container) {
+        if (reduceMotion) {
+          container.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+          return;
+        }
+        if (io) io.disconnect();
+        io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
+        container.querySelectorAll('.reveal:not(.in)').forEach(function (el) { io.observe(el); });
+      }
+
+      function setActiveNav(route) {
+        navLinks.forEach(function (a) {
+          var r = a.getAttribute('data-route') || a.getAttribute('data-route-link');
+          if (a.classList.contains('nav-link')) {
+            a.classList.toggle('active', r === route);
+          }
+        });
+      }
+
+      function navigate(route, opts) {
+        opts = opts || {};
+        if (routes.indexOf(route) === -1) route = 'home';
+        routes.forEach(function (r) {
+          pages[r].classList.remove('active', 'page-enter');
+        });
+        var target = pages[route];
+        target.classList.add('active');
+        if (!reduceMotion) target.classList.add('page-enter');
+        document.title = titles[route];
+        setActiveNav(route);
+        if (!opts.skipScroll) window.scrollTo({ top: 0, behavior: 'auto' });
+        setupReveal(target);
+        if (window.__onRouteChange) window.__onRouteChange(route);
+      }
+
+      function routeFromHash() {
+        var h = (window.location.hash || '').replace('#', '').split('/')[0];
+        return routes.indexOf(h) !== -1 ? h : 'home';
+      }
+
+      window.addEventListener('hashchange', function () { navigate(routeFromHash()); });
+      navigate(routeFromHash(), { skipScroll: true });
+
+      // nav pill morph on scroll
+      var nav = document.getElementById('nav');
+      function onScroll() {
+        if (window.scrollY > 40) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // identity card cycler
+      var cycle = document.getElementById('idCycle');
+      if (cycle && !reduceMotion) {
+        var lines = cycle.querySelectorAll('.id-cycle-line');
+        var idx = 0;
+        setInterval(function () {
+          lines[idx].classList.remove('on');
+          idx = (idx + 1) % lines.length;
+          lines[idx].classList.add('on');
+        }, 2800);
+      }
+
+      // custom cursor (desktop only, contact page)
+      var dot = document.getElementById('cursorDot');
+      var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (canHover && dot) {
+        document.addEventListener('mousemove', function (e) {
+          dot.style.left = e.clientX + 'px';
+          dot.style.top = e.clientY + 'px';
+          dot.classList.add('show');
+        }, { passive: true });
+        document.addEventListener('mouseleave', function () { dot.classList.remove('show'); });
+        document.addEventListener('mouseover', function (e) {
+          var t = e.target.closest && e.target.closest('[data-cursor="big"]');
+          dot.classList.toggle('big', !!t);
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>
