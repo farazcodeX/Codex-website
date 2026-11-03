@@ -20,9 +20,9 @@
     cards.forEach((card, i) => {
       const x = wrap(i * spacing + phase, span);
       const distance = Math.min(1, Math.abs(x) / (width * .65 + cardWidth));
-      const scale = 1 - distance * .18;
-      const angle = -Math.sign(x) * distance * (width < 700 ? 12 : 23);
-      card.style.transform = `translate3d(${x-cardWidth/2}px,${distance*25 + Math.sin(i*1.7)*7}px,${-distance*100}px) rotateY(${angle}deg) scale(${scale})`;
+      const scale = 1 - distance * .24;
+      const angle = -Math.sign(x) * distance * (width < 700 ? 14 : 28);
+      card.style.transform = `translate3d(${x-cardWidth/2}px,${distance*42 + Math.sin(i*1.7)*5}px,${-distance*140}px) rotateY(${angle}deg) scale(${scale})`;
       card.style.opacity = 1 - distance * .25;
       card.style.zIndex = Math.round((1-distance)*100);
     });

@@ -16,6 +16,6 @@ Chromium checked desktop (1440 × 1000) and mobile (390 × 844): repeated SPA na
 
 The product preview is illustrative, not a live product screenshot. No user scores or usage statistics are claimed.
 
-## Existing missing assets and destinations
+## Assets and destinations
 
-The upload references `images/wallpaperflare.com_wallpaper.jpg` for Home, but the image was not supplied. The existing NeonBook destinations are `https://t.me/`, `https://instagram.com/`, and `#`; they are preserved pending actual project URLs. No backend or live NeonBook integration is included in the original site.
+The supplied images are stored in `images/`. Home uses `images/wallpaperflare.com_wallpaper.jpg`; `bg-chrome.jpg` is also included as supplied. The existing NeonBook destinations are `https://t.me/`, `https://instagram.com/`, and `#`; they are preserved pending actual project URLs. No backend or live NeonBook integration is included in the original site.
