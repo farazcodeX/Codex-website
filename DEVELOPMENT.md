@@ -20,10 +20,10 @@ The product preview is illustrative, not a live product screenshot. No user scor
 
 The supplied images are stored in `images/`. Home uses `images/wallpaperflare.com_wallpaper.jpg`; `bg-chrome.jpg` is also included as supplied. The existing NeonBook destinations are `https://t.me/`, `https://instagram.com/`, and `#`; they are preserved pending actual project URLs. No backend or live NeonBook integration is included in the original site.
 
-## Experiments gallery
+## Main projects (Work & About)
 
-The About page's smaller experiments use `experiments.css`, with six decorative HTML/SVG compositions and native `details` disclosures. The artwork illustrates each project's subject; it does not show live data. Descriptions retain the original project claims. No new dependencies or animation listeners were added.
+`projects.css` and `projects.js` present the five owner-selected projects. Work includes native-dialog image enlargement, keyboard focus restoration, subtle GSAP image tilt, and an original canvas particle header. About uses the same project content with native details disclosures. No new runtime dependencies were introduced.
 
-Design guidance: https://github.com/dickwu/apple-design-skill — particularly Materials (glass reserved for controls), Motion (brief, optional feedback), and Collections (readable, predictable selection). These principles are adapted for a browser rather than native Apple navigation conventions. The signature is the set of project-specific artifacts, with quiet typography around them. Main text uses #24262c, supporting text #626671, and the action accent #405bc3 on white; measured contrast ratios are 15.12:1, 5.74:1, and 6.00:1 respectively.
+See `PROJECT_SOURCES.md` for repository revisions, image provenance, and outstanding external-access limitations. `images/projects/` contains the actual Tetris renderer capture, the recorded Fmail CLI output, and a portfolio homepage capture. NeonBook and Cinento Watch have editorial artwork until actual site access is available.
 
-Chromium validation: 1440, 768, 390, and 320px widths; all six reveals and disclosures; Enter/Space keyboard activation; repeated route navigation; reduced motion; no horizontal overflow or JavaScript exceptions. Increased-contrast and reduced-transparency CSS fallbacks are included. No real-device or screen-reader test was performed.
+Validation for the main-project update: Chromium at 1440, 768, 390 and 320px; five projects on each route; all project images decoded; no horizontal overflow; screenshot enlargement, Escape, focus restoration and route-change dialog cleanup; repeated SPA navigation; reduced-motion particle stability; working project-scroll control; no JavaScript exceptions. Home, NeonBook and Contact markup was compared against the previous commit and remains unchanged. Live external destinations could not be verified because of the network restriction noted in `PROJECT_SOURCES.md`.
