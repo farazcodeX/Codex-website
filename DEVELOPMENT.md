@@ -27,3 +27,11 @@ The supplied images are stored in `images/`. Home uses `images/wallpaperflare.co
 See `PROJECT_SOURCES.md` for repository revisions, image provenance, and outstanding external-access limitations. `images/projects/` contains the actual Tetris renderer capture, the recorded Fmail CLI output, and a portfolio homepage capture. NeonBook and Cinento Watch have editorial artwork until actual site access is available.
 
 Validation for the main-project update: Chromium at 1440, 768, 390 and 320px; five projects on each route; all project images decoded; no horizontal overflow; screenshot enlargement, Escape, focus restoration and route-change dialog cleanup; repeated SPA navigation; reduced-motion particle stability; working project-scroll control; no JavaScript exceptions. Home, NeonBook and Contact markup was compared against the previous commit and remains unchanged. Live external destinations could not be verified because of the network restriction noted in `PROJECT_SOURCES.md`.
+
+## Contact reveal
+
+`contact.css` and `contact.js` scope the Contact redesign. A GSAP-interpolated polygon opens an irregular tear over a dark CSS chrome surface. Pointer exit closes the opening. A native button supports a persistent reveal for keyboard and touch users; Escape closes that state. Motion is disabled for reduced-motion preferences, and state/tweens reset when the route changes. The contact dock uses restrained translucent controls and CSS hover feedback with opaque and reduced-motion fallbacks.
+
+The supplied MotionSites ink-reveal URL returned a proxy 403, so this is an original interpretation of the owner's description, not imported or verified MotionSites code. GitHub now targets the confirmed `farazcodeX` account. Existing email and generic LinkedIn destinations are retained; no LinkedIn profile URL was supplied.
+
+Chromium validation: pointer reveal and exit, button and Escape at 1440/768/390/320px, no horizontal overflow, static reduced-motion reveal, route-reset behavior, three contact links, and no JavaScript exceptions. The other four page sections were compared with the preceding revision and remain unchanged.
