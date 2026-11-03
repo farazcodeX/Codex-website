@@ -2077,6 +2077,7 @@
   <link rel="stylesheet" href="projects.css">
   <link rel="stylesheet" href="contact.css">
   <link rel="stylesheet" href="neonbook.css">
+  <link rel="stylesheet" href="spacing.css">
 </head>
 
 <body>
@@ -2348,15 +2349,11 @@
         <p class="nb-edition">NEONBOOK / KNOWLEDGE IN MOTION</p>
         <h1>NEONBOOK</h1>
         <p class="nb-hero-tagline">Learn. Test. Compete. Climb.</p>
-        <div class="nb-book-stage" aria-label="Featured technology books">
-          <div class="nb-stage-halo" aria-hidden="true"></div>
-          <div class="nb-book-track">
-            <article class="nb-display-book nb-display-book--ml" data-book-title="Hands-On Machine Learning with Scikit-Learn, Keras &amp; TensorFlow"><div class="nb-book-spine" aria-hidden="true"></div><div class="nb-book-cover"><img src="images/books/hands-on-machine-learning.png" width="333" height="474" alt="Hands-On Machine Learning with Scikit-Learn, Keras &amp; TensorFlow by Aurélien Géron" decoding="async"></div><div class="nb-book-pages" aria-hidden="true"></div></article>
-            <article class="nb-display-book nb-display-book--go" data-book-title="Let’s Go!"><div class="nb-book-spine" aria-hidden="true"></div><div class="nb-book-cover"><img src="images/books/lets-go.jpg" width="537" height="722" alt="Let’s Go! by Alex Edwards" decoding="async"></div><div class="nb-book-pages" aria-hidden="true"></div></article>
-            <article class="nb-display-book nb-display-book--js" data-book-title="Eloquent JavaScript"><div class="nb-book-spine" aria-hidden="true"></div><div class="nb-book-cover"><img src="images/books/eloquent-javascript.jpg" width="741" height="1053" alt="Eloquent JavaScript by Marijn Haverbeke" decoding="async"></div><div class="nb-book-pages" aria-hidden="true"></div></article>
-          </div>
-        </div>
-        <div class="nb-library-controls"><button type="button" class="nb-book-prev" aria-label="Previous book">←</button><p class="nb-selected-book" aria-live="polite">Let’s Go!</p><button type="button" class="nb-book-next" aria-label="Next book">→</button></div>
+        <nav class="nb-subjects" aria-label="Browse books by subject"><button type="button" data-subject="all" aria-pressed="true">All books</button><button type="button" data-subject="development" aria-pressed="false">Development</button><button type="button" data-subject="learning" aria-pressed="false">Machine learning</button><button type="button" data-subject="security" aria-pressed="false">Security</button></nav>
+        <div class="nb-shelf" aria-label="Interactive technology book shelf"><div class="nb-shelf-stage" aria-hidden="true"></div></div>
+        <div class="nb-shelf-caption" aria-live="polite" aria-atomic="true"><div class="nb-caption-mask"><p class="nb-selected-book">Let’s Go!</p></div><p class="nb-selected-subject">WEB DEVELOPMENT</p></div>
+        <div class="nb-library-controls"><button type="button" class="nb-book-prev" aria-label="Previous book">←</button><button type="button" class="nb-book-open">Explore this book <span aria-hidden="true">↗</span></button><button type="button" class="nb-book-next" aria-label="Next book">→</button></div>
+        <p class="nb-shelf-hint">Drag the shelf · Select a spine · Explore a cover</p>
         <div class="nb-hero-bottom"><p>One book opens the door.<br>What you learn takes you further.</p><a href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Explore NeonBook <span aria-hidden="true">↗</span></a><p class="nb-hero-detail">READ AT YOUR PACE.<br>PUT IT TO THE TEST.</p></div>
       </header>
 
@@ -3038,6 +3035,7 @@
   <dialog id="project-lightbox" class="project-lightbox" aria-labelledby="capture-caption"><button type="button" class="capture-close" aria-label="Close project capture">×</button><img alt=""><p id="capture-caption"></p></dialog>
   <script src="projects.js"></script>
   <script src="contact.js"></script>
+  <dialog class="nb-book-detail" aria-labelledby="nb-detail-title"><button class="nb-detail-close" type="button">Close <span aria-hidden="true">×</span></button><div class="nb-detail-layout"><div class="nb-detail-copy"><p class="nb-detail-subject"></p><h2 id="nb-detail-title"></h2><p class="nb-detail-description"></p><p class="nb-detail-context">Read at your pace. Put your understanding to the test.</p><a href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Explore NeonBook <span aria-hidden="true">↗</span></a></div><svg class="nb-detail-art" viewBox="0 0 600 850" aria-hidden="true"><defs><filter id="nb-ink-filter"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="55" xChannelSelector="R" yChannelSelector="G"/></filter><mask id="nb-ink-mask" maskUnits="userSpaceOnUse" x="-150" y="-150" width="900" height="1150"><g fill="white" filter="url(#nb-ink-filter)"><circle cx="150" cy="330" r="0"/><circle cx="390" cy="590" r="0"/><circle cx="250" cy="120" r="0"/><circle cx="100" cy="740" r="0"/><circle cx="440" cy="250" r="0"/><circle cx="280" cy="810" r="0"/></g></mask></defs><image width="600" height="850" preserveAspectRatio="xMidYMid meet" mask="url(#nb-ink-mask)"/></svg></div></dialog>
   <script src="neonbook.js"></script>
 </body>
 
