@@ -2074,6 +2074,7 @@
   </style>
   <link rel="stylesheet" href="refinements.css">
   <link rel="stylesheet" href="about-glass.css">
+  <link rel="stylesheet" href="experiments.css">
 </head>
 
 <body>
@@ -2798,44 +2799,51 @@
         </div>
       </div>
 
-      <div class="exp-head">
-        <p class="eyebrow">SMALLER EXPERIMENTS</p>
-        <h2 class="display-md reveal" style="margin-top:14px;max-width:520px;">Not everything needs to be a product to
-          be worth building.</h2>
-      </div>
-      <div class="exp-grid">
-        <div class="exp-card card reveal">
-          <p class="caption">TRADING</p>
-          <h5>CryptoSage</h5>
-          <p>A CLI tool that reads the Binance API and runs nine weighted algorithms to vote buy, sell, or hold.</p>
+      <section class="experiment-gallery" aria-labelledby="experiments-title">
+        <div class="exp-head">
+          <p class="eyebrow">SMALLER EXPERIMENTS</p>
+          <h2 id="experiments-title" class="reveal">Small builds.<br><span>Big curiosity.</span></h2>
+          <p class="experiment-intro">Not everything needs to be a product to be worth building.</p>
         </div>
-        <div class="exp-card card reveal reveal-delay-1">
-          <p class="caption">OPERATIONS RESEARCH</p>
-          <h5>Benders Decomposition</h5>
-          <p>A two-stage stochastic optimization problem, solved in GAMS by splitting it into master and subproblems.
-          </p>
+        <div class="experiment-grid">
+          <article class="experiment experiment--sage reveal" aria-labelledby="experiment-sage">
+            <div class="experiment-art" aria-hidden="true"><div class="sage-terminal"><div class="terminal-bar"><i></i><i></i><i></i><span>cryptosage / terminal</span></div><div class="terminal-body"><span class="terminal-command">&gt; analyze market</span><div class="signal-wave"><svg viewBox="0 0 500 100" preserveAspectRatio="none"><defs><linearGradient id="signal-gradient"><stop stop-color="#9ba9ff"/><stop offset="1" stop-color="#79e3d1"/></linearGradient></defs><path d="M0 72 35 72 48 54 66 80 91 32 110 68 150 68 170 48 192 56 222 18 246 62 276 62 300 38 330 42 350 12 372 46 410 46 430 25 450 32 480 8 500 12" fill="none" stroke="url(#signal-gradient)" stroke-width="3"/></svg></div><div class="terminal-signals"><span>BUY</span><span>SELL</span><span>HOLD</span><b>9 weighted algorithms</b></div></div></div></div>
+            <div class="experiment-copy"><p class="experiment-category">TRADING</p><h3 id="experiment-sage">CryptoSage</h3><p class="experiment-tagline">Nine signals. One decision.</p>
+              <details class="experiment-details"><summary><span>About this experiment</span><span class="experiment-plus" aria-hidden="true">+</span></summary><div class="experiment-description"><p>A CLI tool that reads the Binance API and runs nine weighted algorithms to vote buy, sell, or hold.</p><p class="experiment-stack">Binance API · CLI</p></div></details>
+            </div>
+          </article>
+          <article class="experiment experiment--benders reveal" aria-labelledby="experiment-benders">
+            <div class="experiment-art" aria-hidden="true"><div class="solver-map"><div class="solver-node solver-master">MASTER<span>problem</span></div><svg viewBox="0 0 360 180"><path d="M180 30V80M65 135V80H295V135M180 80V135"/></svg><div class="solver-children"><span>Subproblem</span><span>Subproblem</span><span>Subproblem</span></div><div class="solver-orbit"></div></div></div>
+            <div class="experiment-copy"><p class="experiment-category">OPERATIONS RESEARCH</p><h3 id="experiment-benders">Benders Decomposition</h3><p class="experiment-tagline">Break it down. Solve it better.</p>
+              <details class="experiment-details"><summary><span>About this experiment</span><span class="experiment-plus" aria-hidden="true">+</span></summary><div class="experiment-description"><p>A two-stage stochastic optimization problem, solved in GAMS by splitting it into master and subproblems.</p><p class="experiment-stack">GAMS · Optimization</p></div></details>
+            </div>
+          </article>
+          <article class="experiment experiment--codex reveal" aria-labelledby="experiment-codex">
+            <div class="experiment-art" aria-hidden="true"><div class="hardware-art"><div class="chip-traces"></div><div class="hardware-chip"><span>CODEX</span><b>PLAY<br>CURIOUS.</b><small>HARDWARE / CULTURE / GAMES</small></div></div></div>
+            <div class="experiment-copy"><p class="experiment-category">CONTENT</p><h3 id="experiment-codex">CODEX</h3><p class="experiment-tagline">A different kind of playbook.</p>
+              <details class="experiment-details"><summary><span>About this experiment</span><span class="experiment-plus" aria-hidden="true">+</span></summary><div class="experiment-description"><p>Started as a developer blog, pivoted toward gaming hardware reviews and game guides.</p><p class="experiment-stack">Hardware · Game guides</p></div></details>
+            </div>
+          </article>
+          <article class="experiment experiment--blog reveal" aria-labelledby="experiment-blog">
+            <div class="experiment-art" aria-hidden="true"><div class="editor-art"><div class="editor-sheet editor-back"></div><div class="editor-sheet editor-front"><span class="editor-kicker">MYBLOG / NOTES</span><strong>Ideas deserve<br>some space.</strong><div class="editor-rule"></div><span class="editor-copy">A place to write.<br>A little room to think.</span><span class="editor-caret"></span><small>TEXT &nbsp; / &nbsp; THOUGHT &nbsp; / &nbsp; CODE</small></div></div></div>
+            <div class="experiment-copy"><p class="experiment-category">WRITING</p><h3 id="experiment-blog">MyBlog</h3><p class="experiment-tagline">A quiet place for ideas.</p>
+              <details class="experiment-details"><summary><span>About this experiment</span><span class="experiment-plus" aria-hidden="true">+</span></summary><div class="experiment-description"><p>A Next.js weblog with a quiet, ollama.com-inspired aesthetic — Prisma and Tiptap underneath.</p><p class="experiment-stack">Next.js · Prisma · Tiptap</p></div></details>
+            </div>
+          </article>
+          <article class="experiment experiment--codate reveal" aria-labelledby="experiment-codate">
+            <div class="experiment-art" aria-hidden="true"><div class="conversation-art"><div class="conversation-ring"></div><div class="message-bubble message-one"><svg viewBox="0 0 24 24"><path d="m3 11 18-7-4 16-6-5-4 3 1-6 9-5-7 7"/></svg><span>Hello.</span></div><div class="message-bubble message-two"><span>Hey there.</span><i></i><i></i><i></i></div><span class="conversation-label">A connection starts here.</span></div></div>
+            <div class="experiment-copy"><p class="experiment-category">MESSAGING</p><h3 id="experiment-codate">CODATE</h3><p class="experiment-tagline">Built for a conversation.</p>
+              <details class="experiment-details"><summary><span>About this experiment</span><span class="experiment-plus" aria-hidden="true">+</span></summary><div class="experiment-description"><p>A Telegram dating bot with Clean Architecture, running on PostgreSQL and Redis.</p><p class="experiment-stack">Telegram · PostgreSQL · Redis</p></div></details>
+            </div>
+          </article>
+          <article class="experiment experiment--codexx reveal" aria-labelledby="experiment-codexx">
+            <div class="experiment-art" aria-hidden="true"><div class="social-art"><div class="social-ring ring-one"></div><div class="social-ring ring-two"></div><div class="social-core">C<span>×</span></div><span class="social-node node-auth">Auth</span><span class="social-node node-feed">Feeds</span><span class="social-node node-dm">DMs</span><span class="social-node node-notify">Notifications</span></div></div>
+            <div class="experiment-copy"><p class="experiment-category">SOCIAL</p><h3 id="experiment-codexx">CODEXX</h3><p class="experiment-tagline">The pieces of connection.</p>
+              <details class="experiment-details"><summary><span>About this experiment</span><span class="experiment-plus" aria-hidden="true">+</span></summary><div class="experiment-description"><p>An 83-file Django social platform — auth, feeds, DMs and notifications, from scratch.</p><p class="experiment-stack">Django · Social platform</p></div></details>
+            </div>
+          </article>
         </div>
-        <div class="exp-card card reveal reveal-delay-2">
-          <p class="caption">CONTENT</p>
-          <h5>CODEX</h5>
-          <p>Started as a developer blog, pivoted toward gaming hardware reviews and game guides.</p>
-        </div>
-        <div class="exp-card card reveal">
-          <p class="caption">WRITING</p>
-          <h5>MyBlog</h5>
-          <p>A Next.js weblog with a quiet, ollama.com-inspired aesthetic — Prisma and Tiptap underneath.</p>
-        </div>
-        <div class="exp-card card reveal reveal-delay-1">
-          <p class="caption">MESSAGING</p>
-          <h5>CODATE</h5>
-          <p>A Telegram dating bot with Clean Architecture, running on PostgreSQL and Redis.</p>
-        </div>
-        <div class="exp-card card reveal reveal-delay-2">
-          <p class="caption">SOCIAL</p>
-          <h5>CODEXX</h5>
-          <p>An 83-file Django social platform — auth, feeds, DMs and notifications, from scratch.</p>
-        </div>
-      </div>
+      </section>
 
       <footer class="mega-footer">
         <div class="mf-statement-wrap reveal">

@@ -19,3 +19,11 @@ The product preview is illustrative, not a live product screenshot. No user scor
 ## Assets and destinations
 
 The supplied images are stored in `images/`. Home uses `images/wallpaperflare.com_wallpaper.jpg`; `bg-chrome.jpg` is also included as supplied. The existing NeonBook destinations are `https://t.me/`, `https://instagram.com/`, and `#`; they are preserved pending actual project URLs. No backend or live NeonBook integration is included in the original site.
+
+## Experiments gallery
+
+The About page's smaller experiments use `experiments.css`, with six decorative HTML/SVG compositions and native `details` disclosures. The artwork illustrates each project's subject; it does not show live data. Descriptions retain the original project claims. No new dependencies or animation listeners were added.
+
+Design guidance: https://github.com/dickwu/apple-design-skill — particularly Materials (glass reserved for controls), Motion (brief, optional feedback), and Collections (readable, predictable selection). These principles are adapted for a browser rather than native Apple navigation conventions. The signature is the set of project-specific artifacts, with quiet typography around them. Main text uses #24262c, supporting text #626671, and the action accent #405bc3 on white; measured contrast ratios are 15.12:1, 5.74:1, and 6.00:1 respectively.
+
+Chromium validation: 1440, 768, 390, and 320px widths; all six reveals and disclosures; Enter/Space keyboard activation; repeated route navigation; reduced motion; no horizontal overflow or JavaScript exceptions. Increased-contrast and reduced-transparency CSS fallbacks are included. No real-device or screen-reader test was performed.
