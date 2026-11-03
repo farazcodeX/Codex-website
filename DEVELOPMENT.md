@@ -35,3 +35,11 @@ Validation for the main-project update: Chromium at 1440, 768, 390 and 320px; fi
 The supplied MotionSites ink-reveal URL returned a proxy 403, so this is an original interpretation of the owner's description, not imported or verified MotionSites code. GitHub now targets the confirmed `farazcodeX` account. Existing email and generic LinkedIn destinations are retained; no LinkedIn profile URL was supplied.
 
 Chromium validation: pointer reveal and exit, button and Escape at 1440/768/390/320px, no horizontal overflow, static reduced-motion reveal, route-reset behavior, three contact links, and no JavaScript exceptions. The other four page sections were compared with the preceding revision and remain unchanged.
+
+## NeonBook book stage
+
+`neonbook.css` and `neonbook.js` implement a three-book presentation using the owner's original uploaded covers in `images/books/`. Source images are retained unchanged; CSS crops the captured browser chrome around the machine-learning cover for display. Previous/next controls and arrow keys select a book. GSAP handles the fan transitions, with immediate changes under reduced motion. Animation setup is tied to the existing SPA route hook and reverted when leaving NeonBook. The old hero tween is excluded from the new hero to avoid duplicate animation ownership.
+
+The product illustration now has its own section below the preserved six product-flow cards. Cards still use the IntersectionObserver reveal system. The real NeonBook destination is linked in the hero. The MotionSites Vasari VHS URL remained blocked by the environment proxy; the book presentation is an original interpretation rather than imported reference code.
+
+Validation: three original covers decoded successfully; previous/next controls, six visible flow cards and no overflow at 1440/768/390/320px; repeated page navigation; reduced-motion selection; JavaScript syntax; no browser JavaScript exceptions. Other page-section markup remains unchanged.

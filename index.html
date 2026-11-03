@@ -2076,6 +2076,7 @@
   <link rel="stylesheet" href="about-glass.css">
   <link rel="stylesheet" href="projects.css">
   <link rel="stylesheet" href="contact.css">
+  <link rel="stylesheet" href="neonbook.css">
 </head>
 
 <body>
@@ -2343,23 +2344,21 @@
 
     <!-- ======================= NEONBOOK ======================= -->
     <section class="page" id="page-neonbook" data-route="neonbook">
-      <div class="nb-hero">
-        <p class="eyebrow reveal in" style="justify-content:center;">PROJECT 01 — NEONBOOK</p>
-        <h1 class="display-huge reveal in reveal-delay-1">NEONBOOK</h1>
-        <p class="body-lg reveal in reveal-delay-2">Learn. Test. Compete. Climb.</p>
-        <div class="nb-hero-visual card reveal reveal-delay-3">
-          <div class="nb-preview" aria-label="Illustrative NeonBook product preview">
-            <header class="preview-bar"><strong>neonbook<span> / </span></strong><span>Library &nbsp; / &nbsp; Weekly challenge</span><small>PRODUCT PREVIEW</small></header>
-            <div class="preview-main">
-              <div class="preview-library"><p class="caption">YOUR NEXT CHAPTER</p><h2>Read something.<br>Build understanding.</h2><p>Technology books. A new perspective with every chapter.</p>
-                <div class="preview-books"><article class="preview-book"><small>01 / DEVELOPMENT</small><strong>Frontend<br>development</strong><span>HTML · CSS · JavaScript</span></article><article class="preview-book"><small>02 / DEVELOPMENT</small><strong>Backend<br>development</strong><span>Python · Django</span></article></div>
-                <p class="preview-note">Illustrative subjects · Explore the book collection</p>
-              </div>
-              <aside class="preview-test"><p class="caption">THE LEARNING LOOP</p><h3>From reading<br>to understanding.</h3><div class="preview-assessment"><span>ASSESSMENT</span><strong>20 questions</strong><p>Test what you've learned from your book.</p><div class="preview-progress"><i></i></div><small>Read → Test → Review</small></div><div class="preview-outcome"><span>01</span><div><strong>Your score</strong><p>Based on your answers.</p></div></div><div class="preview-outcome"><span>02</span><div><strong>Points & ranking</strong><p>Keep learning. Follow your progress.</p></div></div></aside>
-            </div><footer class="preview-bottom"><span>WEEKLY CHALLENGE</span><p>A shared test. A reason to keep learning.</p><span>Leaderboard ↗</span></footer>
+      <header class="nb-hero nb-book-hero">
+        <p class="nb-edition">NEONBOOK / KNOWLEDGE IN MOTION</p>
+        <h1>NEONBOOK</h1>
+        <p class="nb-hero-tagline">Learn. Test. Compete. Climb.</p>
+        <div class="nb-book-stage" aria-label="Featured technology books">
+          <div class="nb-stage-halo" aria-hidden="true"></div>
+          <div class="nb-book-track">
+            <article class="nb-display-book nb-display-book--ml" data-book-title="Hands-On Machine Learning with Scikit-Learn, Keras &amp; TensorFlow"><div class="nb-book-spine" aria-hidden="true"></div><div class="nb-book-cover"><img src="images/books/hands-on-machine-learning.png" width="333" height="474" alt="Hands-On Machine Learning with Scikit-Learn, Keras &amp; TensorFlow by Aurélien Géron" decoding="async"></div><div class="nb-book-pages" aria-hidden="true"></div></article>
+            <article class="nb-display-book nb-display-book--go" data-book-title="Let’s Go!"><div class="nb-book-spine" aria-hidden="true"></div><div class="nb-book-cover"><img src="images/books/lets-go.jpg" width="537" height="722" alt="Let’s Go! by Alex Edwards" decoding="async"></div><div class="nb-book-pages" aria-hidden="true"></div></article>
+            <article class="nb-display-book nb-display-book--js" data-book-title="Eloquent JavaScript"><div class="nb-book-spine" aria-hidden="true"></div><div class="nb-book-cover"><img src="images/books/eloquent-javascript.jpg" width="741" height="1053" alt="Eloquent JavaScript by Marijn Haverbeke" decoding="async"></div><div class="nb-book-pages" aria-hidden="true"></div></article>
           </div>
         </div>
-      </div>
+        <div class="nb-library-controls"><button type="button" class="nb-book-prev" aria-label="Previous book">←</button><p class="nb-selected-book" aria-live="polite">Let’s Go!</p><button type="button" class="nb-book-next" aria-label="Next book">→</button></div>
+        <div class="nb-hero-bottom"><p>One book opens the door.<br>What you learn takes you further.</p><a href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Explore NeonBook <span aria-hidden="true">↗</span></a><p class="nb-hero-detail">READ AT YOUR PACE.<br>PUT IT TO THE TEST.</p></div>
+      </header>
 
       <div class="nb-section">
         <div class="nb-section-head">
@@ -2496,6 +2495,17 @@
         </div>
 
       </div>
+
+      <section class="nb-section nb-product-presentation"><p class="eyebrow">THE LEARNING EXPERIENCE</p><h2>Turn a chapter<br>into a new capability.</h2><div class="nb-product-window">          <div class="nb-preview" aria-label="Illustrative NeonBook product preview">
+            <header class="preview-bar"><strong>neonbook<span> / </span></strong><span>Library &nbsp; / &nbsp; Weekly challenge</span><small>PRODUCT PREVIEW</small></header>
+            <div class="preview-main">
+              <div class="preview-library"><p class="caption">YOUR NEXT CHAPTER</p><h2>Read something.<br>Build understanding.</h2><p>Technology books. A new perspective with every chapter.</p>
+                <div class="preview-books"><article class="preview-book"><small>01 / DEVELOPMENT</small><strong>Frontend<br>development</strong><span>HTML · CSS · JavaScript</span></article><article class="preview-book"><small>02 / DEVELOPMENT</small><strong>Backend<br>development</strong><span>Python · Django</span></article></div>
+                <p class="preview-note">Illustrative subjects · Explore the book collection</p>
+              </div>
+              <aside class="preview-test"><p class="caption">THE LEARNING LOOP</p><h3>From reading<br>to understanding.</h3><div class="preview-assessment"><span>ASSESSMENT</span><strong>20 questions</strong><p>Test what you've learned from your book.</p><div class="preview-progress"><i></i></div><small>Read → Test → Review</small></div><div class="preview-outcome"><span>01</span><div><strong>Your score</strong><p>Based on your answers.</p></div></div><div class="preview-outcome"><span>02</span><div><strong>Points & ranking</strong><p>Keep learning. Follow your progress.</p></div></div></aside>
+            </div><footer class="preview-bottom"><span>WEEKLY CHALLENGE</span><p>A shared test. A reason to keep learning.</p><span>Leaderboard ↗</span></footer>
+          </div></div></section>
 
       <div class="nb-section nb-explore-section">
         <div class="nb-explore-intro">
@@ -2887,7 +2897,7 @@
 
       function playHeroIntro() {
         if (reduceMotion) return;
-        var hero = document.querySelector('#page-neonbook .nb-hero');
+        var hero = document.querySelector('#page-neonbook .nb-hero:not(.nb-book-hero)');
         if (!hero) return;
         gsap.killTweensOf(hero.querySelectorAll('.eyebrow, h1, .body-lg, .nb-hero-visual'));
         var eyebrow = hero.querySelector('.eyebrow');
@@ -3028,6 +3038,7 @@
   <dialog id="project-lightbox" class="project-lightbox" aria-labelledby="capture-caption"><button type="button" class="capture-close" aria-label="Close project capture">×</button><img alt=""><p id="capture-caption"></p></dialog>
   <script src="projects.js"></script>
   <script src="contact.js"></script>
+  <script src="neonbook.js"></script>
 </body>
 
 </html>
