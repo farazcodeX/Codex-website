@@ -47,3 +47,11 @@ Spine text, detail titles, body copy and controls inherit the website's main Int
 `spacing.css` retains the shared responsive spacing pass across Work, About, Contact and NeonBook. Home and the other page markup are unchanged by these NeonBook-specific fixes.
 
 Validation: exactly five books and removed controls; five distinct detail gradients; computed font-family matches body for detail headings and descriptions; focus restoration; finite keyboard boundaries; pointer-driven transforms; animated open/close; no overflow at 1440/768/390/320px; repeated SPA navigation; six visible product cards; no JavaScript exceptions.
+
+## Compact product flow and genuine screenshot showcase
+
+The six NeonBook learning-flow cards now use native buttons with two CSS 3D faces. Front and back copy, titles and original icons are preserved; individual colors become restrained back-face tints. Fine-pointer hover flips the object; click/tap and native Enter/Space activation toggle it, and Escape resets it. Accessible labels and `aria-pressed` follow the visible state. Initialization remains guarded in the existing SPA hook. Reduced motion changes faces instantly.
+
+`neonbook-refinement.css` keeps these sections compact: three card columns on desktop, two on tablet and one on narrow mobile, with controlled section padding. The fake product illustration is removed. The original owner-supplied screenshot at `images/projects/neonbook-platform.png` is presented without image edits or cropping in a simple frame. It uses the existing project lightbox for enlargement, Escape and focus restoration, making the dashboard inspectable on mobile. Figma tools were unavailable; Apple Design Skill materials and motion guidance informed the restrained surfaces and timing.
+
+Validation for this refinement: all six keyboard flips and contained text at 1440/900/768/390/320px; mouse hover and return; touch tap toggle in both directions; reduced motion; repeated SPA activation without duplicate toggles; screenshot decoding at its original 1919 × 885 resolution, no simulated preview remaining, no overflow at 1440/768/390/320px; enlargement, Escape and focus restoration. Inline JavaScript syntax and Git whitespace checks passed. Other page-section markup was verified unchanged.

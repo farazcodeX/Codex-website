@@ -2078,6 +2078,7 @@
   <link rel="stylesheet" href="contact.css">
   <link rel="stylesheet" href="neonbook.css">
   <link rel="stylesheet" href="spacing.css">
+  <link rel="stylesheet" href="neonbook-refinement.css">
 </head>
 
 <body>
@@ -2362,96 +2363,38 @@
           through tests, scores, points, and rankings.</p>
       </div>
 
-      <div class="nb-section">
+      <div class="nb-section nb-product-flow">
         <div class="nb-section-head">
           <p class="eyebrow">PRODUCT</p>
           <h2 class="display-md reveal">Learn. Test. Compete. Climb.</h2>
         </div>
-        <div class="flow-grid">
-          <div class="peel-card peel-card--book flow-card flow-card--book reveal" tabindex="0">
-            <div class="peel-panel flow-panel">
-              <p class="peel-text">Explore a curated collection of technology books, read at your own pace and build
-                your skills step by step.</p>
-              <span class="peel-arrow">→</span>
-            </div>
-            <div class="peel-front flow-card-content card">
-              <div class="flow-card-head">
-                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="flow-grid nb-compact-flow">
+          <button type="button" class="flow-card flow-card--book nb-flow-flip reveal" aria-pressed="false" aria-label="Book. Choose a technology book and start learning. Show details." data-title="Book" data-front="Choose a technology book and start learning." data-back="Explore a curated collection of technology books, read at your own pace and build your skills step by step.">
+            <span class="nb-flip-inner"><span class="nb-flip-front" aria-hidden="true"><span class="nb-flip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 4h11a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V4z" />
                     <path d="M4 4v13a3 3 0 0 0 3 3h11" />
-                  </svg></div>
-              </div>
-              <div class="ftitle">Book</div>
-              <div class="fdesc">Choose a technology book and start learning.</div>
-              <span class="peel-fold"></span>
-            </div>
-          </div>
-
-          <div class="peel-card peel-card--test flow-card flow-card--test reveal reveal-delay-1" tabindex="0">
-            <div class="peel-panel flow-panel">
-              <p class="peel-text">Test your knowledge with 20 carefully designed questions and see how much you've
-                learned.</p>
-              <span class="peel-arrow">→</span>
-            </div>
-            <div class="peel-front flow-card-content card">
-              <div class="flow-card-head">
-                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  </svg></span><span class="nb-flip-title">Book</span><span class="nb-flip-description">Choose a technology book and start learning.</span><span class="nb-flip-cue">Details <span aria-hidden="true">↗</span></span></span><span class="nb-flip-back" aria-hidden="true"><span class="nb-flip-back-label">Book</span><span class="nb-flip-back-copy">Explore a curated collection of technology books, read at your own pace and build your skills step by step.</span><span class="nb-flip-cue">Back <span aria-hidden="true">↶</span></span></span></span>
+          </button>
+          <button type="button" class="flow-card flow-card--test nb-flow-flip reveal reveal-delay-1" aria-pressed="false" aria-label="Test. Take a 20-question test based on the book. Show details." data-title="Test" data-front="Take a 20-question test based on the book." data-back="Test your knowledge with 20 carefully designed questions and see how much you&#x27;ve learned.">
+            <span class="nb-flip-inner"><span class="nb-flip-front" aria-hidden="true"><span class="nb-flip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 11l3 3L22 4" />
                     <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-                  </svg></div>
-              </div>
-              <div class="ftitle">Test</div>
-              <div class="fdesc">Take a 20-question test based on the book.</div>
-              <span class="peel-fold"></span>
-            </div>
-          </div>
-
-          <div class="peel-card peel-card--score flow-card flow-card--score reveal reveal-delay-2" tabindex="0">
-            <div class="peel-panel flow-panel">
-              <p class="peel-text">Get an instant score based on your answers and track your progress over time.</p>
-              <span class="peel-arrow">→</span>
-            </div>
-            <div class="peel-front flow-card-content card">
-              <div class="flow-card-head">
-                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  </svg></span><span class="nb-flip-title">Test</span><span class="nb-flip-description">Take a 20-question test based on the book.</span><span class="nb-flip-cue">Details <span aria-hidden="true">↗</span></span></span><span class="nb-flip-back" aria-hidden="true"><span class="nb-flip-back-label">Test</span><span class="nb-flip-back-copy">Test your knowledge with 20 carefully designed questions and see how much you've learned.</span><span class="nb-flip-cue">Back <span aria-hidden="true">↶</span></span></span></span>
+          </button>
+          <button type="button" class="flow-card flow-card--score nb-flow-flip reveal reveal-delay-2" aria-pressed="false" aria-label="Score. Your answers determine your test score. Show details." data-title="Score" data-front="Your answers determine your test score." data-back="Get an instant score based on your answers and track your progress over time.">
+            <span class="nb-flip-inner"><span class="nb-flip-front" aria-hidden="true"><span class="nb-flip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="9" />
                     <circle cx="12" cy="12" r="5" />
                     <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
-                  </svg></div>
-              </div>
-              <div class="ftitle">Score</div>
-              <div class="fdesc">Your answers determine your test score.</div>
-              <span class="peel-fold"></span>
-            </div>
-          </div>
-
-          <div class="peel-card peel-card--points flow-card flow-card--points reveal" tabindex="0">
-            <div class="peel-panel flow-panel">
-              <p class="peel-text">Earn points for every test you complete and improve your rank as you progress.
-              </p>
-              <span class="peel-arrow">→</span>
-            </div>
-            <div class="peel-front flow-card-content card">
-              <div class="flow-card-head">
-                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  </svg></span><span class="nb-flip-title">Score</span><span class="nb-flip-description">Your answers determine your test score.</span><span class="nb-flip-cue">Details <span aria-hidden="true">↗</span></span></span><span class="nb-flip-back" aria-hidden="true"><span class="nb-flip-back-label">Score</span><span class="nb-flip-back-copy">Get an instant score based on your answers and track your progress over time.</span><span class="nb-flip-cue">Back <span aria-hidden="true">↶</span></span></span></span>
+          </button>
+          <button type="button" class="flow-card flow-card--points nb-flow-flip reveal" aria-pressed="false" aria-label="Points. Your results contribute to your overall points. Show details." data-title="Points" data-front="Your results contribute to your overall points." data-back="Earn points for every test you complete and improve your rank as you progress.">
+            <span class="nb-flip-inner"><span class="nb-flip-front" aria-hidden="true"><span class="nb-flip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M12 2l2.9 6.3L21 9l-5 4.6L17.4 21 12 17.6 6.6 21 8 13.6 3 9l6.1-.7z" />
-                  </svg></div>
-              </div>
-              <div class="ftitle">Points</div>
-              <div class="fdesc">Your results contribute to your overall points.</div>
-              <span class="peel-fold"></span>
-            </div>
-          </div>
-
-          <div class="peel-card peel-card--competition flow-card flow-card--competition reveal reveal-delay-1" tabindex="0">
-            <div class="peel-panel flow-panel">
-              <p class="peel-text">Join the weekly challenge, compare your results with others and stay motivated.
-              </p>
-              <span class="peel-arrow">→</span>
-            </div>
-            <div class="peel-front flow-card-content card">
-              <div class="flow-card-head">
-                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  </svg></span><span class="nb-flip-title">Points</span><span class="nb-flip-description">Your results contribute to your overall points.</span><span class="nb-flip-cue">Details <span aria-hidden="true">↗</span></span></span><span class="nb-flip-back" aria-hidden="true"><span class="nb-flip-back-label">Points</span><span class="nb-flip-back-copy">Earn points for every test you complete and improve your rank as you progress.</span><span class="nb-flip-cue">Back <span aria-hidden="true">↶</span></span></span></span>
+          </button>
+          <button type="button" class="flow-card flow-card--competition nb-flow-flip reveal reveal-delay-1" aria-pressed="false" aria-label="Competition. Weekly tests keep the learning process active and competitive. Show details." data-title="Competition" data-front="Weekly tests keep the learning process active and competitive." data-back="Join the weekly challenge, compare your results with others and stay motivated.">
+            <span class="nb-flip-inner"><span class="nb-flip-front" aria-hidden="true"><span class="nb-flip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path d="M8 4h8v4a4 4 0 0 1-8 0V4z" />
                     <path d="M8 5H5a2 2 0 0 0 2 4" />
@@ -2459,45 +2402,20 @@
                     <path d="M12 12v3" />
                     <path d="M9 19h6" />
                     <path d="M10 15h4v2a2 2 0 0 1-4 0v-2z" />
-                  </svg></div>
-              </div>
-              <div class="ftitle">Competition</div>
-              <div class="fdesc">Weekly tests keep the learning process active and competitive.</div>
-              <span class="peel-fold"></span>
-            </div>
-          </div>
-
-          <div class="peel-card peel-card--leaderboard flow-card flow-card--leaderboard reveal reveal-delay-2" tabindex="0">
-            <div class="peel-panel flow-panel">
-              <p class="peel-text">See where you stand, climb the ranks and become a top learner in the community.
-              </p>
-              <span class="peel-arrow">→</span>
-            </div>
-            <div class="peel-front flow-card-content card">
-              <div class="flow-card-head">
-                <div class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  </svg></span><span class="nb-flip-title">Competition</span><span class="nb-flip-description">Weekly tests keep the learning process active and competitive.</span><span class="nb-flip-cue">Details <span aria-hidden="true">↗</span></span></span><span class="nb-flip-back" aria-hidden="true"><span class="nb-flip-back-label">Competition</span><span class="nb-flip-back-copy">Join the weekly challenge, compare your results with others and stay motivated.</span><span class="nb-flip-cue">Back <span aria-hidden="true">↶</span></span></span></span>
+          </button>
+          <button type="button" class="flow-card flow-card--leaderboard nb-flow-flip reveal reveal-delay-2" aria-pressed="false" aria-label="Leaderboard. Your points determine your position among other learners. Show details." data-title="Leaderboard" data-front="Your points determine your position among other learners." data-back="See where you stand, climb the ranks and become a top learner in the community.">
+            <span class="nb-flip-inner"><span class="nb-flip-front" aria-hidden="true"><span class="nb-flip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 20V10M12 20V4M20 20v-7" />
-                  </svg></div>
-              </div>
-              <div class="ftitle">Leaderboard</div>
-              <div class="fdesc">Your points determine your position among other learners.</div>
-              <span class="peel-fold"></span>
-            </div>
-          </div>
+                  </svg></span><span class="nb-flip-title">Leaderboard</span><span class="nb-flip-description">Your points determine your position among other learners.</span><span class="nb-flip-cue">Details <span aria-hidden="true">↗</span></span></span><span class="nb-flip-back" aria-hidden="true"><span class="nb-flip-back-label">Leaderboard</span><span class="nb-flip-back-copy">See where you stand, climb the ranks and become a top learner in the community.</span><span class="nb-flip-cue">Back <span aria-hidden="true">↶</span></span></span></span>
+          </button>
         </div>
-
       </div>
 
-      <section class="nb-section nb-product-presentation"><p class="eyebrow">THE LEARNING EXPERIENCE</p><h2>Turn a chapter<br>into a new capability.</h2><div class="nb-product-window">          <div class="nb-preview" aria-label="Illustrative NeonBook product preview">
-            <header class="preview-bar"><strong>neonbook<span> / </span></strong><span>Library &nbsp; / &nbsp; Weekly challenge</span><small>PRODUCT PREVIEW</small></header>
-            <div class="preview-main">
-              <div class="preview-library"><p class="caption">YOUR NEXT CHAPTER</p><h2>Read something.<br>Build understanding.</h2><p>Technology books. A new perspective with every chapter.</p>
-                <div class="preview-books"><article class="preview-book"><small>01 / DEVELOPMENT</small><strong>Frontend<br>development</strong><span>HTML · CSS · JavaScript</span></article><article class="preview-book"><small>02 / DEVELOPMENT</small><strong>Backend<br>development</strong><span>Python · Django</span></article></div>
-                <p class="preview-note">Illustrative subjects · Explore the book collection</p>
-              </div>
-              <aside class="preview-test"><p class="caption">THE LEARNING LOOP</p><h3>From reading<br>to understanding.</h3><div class="preview-assessment"><span>ASSESSMENT</span><strong>20 questions</strong><p>Test what you've learned from your book.</p><div class="preview-progress"><i></i></div><small>Read → Test → Review</small></div><div class="preview-outcome"><span>01</span><div><strong>Your score</strong><p>Based on your answers.</p></div></div><div class="preview-outcome"><span>02</span><div><strong>Points & ranking</strong><p>Keep learning. Follow your progress.</p></div></div></aside>
-            </div><footer class="preview-bottom"><span>WEEKLY CHALLENGE</span><p>A shared test. A reason to keep learning.</p><span>Leaderboard ↗</span></footer>
-          </div></div></section>
+      <section class="nb-section nb-platform-showcase" aria-labelledby="nb-platform-title">
+        <div class="nb-section-head"><p class="eyebrow">INSIDE NEONBOOK</p><h2 id="nb-platform-title" class="display-md">Your library.<br>Your next step.</h2></div>
+        <figure class="nb-platform-frame"><div class="nb-platform-toolbar"><span>neonbook.ir</span><span>THE PLATFORM</span></div><button type="button" class="capture-open nb-platform-open" data-capture="images/projects/neonbook-platform.png" data-caption="NeonBook’s purchased-book library and learning dashboard." aria-label="Enlarge the NeonBook platform screenshot"><img src="images/projects/neonbook-platform.png" width="1919" height="885" alt="NeonBook dashboard showing purchased technology books and learner progress" loading="lazy"><span class="capture-affordance" aria-hidden="true">Enlarge ↗</span></button><figcaption>The NeonBook library and learning dashboard.</figcaption></figure>
+      </section>
 
       <div class="nb-section nb-explore-section">
         <div class="nb-explore-intro">
@@ -2846,12 +2764,19 @@
       function initPeelCards() {
         if (cardsInitialized) return;
         cardsInitialized = true;
-        document.querySelectorAll('#page-neonbook .flow-card').forEach(function(card) {
-          card.addEventListener('click', function() { card.classList.toggle('is-open'); });
-          card.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-open'); }
-            if (e.key === 'Escape') card.classList.remove('is-open');
-          });
+        document.querySelectorAll('#page-neonbook .nb-flow-flip').forEach(function(card) {
+          var pinned = false, hovering = false;
+          function update() {
+            var open = pinned || hovering;
+            card.classList.toggle('is-open', open);
+            card.setAttribute('aria-pressed', String(open));
+            card.setAttribute('aria-label', card.dataset.title + '. ' + (open ? card.dataset.back + ' Show front.' : card.dataset.front + ' Show details.'));
+          }
+          card.addEventListener('pointerenter', function(e) { if (e.pointerType === 'mouse' && window.matchMedia('(hover:hover)').matches) {hovering = true; update();} });
+          card.addEventListener('pointerleave', function() { hovering = false; update(); });
+          card.addEventListener('click', function(e) { pinned = !pinned; hovering = false; update(); });
+          card.addEventListener('keydown', function(e) { if (e.key === 'Escape') {e.preventDefault();pinned = false;hovering = false;update();} });
+          card.addEventListener('blur', function() { pinned = false;hovering = false;update(); });
         });
       }
 
