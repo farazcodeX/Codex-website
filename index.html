@@ -2076,6 +2076,7 @@
   <link rel="stylesheet" href="spacing.css">
   <link rel="stylesheet" href="neonbook-refinement.css">
   <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="premium.css">
 </head>
 
 <body>
@@ -2105,8 +2106,9 @@
           <div class="home-hero-title reveal in">
             <h1 class="display-huge">CODEX</h1>
             <p class="caption" style="margin-top:14px;">FARAZ&nbsp;/&nbsp;COMPUTER&nbsp;SCIENCE</p>
-            <div class="home-hero-sub">
-
+            <div class="home-hero-sub hero-actions">
+              <a class="ui-action ui-action--primary" href="#work">Explore my work <span class="arrow" aria-hidden="true">↗</span></a>
+              <a class="ui-action ui-action--secondary" href="#contact">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
             </div>
           </div>
           <div class="id-card card reveal in reveal-delay-2">
@@ -2165,7 +2167,8 @@
         <div class="exhibit-grid">
           <a href="#neonbook" class="exhibit-item exhibit-01 reveal" data-route-link="neonbook">
             <div class="exhibit-frame">
-              <div class="exhibit-img exhibit-img--neonbook"></div>
+              <div class="exhibit-img exhibit-img--neonbook"><img src="images/projects/neonbook-platform.png" width="1919" height="885" alt="NeonBook library and learner dashboard" loading="lazy"></div>
+              <span class="exhibit-open" aria-hidden="true">↗</span>
             </div>
             <div class="exhibit-caption">
               <span class="exhibit-num">01</span>
@@ -2175,7 +2178,8 @@
 
           <a href="#work" class="exhibit-item exhibit-02 reveal reveal-delay-2" data-route-link="work">
             <div class="exhibit-frame">
-              <div class="exhibit-img exhibit-img--codate"></div>
+              <div class="exhibit-img exhibit-img--codate"><div class="codate-study" aria-hidden="true"><span class="study-label">CONVERSATION, CONNECTED.</span><div class="study-bubble">CODATE<span>↗</span></div><div class="study-line"></div><div class="study-bubble study-bubble--reply">Python <span>·</span> PostgreSQL <span>·</span> Redis</div><span class="study-label">A TELEGRAM EXPERIENCE</span></div></div>
+              <span class="exhibit-open" aria-hidden="true">↗</span>
             </div>
             <div class="exhibit-caption">
               <span class="exhibit-num">02</span>
@@ -2928,6 +2932,7 @@
   <dialog class="nb-book-detail" aria-labelledby="nb-detail-title"><button class="nb-detail-close" type="button">Close <span aria-hidden="true">×</span></button><div class="nb-detail-layout"><div class="nb-detail-copy"><p class="nb-detail-subject"></p><h2 id="nb-detail-title"></h2><p class="nb-detail-description"></p><p class="nb-detail-context">Read at your pace. Put your understanding to the test.</p><a href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Explore NeonBook <span aria-hidden="true">↗</span></a></div><svg class="nb-detail-art" viewBox="0 0 600 850" aria-hidden="true"><defs><filter id="nb-ink-filter"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="55" xChannelSelector="R" yChannelSelector="G"/></filter><mask id="nb-ink-mask" maskUnits="userSpaceOnUse" x="-150" y="-150" width="900" height="1150"><g fill="white" filter="url(#nb-ink-filter)"><circle cx="150" cy="330" r="0"/><circle cx="390" cy="590" r="0"/><circle cx="250" cy="120" r="0"/><circle cx="100" cy="740" r="0"/><circle cx="440" cy="250" r="0"/><circle cx="280" cy="810" r="0"/></g></mask></defs><image width="600" height="850" preserveAspectRatio="xMidYMid meet" mask="url(#nb-ink-mask)"/></svg></div></dialog>
   <script src="neonbook.js"></script>
   <script src="ui-motion.js"></script>
+  <script src="premium-motion.js"></script>
 </body>
 
 </html>

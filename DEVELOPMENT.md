@@ -59,3 +59,9 @@ Validation for this refinement: all six keyboard flips and contained text at 144
 ## Shared typography, controls and About organization
 
 Academic content moved from the standalone CODEX section to About. The duplicate About project gallery was replaced with one Work call to action. `design-system.css`, the licensed self-hosted Geist font, and `ui-motion.js` establish consistent typography and GSAP action feedback across the site. See `DESIGN_SYSTEM.md` for the design references, architecture adaptations and validation. The Home exhibition grid now collapses to one real column below tablet width to avoid its pre-existing fixed-gap overflow.
+
+## Premium UI and motion layer
+
+See the latest section of `DESIGN_SYSTEM.md` for typography roles, action variants, references, and animation ownership. `premium.css` loads after the earlier shared styles. `premium-motion.js` reverts its own ScrollTriggers on navigation and motion-preference changes; avoid attaching another transform animator to `.motion-owned` elements. Shared controls remain functional if GSAP is unavailable.
+
+Run `node tests/premium-ui.cjs` with Playwright installed and Chromium at `/usr/bin/chromium` (or set `CHROMIUM_PATH`). The test starts and closes its own local HTTP server. There is no build step for this static site.
