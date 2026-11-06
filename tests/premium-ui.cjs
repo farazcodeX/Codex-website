@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
     page.on('response', r => {if (r.status() >= 400) failed.push(r.url());});
     await page.goto(`http://127.0.0.1:${server.address().port}/#home`);
     await page.evaluate(() => document.fonts.ready);
-    assert(await page.evaluate(() => document.fonts.check('500 24px "DM Sans"') && getComputedStyle(document.body).fontFamily.includes('DM Sans')));
+    assert(await page.evaluate(() => document.fonts.check('800 24px Nunito') && getComputedStyle(document.body).fontFamily.includes('Nunito')));
     for (const width of [1440,1024,768,390,320]) {
       await page.setViewportSize({width,height:900});
       for (const route of ['home','work','neonbook','about','contact']) {
@@ -75,6 +75,28 @@ const server = http.createServer((req, res) => {
     await page.evaluate(y=>scrollTo(0,y-innerHeight*.3),frameY); await page.waitForTimeout(900);
     assert.notEqual(initialClip,await frame.evaluate(e=>getComputedStyle(e).clipPath));
     console.log('PASS visible fill sweep, SplitText restoration and scroll-driven image masks');
+    assert.equal(await page.locator('.ui-action .ui-arrow-svg,.contact-dock-link .dock-arrow').count(),0);
+    assert.equal(await page.locator('.mf-icon-link').first().evaluate(e=>getComputedStyle(e).width),'20px');
+    assert.equal(await page.locator('.mf-statement').first().evaluate(e=>getComputedStyle(e).fontWeight),'800');
+    const slow = await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+    let release;
+    const gate = new Promise(resolve=>{release=resolve;});
+    await slow.route('**/neonbook-platform.png',async route=>{await gate;await route.continue();});
+    await slow.goto(`http://127.0.0.1:${server.address().port}/#home`,{waitUntil:'domcontentloaded'});
+    await slow.locator('.exhibit-img--neonbook').scrollIntoViewIfNeeded();
+    await slow.waitForSelector('.exhibit-img--neonbook[aria-busy="true"] .asset-veil');
+    release();
+    await slow.waitForFunction(()=>!document.querySelector('.exhibit-img--neonbook .asset-veil'));
+    assert(await slow.locator('.exhibit-img--neonbook img').evaluate(e=>e.naturalWidth>0));
+    await slow.close();
+    const failedImage=await browser.newPage({reducedMotion:'reduce'});
+    await failedImage.route('**/neonbook-platform.png',route=>route.abort());
+    await failedImage.goto(`http://127.0.0.1:${server.address().port}/#home`,{waitUntil:'domcontentloaded'});
+    await failedImage.locator('.exhibit-img--neonbook').scrollIntoViewIfNeeded();
+    await failedImage.waitForFunction(()=>{const e=document.querySelector('.exhibit-img--neonbook img');return e.complete&&!e.parentElement.hasAttribute('aria-busy');});
+    assert.equal(await failedImage.locator('.exhibit-img--neonbook .asset-veil').count(),0);
+    await failedImage.close();
+    console.log('PASS removed arrows, small footer icons, bold footer, delayed and failed image readiness');
     assert.deepEqual(errors,[]); assert.deepEqual(failed,[]);
     console.log('PASS reduced motion, reinitialization, no JavaScript errors or missing assets');
   } finally {await browser.close(); server.close();}

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   document.querySelectorAll('.project-link,.project-secondary,.view-link,.work-jump,.about-work-link,.contact-reveal-toggle,.orbit-controls button,.nb-detail-copy a,.nb-detail-close').forEach(el => el.classList.add('ui-action'));
-  document.querySelectorAll('.capture-close,.mf-icon-link').forEach(el => el.classList.add('ui-icon-action'));
+  document.querySelectorAll('.capture-close').forEach(el => el.classList.add('ui-icon-action'));
   // SVG arrows render consistently without relying on optional font glyph ranges.
   document.querySelectorAll('span').forEach(el => {
     if (el.children.length || !['↗','↓','→'].includes(el.textContent.trim())) return;
@@ -11,6 +11,9 @@
     el.setAttribute('aria-hidden', 'true');
   });
   if (window.gsap && window.CustomEase) {gsap.registerPlugin(CustomEase); CustomEase.create('codexFlow', '.22,1,.36,1');}
+  document.querySelectorAll('.ui-action .arrow,.ui-action .dock-arrow,.ui-action > span[aria-hidden="true"],.contact-dock-link .dock-arrow,.exhibit-open,.nb-explore-arrow').forEach(el => {
+    if (el.querySelector('.ui-arrow-svg') || el.matches('.exhibit-open,.nb-explore-arrow')) el.remove();
+  });
   const controls = [...document.querySelectorAll('.ui-action,.ui-icon-action,.nav-link,.contact-dock-link')];
   controls.forEach(el => {
     if (el.matches('.nav-link,.orbit-controls button')) return;
