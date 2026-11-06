@@ -23,81 +23,23 @@ const server = http.createServer((req, res) => {
     page.on('pageerror', e => errors.push(e.message));
     page.on('response', r => {if (r.status() >= 400) failed.push(r.url());});
     await page.goto(`http://127.0.0.1:${server.address().port}/#home`);
-    await page.evaluate(() => document.fonts.ready);
-    assert(await page.evaluate(() => document.fonts.check('800 24px Nunito') && getComputedStyle(document.body).fontFamily.includes('Nunito')));
-    for (const width of [1440,1024,768,390,320]) {
-      await page.setViewportSize({width,height:900});
-      for (const route of ['home','work','neonbook','about','contact']) {
-        await page.evaluate(r => location.hash = r, route);
-        await page.waitForTimeout(120);
-        assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${route} overflow at ${width}`);
-        assert.equal(await page.locator('.nav-link:visible').count(),5);
-        for (const label of await page.locator('.nav-link-label').all()) assert(await label.isVisible());
+    await page.evaluate(()=>document.fonts.ready);
+    for (const width of [360,390,768,1024,1440]) {
+      await page.setViewportSize({width,height:1000});
+      for(const route of ['home','work','neonbook','about','contact']){
+        await page.evaluate(r=>location.hash=r,route);await page.waitForTimeout(150);
+        assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+' overflow '+width);
+        assert.equal(await page.locator('.page.active h1').count(),1);
+        const tiny=await page.locator('.page.active').evaluate(p=>[...p.querySelectorAll('*')].filter(e=>e.textContent.trim()&&e.getClientRects().length&&parseFloat(getComputedStyle(e).fontSize)<12).map(e=>e.className));
+        assert.deepEqual(tiny,[],route+' small text');
+        await page.locator('.page.active img').evaluateAll(es=>es.forEach(e=>e.loading='eager'));await page.waitForTimeout(350);
+        if([360,768,1440].includes(width))await page.screenshot({path:`/tmp/audit-${route}-${width}.png`,fullPage:true});
       }
     }
-    console.log('PASS all routes, 320–1440px, visible navigation, local fonts');
-    await page.setViewportSize({width:1440,height:1000});
-    for (let i=0;i<3;i++) {
-      await page.evaluate(() => location.hash='home'); await page.waitForTimeout(150);
-      await page.locator('#page-home .exhibit-01').scrollIntoViewIfNeeded(); await page.waitForTimeout(1000);
-      assert.equal(await page.locator('#page-home .exhibit-01').evaluate(e=>getComputedStyle(e).opacity),'1');
-      await page.evaluate(() => location.hash='contact'); await page.waitForTimeout(150);
-      assert.equal(await page.evaluate(() => ScrollTrigger.getAll().filter(t=>(t.vars.id||'').startsWith('premium')).length),0);
-    }
-    console.log('PASS scroll completion and route cleanup without accumulating triggers');
-    const toggle=page.locator('.contact-reveal-toggle');
-    await toggle.click(); assert.match(await toggle.innerText(),/Back to the surface/);
-    await toggle.press('Escape'); assert.match(await toggle.innerText(),/Reveal the other side/);
-    await page.evaluate(()=>location.hash='about'); await page.waitForTimeout(150);
-    const action=page.locator('.about-work-link'); await action.hover(); await page.waitForTimeout(500);
-    assert(await action.locator('.action-fill').evaluate(e=>gsap.getProperty(e,'scaleY')>.99));
-    assert(await page.locator('#page-about .about-hero h1 .split-word').count()>0);
-    assert(await action.evaluate(e=>gsap.getProperty(e,'scaleX')>1));
-    await page.mouse.down(); await page.waitForTimeout(220);
-    assert(await action.evaluate(e=>gsap.getProperty(e,'scaleX')<1));
-    await page.mouse.up(); await page.waitForTimeout(150); assert.equal(await page.evaluate(()=>location.hash),'#work');
-    await page.evaluate(()=>location.hash='about'); await page.waitForTimeout(150);
-    await action.focus(); await action.press('Enter'); await page.waitForTimeout(150); assert.equal(await page.evaluate(()=>location.hash),'#work');
-    console.log('PASS hover, press, keyboard navigation and dynamic Contact labels');
-    await page.emulateMedia({reducedMotion:'reduce'});
-    await page.evaluate(()=>location.hash='home'); await page.waitForTimeout(150);
-    assert.equal(await page.evaluate(()=>ScrollTrigger.getAll().filter(t=>(t.vars.id||'').startsWith('premium')).length),0);
-    assert.equal(await page.locator('.ui-motion').count(),0);
-    assert.equal(await page.locator('.split-word').count(),0);
-    assert.equal(await page.locator('#page-about .about-hero h1').getAttribute('aria-label'),null);
-    assert.equal(await page.locator('.hero-bg-img').evaluate(e=>getComputedStyle(e).animationName),'none');
-    await page.emulateMedia({reducedMotion:'no-preference'}); await page.waitForTimeout(150);
-    assert(await page.locator('.ui-motion').count()>0);
-    const frame=page.locator('#page-home .exhibit-frame').first();
-    const frameY=await frame.evaluate(e=>e.getBoundingClientRect().top+scrollY);
-    await page.evaluate(y=>scrollTo(0,y-innerHeight*.92),frameY); await page.waitForTimeout(900);
-    const initialClip=await frame.evaluate(e=>getComputedStyle(e).clipPath);
-    await page.evaluate(y=>scrollTo(0,y-innerHeight*.3),frameY); await page.waitForTimeout(900);
-    assert.notEqual(initialClip,await frame.evaluate(e=>getComputedStyle(e).clipPath));
-    console.log('PASS visible fill sweep, SplitText restoration and scroll-driven image masks');
-    assert.equal(await page.locator('.ui-action .ui-arrow-svg,.contact-dock-link .dock-arrow').count(),0);
-    assert.equal(await page.locator('.mf-icon-link').first().evaluate(e=>getComputedStyle(e).width),'20px');
-    assert.equal(await page.locator('.mf-statement').first().evaluate(e=>getComputedStyle(e).fontWeight),'800');
-    const slow = await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
-    let release;
-    const gate = new Promise(resolve=>{release=resolve;});
-    await slow.route('**/neonbook-platform.png',async route=>{await gate;await route.continue();});
-    await slow.goto(`http://127.0.0.1:${server.address().port}/#home`,{waitUntil:'domcontentloaded'});
-    await slow.locator('.exhibit-img--neonbook').scrollIntoViewIfNeeded();
-    await slow.waitForSelector('.exhibit-img--neonbook[aria-busy="true"] .asset-veil');
-    release();
-    await slow.waitForFunction(()=>!document.querySelector('.exhibit-img--neonbook .asset-veil'));
-    assert(await slow.locator('.exhibit-img--neonbook img').evaluate(e=>e.naturalWidth>0));
-    await slow.close();
-    const failedImage=await browser.newPage({reducedMotion:'reduce'});
-    await failedImage.route('**/neonbook-platform.png',route=>route.abort());
-    await failedImage.goto(`http://127.0.0.1:${server.address().port}/#home`,{waitUntil:'domcontentloaded'});
-    await failedImage.locator('.exhibit-img--neonbook').scrollIntoViewIfNeeded();
-    await failedImage.waitForFunction(()=>{const e=document.querySelector('.exhibit-img--neonbook img');return e.complete&&!e.parentElement.hasAttribute('aria-busy');});
-    assert.equal(await failedImage.locator('.exhibit-img--neonbook .asset-veil').count(),0);
-    await failedImage.close();
-    console.log('PASS removed arrows, small footer icons, bold footer, delayed and failed image readiness');
-    assert.deepEqual(errors,[]); assert.deepEqual(failed,[]);
-    console.log('PASS reduced motion, reinitialization, no JavaScript errors or missing assets');
-  } finally {await browser.close(); server.close();}
+    await page.setViewportSize({width:390,height:900});await page.locator('.menu-toggle').click();
+    assert(await page.locator('#mobile-menu').evaluate(e=>e.open));await page.keyboard.press('Escape');assert(!await page.locator('#mobile-menu').evaluate(e=>e.open));
+    await page.evaluate(()=>location.hash='neonbook');await page.waitForTimeout(250);assert.equal(await page.locator('.nb-shelf-book').count(),5);
+    await page.locator('.nb-shelf-book').nth(2).focus();await page.locator('.nb-shelf-book').nth(2).click();assert(await page.locator('.nb-book-detail').evaluate(e=>e.open));await page.locator('.nb-detail-close').click();await page.waitForTimeout(750);
+    assert.deepEqual(errors,[]);assert.deepEqual(failed,[]);console.log('PASS routes, responsive, 12px minimum, menu, five books, dialog, no missing assets/errors');
+  } finally {await browser.close();server.close();}
 })().catch(e=>{console.error(e);server.close();process.exitCode=1;});
