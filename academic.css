@@ -1,0 +1,25 @@
+/* Academic folio: the only scope changed by this refinement. */
+#page-about .academic-heading{margin-bottom:56px}
+#page-about .academic-folio{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.4fr);border:1px solid #dce1e7;border-radius:28px;overflow:hidden;background:#ffffffb3;box-shadow:0 24px 64px -52px #24395550}
+#page-about .academic-identity{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:32px;min-width:0;background:#e9edf2;border-right:1px solid #dce1e7;overflow:hidden}
+#page-about .academic-identity::before{content:'';position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(0deg,transparent,transparent 31px,#6277930a 31px,#6277930a 32px),repeating-linear-gradient(90deg,transparent,transparent 31px,#6277930a 31px,#6277930a 32px)}
+#page-about .academic-code{font-size:var(--type-label);letter-spacing:.08em;color:#485d7b;font-weight:var(--weight-ui)}
+#page-about .academic-identity img{width:clamp(144px,17vw,230px);height:auto;margin:40px 0;opacity:.9}
+#page-about .academic-wordmark{display:flex;flex-direction:column;gap:4px;color:#30456a}
+#page-about .academic-wordmark strong{font-size:28px;letter-spacing:-.035em;font-weight:var(--weight-heading);line-height:1.2}
+#page-about .academic-wordmark span{font-size:var(--type-label);letter-spacing:.025em}
+#page-about .academic-profile{padding:48px;min-width:0}
+#page-about .academic-status{display:flex;align-items:center;gap:8px;font-size:var(--type-label);font-weight:var(--weight-ui);color:var(--text-secondary);margin:0 0 28px}
+#page-about .academic-status>span{width:6px;height:6px;background:#405bc3;border-radius:50%}
+#page-about .academic-profile h3{font-size:clamp(1.5rem,2.7vw,2.25rem);line-height:1.15;letter-spacing:-.035em;margin:0 0 16px}
+#page-about .academic-degree{font-size:var(--type-compact);font-weight:var(--weight-ui);color:#485d7b;margin:0 0 24px}
+#page-about .academic-description{font-size:var(--type-body);line-height:1.75;color:var(--text-secondary);max-width:52ch;margin:0}
+#page-about .academic-record{border-top:1px solid #dce1e7;margin-top:36px;padding-top:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+#page-about .about-gpa{padding:0;border:0}
+#page-about .about-gpa>span{font-size:var(--type-label);color:var(--text-secondary)}
+#page-about .about-gpa strong{font-size:clamp(2.75rem,4vw,4rem);font-weight:var(--weight-heading);margin-top:8px;letter-spacing:-.05em;line-height:1.15}
+#page-about .about-gpa small{font-size:var(--type-body);font-weight:var(--weight-body)}
+#page-about .about-gpa p{font-size:var(--type-label);line-height:1.5;color:var(--text-muted);margin:8px 0 0}
+#page-about .academic-note{font-size:var(--type-compact);line-height:1.55;color:#485d7b;text-align:right;margin:0 0 4px}
+@media(max-width:900px){#page-about .academic-profile{padding:32px}#page-about .academic-identity{padding:28px 20px}#page-about .academic-record{gap:16px}#page-about .academic-note{font-size:var(--type-label)}}
+@media(max-width:650px){#page-about .academic-heading{margin-bottom:32px}#page-about .academic-folio{grid-template-columns:1fr;border-radius:22px}#page-about .academic-identity{border-right:0;border-bottom:1px solid #dce1e7;padding:28px}#page-about .academic-identity img{width:156px;margin:28px 0}#page-about .academic-profile{padding:28px 24px}#page-about .academic-record{align-items:flex-start;flex-direction:column;gap:24px}#page-about .academic-note{text-align:left}#page-about .academic-note br{display:none}}

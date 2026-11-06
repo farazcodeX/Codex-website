@@ -5,7 +5,7 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const root = path.resolve(__dirname, '..');
-const mime = {'.html':'text/html', '.css':'text/css', '.js':'application/javascript', '.woff2':'font/woff2', '.jpg':'image/jpeg', '.png':'image/png'};
+const mime = {'.svg':'image/svg+xml','.html':'text/html', '.css':'text/css', '.js':'application/javascript', '.woff2':'font/woff2', '.jpg':'image/jpeg', '.png':'image/png'};
 const server = http.createServer((req, res) => {
   const name = new URL(req.url, 'http://localhost').pathname;
   const file = path.join(root, name === '/' ? 'index.html' : name);

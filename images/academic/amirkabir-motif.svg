@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 340" fill="none">
+<title>Academic motif inspired by Amirkabir's lotus, gear and open book</title>
+<g stroke="currentColor" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" color="#30456a">
+<path d="M49 190A119 119 0 1 1 271 190" stroke-width="13"/>
+<path d="m46 151-12-4 8-31 13 3m12-31-10-9 22-24 11 9m31-20-4-14 32-8 4 15m32 0 4-15 32 8-4 14m31 20 11-9 22 24-10 9m12 31 13-3 8 31-12 4" stroke-width="9"/>
+<path d="M151 166c-12-44-14-91 9-91s21 47 9 91M140 170c-35-39-52-79-32-87s39 41 43 83M129 177c-43-24-75-51-60-65s51 23 71 58M122 188c-51-5-89-19-81-38s54 8 88 27M120 199c-46 11-84 12-83-6s46-12 85-5"/>
+<path d="M180 170c35-39 52-79 32-87s-39 41-43 83M191 177c43-24 75-51 60-65s-51 23-71 58M198 188c51-5 89-19 81-38s-54 8-88 27M200 199c46 11 84 12 83-6s-46-12-85-5"/>
+<path d="M121 198a39 39 0 0 1 78 0"/>
+<path d="M160 254c0-40-40-59-80-41-14 7-10 20 2 15 38-17 65-5 65 26l-5 20h16l2-20Zm0 0c0-40 40-59 80-41 14 7 10 20-2 15-38-17-65-5-65 26l5 20h-16l-2-20Z"/>
+<circle cx="43" cy="238" r="27"/><circle cx="85" cy="293" r="30"/><circle cx="160" cy="309" r="29"/><circle cx="235" cy="293" r="30"/><circle cx="277" cy="238" r="27"/>
+</g></svg>
