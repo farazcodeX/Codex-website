@@ -1,0 +1,51 @@
+/* One font and one action language across the portfolio. */
+/* lobe-design-ignore-file LOBE-FONT-FAMILY: This shared vanilla-CSS theme owns font registration and CSS font tokens; the existing project does not use React ConfigProvider. */
+@font-face{font-family:Geist;src:url('fonts/geist-latin-variable.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:swap}
+/* lobe-design-ignore LOBE-RAW-COLOR: Central theme token definitions; all controls below consume these CSS variables. */
+:root{--font-ui:Geist,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--ui-text-xs:.75rem;--ui-text-sm:.875rem;--ui-text-md:1rem;--ui-text-lg:1.5rem;--ui-text-display:clamp(2.25rem,4.6vw,4rem);--ui-ink:#25272d;--ui-muted:#626b79;--ui-primary:#2b303b;--ui-on-primary:#fff;--ui-border:rgba(105,119,143,.18);--ui-highlight:rgba(255,255,255,.9);--ui-glass:rgba(255,255,255,.76);--ui-surface:#f6f7f9;--ui-focus:#405bc3;--ui-action-radius:999px;--ui-action-height:44px;--ui-action-shadow:0 5px 16px -9px rgba(35,48,72,.2)}
+body{font-family:var(--font-ui);font-synthesis:none}
+button,input,textarea,select,dialog{font-family:var(--font-ui)}
+:where(h1,h2,h3,h4,h5,h6){font-family:var(--font-ui)}
+/* Material belongs to controls/navigation; content retains quiet solid surfaces. */
+/* lobe-design-ignore LOBE-BLUR-CARD: Floating navigation is a functional glass layer. */
+.nav{background:var(--ui-glass);backdrop-filter:blur(22px) saturate(125%);-webkit-backdrop-filter:blur(22px) saturate(125%);border-color:var(--ui-highlight);box-shadow:var(--ui-action-shadow)}
+.nav a.nav-link{font-weight:500;letter-spacing:-.01em}
+.nav a.nav-link.active{background:var(--ui-primary);color:var(--ui-on-primary)}
+/* lobe-design-ignore LOBE-BLUR-CARD: Material is limited to interactive action controls, not content cards. */
+.ui-action{display:inline-flex;justify-content:center;align-items:center;gap:24px;min-height:var(--ui-action-height);padding:12px 20px;border:1px solid var(--ui-highlight);border-radius:var(--ui-action-radius);background:linear-gradient(145deg,var(--ui-highlight),var(--ui-glass));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--ui-action-shadow),inset 0 1px 0 var(--ui-highlight);font-family:var(--font-ui);font-size:var(--ui-text-xs);font-weight:500;letter-spacing:-.01em;line-height:1.35;color:var(--ui-ink);cursor:pointer;text-decoration:none;white-space:normal;text-align:center}
+.ui-action>span:last-child{flex:none}
+.ui-action--primary{background:var(--ui-primary);color:var(--ui-on-primary);border-color:var(--ui-primary);box-shadow:var(--ui-action-shadow)}
+.ui-icon-action{display:inline-grid;place-items:center;min-width:44px;min-height:44px;border-radius:50%;border:1px solid var(--ui-border);background:var(--ui-glass);color:var(--ui-ink)}
+/* Equal-priority actions share a shape, weight and spacing in every section. */
+#page-work :is(.project-link,.project-secondary){min-height:44px;font-size:var(--ui-text-xs)}
+.orbit-controls button.ui-action,.contact-reveal-toggle.ui-action{font-family:var(--font-ui);letter-spacing:-.01em;font-size:var(--ui-text-xs)}
+.contact-dock{background:var(--ui-glass);border-color:var(--ui-highlight);box-shadow:var(--ui-action-shadow)}
+.dock-copy strong{font-weight:500}.dock-copy small{font-size:var(--ui-text-xs)}
+.nb-detail-copy>h2,.nb-detail-description,.nb-face-spine>span{font-family:var(--font-ui)}
+.ui-motion{transition-property:background-color,border-color,box-shadow!important;transition-duration:180ms!important;transform-origin:center}
+.ui-action:focus-visible,.ui-icon-action:focus-visible,.nav-link:focus-visible{outline:2px solid var(--ui-focus);outline-offset:4px}
+/* About is the biography and education page; project detail belongs to Work. */
+.about-academic,.about-work-pointer{max-width:var(--container);margin:auto;padding:0 var(--gutter)}
+.about-academic{padding-top:40px;padding-bottom:120px}
+.about-academic h2{font-size:var(--ui-text-display);line-height:1.08;letter-spacing:-.05em;font-weight:500;margin:28px 0 0}
+.about-academic h2>span{color:var(--ui-muted)}
+.about-academic-body{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(180px,.5fr);gap:80px;margin-top:60px;align-items:center}
+.about-academic-body h3{font-size:var(--ui-text-lg);font-weight:500;letter-spacing:-.025em;line-height:1.4;margin:0}
+.about-study-status{font-size:var(--ui-text-xs);line-height:1.7;color:var(--ui-muted);margin:16px 0 24px}
+.about-academic-body>div>p:last-child{font-size:var(--ui-text-md);line-height:1.85;color:var(--ui-muted);max-width:57ch}
+.about-gpa{border-left:1px solid var(--ui-border);padding-left:40px}
+.about-gpa>span{font-size:var(--ui-text-xs);color:var(--ui-muted)}
+.about-gpa strong{display:block;font-size:var(--ui-text-display);font-weight:450;line-height:1.15;letter-spacing:-.055em;font-variant-numeric:tabular-nums;margin-top:20px}
+.about-gpa small{font-size:var(--ui-text-md);font-weight:400;letter-spacing:-.02em;color:var(--ui-muted)}
+.about-work-pointer{display:flex;align-items:center;justify-content:space-between;gap:40px;padding-top:70px;padding-bottom:120px;border-top:1px solid var(--ui-border)}
+.about-work-pointer h2{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;line-height:1.15;letter-spacing:-.04em;margin:24px 0 16px}
+.about-work-pointer p:not(.eyebrow){font-size:var(--ui-text-sm);line-height:1.7;color:var(--ui-muted)}
+.about-work-link{flex:none}
+@media(max-width:700px){.about-academic{padding-top:20px;padding-bottom:85px}.about-academic-body{grid-template-columns:1fr;gap:40px;margin-top:40px}.about-academic-body h3{font-size:var(--ui-text-lg)}.about-academic-body>div>p:last-child{font-size:var(--ui-text-md)}.about-gpa{padding-left:0;padding-top:32px;border-left:0;border-top:1px solid var(--ui-border)}.about-gpa strong{font-size:var(--ui-text-display)}.about-work-pointer{align-items:flex-start;flex-direction:column;gap:24px;padding-top:48px;padding-bottom:85px}.ui-action{padding:12px 16px}.contact-dock .dock-copy small{font-size:var(--ui-text-xs)}}
+/* lobe-design-ignore LOBE-BLUR-CARD: Accessibility fallback removes blur. */
+@media(prefers-reduced-transparency:reduce){.ui-action,.ui-icon-action,.nav,.contact-dock{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ui-surface)}.ui-action--primary{background:var(--ui-primary)}}
+/* lobe-design-ignore LOBE-BLUR-CARD: Accessibility fallback removes blur and strengthens edges. */
+@media(prefers-contrast:more){.ui-action,.ui-icon-action,.nav{border-color:var(--ui-muted);backdrop-filter:none}.ui-action{background:var(--ui-surface)}.ui-action--primary{background:var(--ui-primary);color:var(--ui-on-primary)}}
+@media(prefers-reduced-motion:reduce){.ui-action,.ui-icon-action,.ui-motion{transition:none!important}}
+/* The existing exhibition preview becomes one real column below tablet width. */
+@media(max-width:900px){#page-home .exhibit-grid{grid-template-columns:minmax(0,1fr);gap:48px}#page-home .exhibit-item{grid-column:1;min-width:0}}

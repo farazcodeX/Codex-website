@@ -1,0 +1,48 @@
+/* A physical reading shelf, adapted from the supplied motion brief. */
+#page-neonbook .nb-book-hero{max-width:none;padding:170px 0 0;text-align:center;overflow:hidden;position:relative;background:#f2f2ef;color:#24262c}
+.nb-edition{font-size:9px;letter-spacing:.2em;color:#687183;margin-bottom:35px}
+.nb-book-hero h1{font-size:clamp(62px,12.8vw,180px);line-height:.86;letter-spacing:-.075em;font-weight:550;margin:0 20px}
+.nb-hero-tagline{font-size:16px;letter-spacing:-.02em;color:#626c7d;margin:38px 24px 0}
+.nb-shelf{height:540px;width:100%;position:relative;perspective:2200px;perspective-origin:50% 50%;touch-action:pan-y;user-select:none;cursor:grab}
+.nb-shelf:active{cursor:grabbing}
+.nb-shelf-stage{position:absolute;width:0;height:0;left:50%;top:50%;transform-style:preserve-3d}
+.nb-shelf-book{position:absolute;width:0;height:0;transform-style:preserve-3d;will-change:transform;cursor:pointer}
+.nb-face-spine,.nb-face-cover{position:absolute;top:calc(var(--book-h) / -2);height:var(--book-h);backface-visibility:hidden;border-radius:2px;transform-style:preserve-3d}
+.nb-face-spine{left:calc(var(--spine-w) / -2);width:var(--spine-w);transform:translateZ(calc(var(--book-w) / 2));background:var(--spine-color);color:var(--spine-ink);padding:17px 6px;display:flex;align-items:center;justify-content:space-between;flex-direction:column;box-shadow:inset 2px 0 3px #fff6,inset -3px 0 5px #0002;border:1px solid #00000010}
+.nb-face-spine>small{font-size:6px;letter-spacing:.05em;text-align:center;line-height:1.4;max-width:100%;overflow-wrap:anywhere}
+.nb-face-spine>span{writing-mode:vertical-rl;text-orientation:mixed;font-family:inherit;font-size:clamp(12px,1.3vw,18px);line-height:1.15;max-height:78%;overflow:hidden}
+.nb-face-cover{width:var(--book-w);left:calc(var(--book-w) / -2);transform:rotateY(90deg) translateZ(calc(var(--spine-w) / 2));box-shadow:0 30px 60px -28px #29251d70;background:var(--spine-color);overflow:hidden}
+.nb-face-cover img{display:block;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.nb-face-cover.nb-cover-ml img{height:calc(100% + 31px);max-height:none;position:relative;top:-18px;object-fit:cover}
+.nb-face-cover::after,.nb-face-spine::after{content:'';position:absolute;inset:0;background:#151515;opacity:var(--shade,0);pointer-events:none}
+#page-neonbook .nb-section-head .display-md{max-width:650px;font-weight:500;letter-spacing:-.045em}
+#page-neonbook .nb-section-head{grid-template-columns:.4fr 1fr;gap:50px}
+#page-neonbook .nb-product-presentation{max-width:1120px}
+.nb-product-presentation>h2{font-size:clamp(36px,5vw,64px);font-weight:500;line-height:1.08;letter-spacing:-.05em;margin:35px 0 70px}
+.nb-product-window{padding:10px;border-radius:24px;background:#ffffff88;border:1px solid #fff;box-shadow:0 32px 60px -40px #25365930}
+#page-neonbook :focus-visible,.nb-book-detail :focus-visible{outline:2px solid #405bc3;outline-offset:5px}
+.nb-book-detail{position:fixed;inset:0;margin:0;width:100%;max-width:none;height:100dvh;max-height:none;border:0;padding:0;background:#f5f4f0;color:#24262c;overflow:auto}
+.nb-book-detail::backdrop{background:#ecebe6}
+.nb-detail-close{position:absolute;top:30px;right:35px;z-index:2;display:flex;align-items:center;gap:30px;min-height:44px;padding:10px 17px;background:#ffffffa0;border:1px solid #d5d8de;border-radius:25px;font:inherit;font-size:12px;cursor:pointer}.nb-detail-close span{font-size:20px}
+.nb-detail-layout{min-height:100%;max-width:1400px;margin:auto;padding:130px 7vw 80px;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}
+.nb-detail-copy>h2{font-family:inherit;font-size:clamp(34px,4vw,64px);font-weight:400;line-height:1.08;letter-spacing:-.035em;margin:30px 0}
+.nb-detail-subject{color:#405599;font-size:10px;letter-spacing:.12em}.nb-detail-description{font-family:inherit;font-size:19px;line-height:1.65;color:#5c6573;max-width:42ch}.nb-detail-context{font-size:10px;line-height:1.6;color:#6b7483;margin:30px 0}.nb-detail-copy a{display:inline-flex;gap:35px;align-items:center;min-height:48px;color:#344b92;font-size:12px}
+.nb-detail-art{display:block;width:100%;max-height:70dvh;filter:drop-shadow(0 20px 25px #1f29351c)}
+@media(max-width:700px){#page-neonbook .nb-book-hero{padding-top:145px}.nb-book-hero h1{font-size:15vw;margin:0 12px}.nb-hero-tagline{font-size:13px;margin-top:30px}.nb-shelf{height:380px}.nb-shelf-caption{margin-top:25px}#page-neonbook .nb-section-head{grid-template-columns:1fr;gap:30px}.nb-product-presentation>h2{margin-bottom:45px}.nb-face-spine{padding:10px 3px}.nb-face-spine small{font-size:5px}.nb-face-cover.nb-cover-ml img{height:calc(100% + 24px);top:-14px}.nb-detail-layout{grid-template-columns:1fr;padding:100px 26px 60px;gap:45px}.nb-detail-art{order:-1;max-height:45dvh}.nb-detail-copy h2{font-size:35px}.nb-detail-close{top:20px;right:22px}.nb-detail-description{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.nb-book-detail *{animation:none!important}}
+@media(prefers-reduced-transparency:reduce){}
+
+/* Five physical books, website typography, and a quiet, spacious hero. */
+#page-neonbook .nb-book-hero{padding-top:210px;padding-bottom:160px;font-family:inherit}
+.nb-hero-tagline{margin-top:55px}
+.nb-shelf{margin-top:160px;height:620px;margin-bottom:70px}
+.nb-shelf-book{appearance:none;border:0;padding:0;background:none;font:inherit;color:inherit}
+.nb-shelf-book:focus-visible{outline:none!important}
+.nb-shelf-book:focus-visible .nb-face-cover,.nb-shelf-book:focus-visible .nb-face-spine{outline:2px solid #405bc3;outline-offset:4px}
+.nb-face-spine>span{font-family:inherit;font-weight:500;letter-spacing:-.015em}
+.nb-book-detail{font-family:inherit;background:radial-gradient(ellipse at 85% 35%,var(--book-glow) 0%,transparent 65%),linear-gradient(130deg,var(--book-paper),#f7f7f3);color:#242b35}
+.nb-detail-copy>h2{font-family:inherit;font-weight:500;letter-spacing:-.05em;line-height:1.1}
+.nb-detail-description{font-family:inherit;font-size:17px;line-height:1.8;color:#47515e}
+.nb-detail-subject{color:#344779}
+.nb-detail-context{color:#505b69}
+@media(max-width:700px){#page-neonbook .nb-book-hero{padding-top:165px;padding-bottom:95px}.nb-hero-tagline{margin-top:40px}.nb-shelf{margin-top:100px;height:390px;margin-bottom:50px}.nb-detail-copy>h2{font-size:34px}.nb-detail-description{font-size:16px}}

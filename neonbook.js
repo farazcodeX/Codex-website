@@ -1,11 +1,11 @@
 (() => {
  'use strict';
  const data=[
-  {title:'Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow',subject:'learning',label:'MACHINE LEARNING',file:'hands-on-machine-learning.webp',color:'#f4f1e9',ink:'#343430',description:'Aurélien Géron’s practical introduction to machine learning with Scikit-Learn, Keras, and TensorFlow.'},
-  {title:'Let’s Go!',subject:'development',label:'WEB DEVELOPMENT',file:'lets-go.webp',color:'#233e47',ink:'#f5eee1',description:'Alex Edwards’s step-by-step guide to building web applications with Go.'},
-  {title:'Eloquent JavaScript',subject:'development',label:'JAVASCRIPT',file:'eloquent-javascript.webp',color:'#f3d32b',ink:'#24271d',description:'Marijn Haverbeke’s introduction to JavaScript, programming, and working with the web.'},
-  {title:'Mastering Bug Bounty',subject:'security',label:'SECURITY',file:'mastering-bug-bounty.webp',color:'#342b4f',ink:'#fff2e3',description:'A book selection focused on bug bounty research and discovering security vulnerabilities.'},
-  {title:'Mathematics for Machine Learning',subject:'learning',label:'MATHEMATICS',file:'mathematics-for-machine-learning.webp',color:'#e3e5e1',ink:'#282d31',description:'The mathematical foundations behind machine learning, from linear algebra to probability and optimization.'}
+  {title:'Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow',subject:'learning',label:'MACHINE LEARNING',file:'hands-on-machine-learning.png',color:'#f4f1e9',ink:'#343430',description:'Aurélien Géron’s practical introduction to machine learning with Scikit-Learn, Keras, and TensorFlow.'},
+  {title:'Let’s Go!',subject:'development',label:'WEB DEVELOPMENT',file:'lets-go.jpg',color:'#233e47',ink:'#f5eee1',description:'Alex Edwards’s step-by-step guide to building web applications with Go.'},
+  {title:'Eloquent JavaScript',subject:'development',label:'JAVASCRIPT',file:'eloquent-javascript.jpg',color:'#f3d32b',ink:'#24271d',description:'Marijn Haverbeke’s introduction to JavaScript, programming, and working with the web.'},
+  {title:'Mastering Bug Bounty',subject:'security',label:'SECURITY',file:'mastering-bug-bounty.png',color:'#342b4f',ink:'#fff2e3',description:'A book selection focused on bug bounty research and discovering security vulnerabilities.'},
+  {title:'Mathematics for Machine Learning',subject:'learning',label:'MATHEMATICS',file:'mathematics-for-machine-learning.png',color:'#e3e5e1',ink:'#282d31',description:'The mathematical foundations behind machine learning, from linear algebra to probability and optimization.'}
  ];
  const shelf=document.querySelector('.nb-shelf'),stage=shelf.querySelector('.nb-shelf-stage'),dialog=document.querySelector('.nb-book-detail'),image=dialog.querySelector('image'),circles=[...dialog.querySelectorAll('circle')];
  const reduce=matchMedia('(prefers-reduced-motion: reduce)'),fine=matchMedia('(pointer:fine)');
@@ -18,7 +18,7 @@
   if(!nodes.length)data.forEach((b,i)=>{
    const node=document.createElement('button');node.type='button';node.className='nb-shelf-book';node.dataset.book=i;node.setAttribute('aria-label','Explore '+b.title);node.style.setProperty('--spine-color',b.color);node.style.setProperty('--spine-ink',b.ink);
    const spine=document.createElement('div');spine.className='nb-face-spine';spine.setAttribute('aria-hidden','true');const small=document.createElement('small');small.textContent='NEONBOOK';const name=document.createElement('span');name.textContent=b.title;const category=document.createElement('small');category.textContent=b.label;spine.append(small,name,category);
-   const cover=document.createElement('div');cover.className='nb-face-cover';cover.setAttribute('aria-hidden','true');const img=document.createElement('img');img.src=pathFor(i);img.alt='';img.draggable=false;img.width=600;img.height=850;img.loading='lazy';if(i===0)cover.classList.add('nb-cover-ml');cover.append(img);node.append(spine,cover);stage.append(node);nodes.push({node,spine,cover,i,lift:0});
+   const cover=document.createElement('div');cover.className='nb-face-cover';cover.setAttribute('aria-hidden','true');const img=document.createElement('img');img.src=pathFor(i);img.alt='';img.draggable=false;if(i===0)cover.classList.add('nb-cover-ml');cover.append(img);node.append(spine,cover);stage.append(node);nodes.push({node,spine,cover,i,lift:0});
    node.addEventListener('pointerenter',()=>{hover=i;sync();});node.addEventListener('pointerleave',()=>{hover=null;});
    node.addEventListener('focus',()=>{target=i;if(reduce.matches)s=target;render(0);sync();});
    node.addEventListener('click',()=>{if(Math.abs(s-i)<.2)openDetail(node,i);else{target=i;if(reduce.matches)s=target;render(0);sync();}});
