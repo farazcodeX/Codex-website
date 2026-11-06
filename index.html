@@ -7,11 +7,7 @@
   <title>CODEX — Faraz · Computer Science / Software / Interfaces</title>
   <meta name="description"
     content="CODEX — Faraz builds software, products, interfaces and games. Computer Science student at Amirkabir University of Technology.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet">
+  <link rel="preload" href="fonts/geist-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* ============================================================
    TOKENS
@@ -66,7 +62,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: var(--font-ui);
       font-optical-sizing: auto;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -2079,6 +2075,7 @@
   <link rel="stylesheet" href="neonbook.css">
   <link rel="stylesheet" href="spacing.css">
   <link rel="stylesheet" href="neonbook-refinement.css">
+  <link rel="stylesheet" href="design-system.css">
 </head>
 
 <body>
@@ -2185,28 +2182,6 @@
               <span class="exhibit-name">CODATE</span>
             </div>
           </a>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-head reveal">
-          <div>
-            <p class="eyebrow">ACADEMIC</p>
-            <h2 class="display-lg">Faraz Nourinia</h2>
-          </div>
-        </div>
-        <div class="academic-body">
-          <div class="academic-col-main reveal">
-            <p class="caption">
-              B.SC.&nbsp;COMPUTER&nbsp;SCIENCE&nbsp;·&nbsp;AMIRKABIR&nbsp;UNIVERSITY&nbsp;OF&nbsp;TECHNOLOGY&nbsp;</p>
-            <p class="body-lg">Computer Science student at Amirkabir University of Technology. Focused on frontend,
-              Django backend, and game development, currently exploring machine learning and international
-              opportunities.</p>
-          </div>
-          <div class="academic-col-gpa reveal reveal-delay-2">
-            <p class="caption">OVERALL GPA</p>
-            <p class="academic-gpa">17.6<span class="academic-gpa-max">&nbsp;/&nbsp;20</span></p>
-          </div>
         </div>
       </div>
 
@@ -2577,7 +2552,7 @@
             <div class="about-card about-card--education" data-tilt="0.7">
               <div class="about-card-inner card">
                 <div class="about-card-top"><span class="about-glass-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5-10-5Zm4 3v5q6 6 12 0v-5m4-3v8"/></svg></span><h4 class="caption">EDUCATION</h4></div><h3 class="about-card-title">The foundation.</h3>
-                <p class="body">Computer Science<br>Amirkabir University of Technology<br><small>GPA · 17.6</small></p>
+                <p class="body">Computer Science<br>Amirkabir University of Technology</p>
               </div>
             </div>
             <div class="about-card about-card--about" data-tilt="-0.6" aria-hidden="true">
@@ -2609,23 +2584,18 @@
             <div class="about-card about-card--education" data-tilt="0.7" aria-hidden="true">
               <div class="about-card-inner card">
                 <div class="about-card-top"><span class="about-glass-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5-10-5Zm4 3v5q6 6 12 0v-5m4-3v8"/></svg></span><h4 class="caption">EDUCATION</h4></div><h3 class="about-card-title">The foundation.</h3>
-                <p class="body">Computer Science<br>Amirkabir University of Technology<br><small>GPA · 17.6</small></p>
+                <p class="body">Computer Science<br>Amirkabir University of Technology</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <section class="about-projects" aria-labelledby="about-projects-title">
-        <header class="about-projects-heading"><div><p class="eyebrow">PROJECTS I WORK ON</p><h2 id="about-projects-title">The work behind<br><span>the curiosity.</span></h2></div><p>From a Java game to startup applications.<br>Five projects, different ways of building.</p></header>
-        <div class="about-project-grid">
-          <article class="about-project about-project--neonbook reveal"><div class="about-project-art"><div class="project-poster poster-neonbook" aria-label="NeonBook editorial project artwork"><div class="book-object" aria-hidden="true"><div class="book-face"><span>NEON / BOOK</span><strong>Learn.<br>Test.<br>Climb.</strong><small>KNOWLEDGE IN MOTION</small></div><div class="book-edge"></div></div><span class="poster-domain">neonbook.ir</span></div></div><div class="about-project-copy"><p class="project-kicker">LEARNING / STARTUP</p><h3>NeonBook</h3><p>Learn. Test. Compete. Climb.</p><details><summary>About this project<span aria-hidden="true">+</span></summary><p>A learning platform built around technology books, 20-question tests, points, and weekly competition. A startup project I've worked on.</p></details><a class="project-link" href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Visit NeonBook<span aria-hidden="true">↗</span></a></div></article>
-          <article class="about-project about-project--cinento reveal"><div class="about-project-art"><div class="project-poster poster-cinento" aria-label="Cinento Watch editorial project artwork"><div class="cinema-orbit" aria-hidden="true"><div class="cinema-lens"><svg viewBox="0 0 100 100"><path d="m40 29 33 21-33 21Z"/></svg></div><span class="cinema-label">CINENTO<br><b>WATCH</b></span></div><span class="poster-domain">Film. Series. Possibility.</span></div></div><div class="about-project-copy"><p class="project-kicker">FILM & SERIES / STARTUP</p><h3>Cinento Watch</h3><p>Part of a bigger creative picture.</p><details><summary>About this project<span aria-hidden="true">+</span></summary><p>My work at Cinento is on the Cinento Watch application. Cinento is an AI platform for film and series workflows, from script development to budgeting.</p></details><a class="project-link" href="https://www.cinento.net/en" target="_blank" rel="noopener noreferrer">Explore Cinento<span aria-hidden="true">↗</span></a></div></article>
-          <article class="about-project about-project--tetris reveal"><div class="about-project-art"><div class="project-thumbnail"><img src="images/projects/tetris.png" alt="Tetris game board with next-piece preview and score panel" loading="lazy" width="1280" height="720"></div></div><div class="about-project-copy"><p class="project-kicker">GAME DEVELOPMENT</p><h3>Tetris</h3><p>A classic, built block by block.</p><details><summary>About this project<span aria-hidden="true">+</span></summary><p>A desktop puzzle game built with Java, Swing, and AWT. The implementation includes keyboard movement, rotation, soft drop, scoring, and pause.</p></details><a class="project-link" href="https://github.com/farazcodeX/tetris" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true">↗</span></a></div></article>
-          <article class="about-project about-project--fmail reveal"><div class="about-project-art"><div class="project-thumbnail"><img src="images/projects/fmail.png" alt="Fmail command-line login, sign-in and exit menu" loading="lazy" width="1280" height="720"></div></div><div class="about-project-copy"><p class="project-kicker">BACKEND / COMMAND LINE</p><h3>Fmail</h3><p>The systems behind a message.</p><details><summary>About this project<span aria-hidden="true">+</span></summary><p>A command-line messaging system with Java, Hibernate, and MySQL. Includes accounts, multiple recipients, read/unread tracking, replies, and forwarding.</p></details><a class="project-link" href="https://github.com/farazcodeX/fmail" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true">↗</span></a></div></article>
-          <article class="about-project about-project--portfolio reveal"><div class="about-project-art"><div class="project-thumbnail"><img src="images/projects/codex-website.png" alt="CODEX portfolio homepage with chrome portrait background" loading="lazy" width="1280" height="720"></div></div><div class="about-project-copy"><p class="project-kicker">DESIGN / FRONTEND</p><h3>CODEX Website</h3><p>A place for everything I build.</p><details><summary>About this project<span aria-hidden="true">+</span></summary><p>My personal portfolio, built with HTML, CSS, and JavaScript. SPA navigation, GSAP motion, and responsive layouts bring the projects together.</p></details><a class="project-link" href="https://github.com/farazcodeX/Codex-website" target="_blank" rel="noopener noreferrer">View source<span aria-hidden="true">↗</span></a></div></article>
-        </div><a class="about-all-work" href="#work">Explore all five projects <span aria-hidden="true">↗</span></a>
+      <section class="about-academic" aria-labelledby="about-academic-title">
+        <header><p class="eyebrow">ACADEMIC FOUNDATION</p><h2 id="about-academic-title">Computer Science.<br><span>Learning by building.</span></h2></header>
+        <div class="about-academic-body"><div><h3>Amirkabir University of Technology</h3><p class="about-study-status">B.Sc. Computer Science · Undergraduate</p><p>Computer Science student focused on frontend development and design, Django backend development, and games. Currently exploring machine learning and international opportunities.</p></div><aside class="about-gpa" aria-label="Overall GPA 17.6 out of 20"><span>Overall GPA</span><strong>17.6<small> / 20</small></strong></aside></div>
       </section>
+      <section class="about-work-pointer" aria-labelledby="about-work-pointer-title"><div><p class="eyebrow">FROM IDEAS TO WORK</p><h2 id="about-work-pointer-title">See what I’m building.</h2><p>Projects, contributions, and the details behind them.</p></div><a href="#work" class="about-work-link ui-action ui-action--primary">Explore selected work <span aria-hidden="true">↗</span></a></section>
 
       <footer class="mega-footer">
         <div class="mf-statement-wrap reveal">
@@ -2855,7 +2825,7 @@
         home: 'CODEX — Faraz · Computer Science / Software / Interfaces',
         work: 'Work — CODEX',
         neonbook: 'NeonBook — CODEX',
-        about: 'About / Experiments — CODEX',
+        about: 'About — CODEX',
         contact: 'Contact — CODEX'
       };
 
@@ -2957,6 +2927,7 @@
   <script src="contact.js"></script>
   <dialog class="nb-book-detail" aria-labelledby="nb-detail-title"><button class="nb-detail-close" type="button">Close <span aria-hidden="true">×</span></button><div class="nb-detail-layout"><div class="nb-detail-copy"><p class="nb-detail-subject"></p><h2 id="nb-detail-title"></h2><p class="nb-detail-description"></p><p class="nb-detail-context">Read at your pace. Put your understanding to the test.</p><a href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Explore NeonBook <span aria-hidden="true">↗</span></a></div><svg class="nb-detail-art" viewBox="0 0 600 850" aria-hidden="true"><defs><filter id="nb-ink-filter"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="55" xChannelSelector="R" yChannelSelector="G"/></filter><mask id="nb-ink-mask" maskUnits="userSpaceOnUse" x="-150" y="-150" width="900" height="1150"><g fill="white" filter="url(#nb-ink-filter)"><circle cx="150" cy="330" r="0"/><circle cx="390" cy="590" r="0"/><circle cx="250" cy="120" r="0"/><circle cx="100" cy="740" r="0"/><circle cx="440" cy="250" r="0"/><circle cx="280" cy="810" r="0"/></g></mask></defs><image width="600" height="850" preserveAspectRatio="xMidYMid meet" mask="url(#nb-ink-mask)"/></svg></div></dialog>
   <script src="neonbook.js"></script>
+  <script src="ui-motion.js"></script>
 </body>
 
 </html>
