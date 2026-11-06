@@ -7,7 +7,7 @@
   <title>CODEX — Faraz · Computer Science / Software / Interfaces</title>
   <meta name="description"
     content="CODEX — Faraz builds software, products, interfaces and games. Computer Science student at Amirkabir University of Technology.">
-  <link rel="preload" href="fonts/geist-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-sans-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* ============================================================
    TOKENS
@@ -2724,6 +2724,9 @@
 
   <script src="vendor/gsap.min.js"></script>
   <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/SplitText.min.js"></script>
+  <script src="vendor/CustomEase.min.js"></script>
+  <script src="vendor/ScrollToPlugin.min.js"></script>
   <script>
     (function () {
       "use strict";
@@ -2760,13 +2763,8 @@
         });
         if (reduceMotion) return;
 
-        var head = document.querySelector('#page-neonbook .nb-section-head');
-        if (head) {
-          gsap.fromTo(head, { opacity: 0, y: 26 }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-            scrollTrigger: { id: 'nb-head', trigger: head, start: 'top 85%', toggleActions: 'play none none none' }
-          });
-        }
+        // Section typography entrances belong to premium-motion.js.
+
       }
 
       function initExploreMagnetic() {

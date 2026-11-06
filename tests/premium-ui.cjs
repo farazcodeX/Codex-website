@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
     page.on('response', r => {if (r.status() >= 400) failed.push(r.url());});
     await page.goto(`http://127.0.0.1:${server.address().port}/#home`);
     await page.evaluate(() => document.fonts.ready);
-    assert(await page.evaluate(() => document.fonts.check('500 24px Manrope') && document.fonts.check('400 16px Geist')));
+    assert(await page.evaluate(() => document.fonts.check('500 24px "DM Sans"') && getComputedStyle(document.body).fontFamily.includes('DM Sans')));
     for (const width of [1440,1024,768,390,320]) {
       await page.setViewportSize({width,height:900});
       for (const route of ['home','work','neonbook','about','contact']) {
@@ -49,7 +49,9 @@ const server = http.createServer((req, res) => {
     await toggle.click(); assert.match(await toggle.innerText(),/Back to the surface/);
     await toggle.press('Escape'); assert.match(await toggle.innerText(),/Reveal the other side/);
     await page.evaluate(()=>location.hash='about'); await page.waitForTimeout(150);
-    const action=page.locator('.about-work-link'); await action.hover(); await page.waitForTimeout(250);
+    const action=page.locator('.about-work-link'); await action.hover(); await page.waitForTimeout(500);
+    assert(await action.locator('.action-fill').evaluate(e=>gsap.getProperty(e,'scaleY')>.99));
+    assert(await page.locator('#page-about .about-hero h1 .split-word').count()>0);
     assert(await action.evaluate(e=>gsap.getProperty(e,'scaleX')>1));
     await page.mouse.down(); await page.waitForTimeout(220);
     assert(await action.evaluate(e=>gsap.getProperty(e,'scaleX')<1));
@@ -61,9 +63,18 @@ const server = http.createServer((req, res) => {
     await page.evaluate(()=>location.hash='home'); await page.waitForTimeout(150);
     assert.equal(await page.evaluate(()=>ScrollTrigger.getAll().filter(t=>(t.vars.id||'').startsWith('premium')).length),0);
     assert.equal(await page.locator('.ui-motion').count(),0);
+    assert.equal(await page.locator('.split-word').count(),0);
+    assert.equal(await page.locator('#page-about .about-hero h1').getAttribute('aria-label'),null);
     assert.equal(await page.locator('.hero-bg-img').evaluate(e=>getComputedStyle(e).animationName),'none');
     await page.emulateMedia({reducedMotion:'no-preference'}); await page.waitForTimeout(150);
     assert(await page.locator('.ui-motion').count()>0);
+    const frame=page.locator('#page-home .exhibit-frame').first();
+    const frameY=await frame.evaluate(e=>e.getBoundingClientRect().top+scrollY);
+    await page.evaluate(y=>scrollTo(0,y-innerHeight*.92),frameY); await page.waitForTimeout(900);
+    const initialClip=await frame.evaluate(e=>getComputedStyle(e).clipPath);
+    await page.evaluate(y=>scrollTo(0,y-innerHeight*.3),frameY); await page.waitForTimeout(900);
+    assert.notEqual(initialClip,await frame.evaluate(e=>getComputedStyle(e).clipPath));
+    console.log('PASS visible fill sweep, SplitText restoration and scroll-driven image masks');
     assert.deepEqual(errors,[]); assert.deepEqual(failed,[]);
     console.log('PASS reduced motion, reinitialization, no JavaScript errors or missing assets');
   } finally {await browser.close(); server.close();}

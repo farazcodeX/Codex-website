@@ -65,3 +65,5 @@ Academic content moved from the standalone CODEX section to About. The duplicate
 See the latest section of `DESIGN_SYSTEM.md` for typography roles, action variants, references, and animation ownership. `premium.css` loads after the earlier shared styles. `premium-motion.js` reverts its own ScrollTriggers on navigation and motion-preference changes; avoid attaching another transform animator to `.motion-owned` elements. Shared controls remain functional if GSAP is unavailable.
 
 Run `node tests/premium-ui.cjs` with Playwright installed and Chromium at `/usr/bin/chromium` (or set `CHROMIUM_PATH`). The test starts and closes its own local HTTP server. There is no build step for this static site.
+
+Typography now uses self-hosted DM Sans. The coordinated GSAP 3.15.1 vendor set adds SplitText, CustomEase and ScrollToPlugin. `tests/premium-ui.cjs` also checks visible fill completion, SplitText markup restoration and real scroll-driven masks. See the latest design-system note for superseding decisions and motion ownership.

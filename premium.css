@@ -83,3 +83,27 @@ h2,h3{font-weight:550;letter-spacing:-.045em}
 @media(max-width:350px){.nav a.nav-link{padding-inline:7px;font-size:9px}}
 /* GSAP owns action icons; inherited hover transitions must not interpolate them again. */
 .ui-motion .arrow,.ui-motion .dock-arrow{transition:none!important}
+/* Softer geometry, open counters and calmer spacing, inspired by the supplied type reference. */
+@font-face{font-family:'DM Sans';src:url('fonts/dm-sans-latin-variable.woff2') format('woff2');font-weight:100 1000;font-style:normal;font-display:swap}
+:root{--font-ui:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--font-display:var(--font-ui)}
+body{letter-spacing:-.012em}
+h1,h2,h3,.display-huge,.display-lg,.display-md,.mf-statement{font-weight:500;letter-spacing:-.04em}
+.home-hero-title .display-huge{font-weight:550;letter-spacing:-.055em}
+#page-home .section-head .display-lg,#page-about .about-hero h1,.selected-work-heading h1,.selected-project h2,.nb-detail-copy>h2{font-weight:500;letter-spacing:-.04em;line-height:1.1}
+.nb-book-hero .display-huge{font-weight:550;letter-spacing:-.055em}
+.nb-detail-description,.nb-face-spine>span{font-family:var(--font-ui)}
+.ui-action,.contact-dock-link{--action-hover-fill:#242a32;--action-hover-ink:#fff}
+.ui-action--primary,.project-link.ui-action,.ui-action--secondary{--action-hover-fill:#efefdf;--action-hover-ink:#20262c}
+.hero-actions .ui-action--primary{--action-hover-fill:#d9e5dc;--action-hover-ink:#20262c}
+.action-fill{position:absolute;inset:0;z-index:-1;background:var(--action-hover-fill);border-radius:inherit;transform:scaleY(0);transform-origin:50% 100%;pointer-events:none}
+.action-sheen{display:none}
+.ui-action{box-shadow:none;border-color:#d9ddd9;font-size:14px;font-weight:500;padding:13px 22px;gap:28px}
+.project-secondary.ui-action{--action-hover-fill:transparent;--action-hover-ink:#151b23}
+.ui-action .arrow{background:transparent;overflow:hidden}
+.contact-dock-link.ui-action--engaged .dock-copy small,.contact-dock-link.ui-action--engaged .dock-arrow{color:inherit}
+.contact-dock-link.ui-action--engaged .dock-icon{color:inherit}
+.split-word{display:inline-block}
+.motion-words{text-wrap:wrap!important}
+.motion-word-mask{overflow:clip;padding-bottom:.12em;margin-bottom:-.12em}
+.mf-statement-wrap{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.action-fill{display:none}.ui-action:hover{background:var(--action-hover-fill);color:var(--action-hover-ink)}}

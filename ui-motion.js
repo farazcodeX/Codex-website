@@ -10,13 +10,11 @@
     el.innerHTML = `<svg class="ui-arrow-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="${paths[direction]}"/></svg>`;
     el.setAttribute('aria-hidden', 'true');
   });
+  if (window.gsap && window.CustomEase) {gsap.registerPlugin(CustomEase); CustomEase.create('codexFlow', '.22,1,.36,1');}
   const controls = [...document.querySelectorAll('.ui-action,.ui-icon-action,.nav-link,.contact-dock-link')];
   controls.forEach(el => {
     if (el.matches('.nav-link,.orbit-controls button')) return;
-    const sheen = document.createElement('span');
-    sheen.className = 'action-sheen';
-    sheen.setAttribute('aria-hidden', 'true');
-    el.append(sheen);
+    const fill = document.createElement('span'); fill.className = 'action-fill'; fill.setAttribute('aria-hidden','true'); el.append(fill);
   });
   if (!window.gsap) return;
   const media = gsap.matchMedia();
@@ -24,9 +22,12 @@
     const cleanup = [];
     controls.forEach(el => {
       el.classList.add('ui-motion');
-      let over = false, down = false;
-      const sheen = el.querySelector('.action-sheen');
-      const arrow = el.querySelector('.arrow,.dock-arrow') || el.querySelector(':scope > [aria-hidden="true"]:not(.action-sheen)');
+      let over = false, down = false, engaged = false;
+      const fill = el.querySelector('.action-fill');
+      const colors = getComputedStyle(el);
+      const restColor = colors.color;
+      const activeColor = colors.getPropertyValue('--action-hover-ink').trim() || restColor;
+      const arrow = el.querySelector('.arrow,.dock-arrow') || el.querySelector(':scope > [aria-hidden="true"]:not(.action-sheen):not(.action-fill)');
       const x = gsap.quickTo(el, 'x', {duration: .24, ease: 'power3.out'});
       const y = gsap.quickTo(el, 'y', {duration: .24, ease: 'power3.out'});
       const disabled = () => el.matches(':disabled,[aria-disabled="true"]');
@@ -35,12 +36,18 @@
         el.classList.toggle('ui-action--engaged', on);
         gsap.to(el, {scale: disabled() ? 1 : down ? .975 : on ? 1.015 : 1, duration: .2, ease: 'power3.out', overwrite: 'auto'});
         x(0); y(on ? -2 : 0);
-        if (arrow) gsap.to(arrow, {x: on ? 2 : 0, y: on ? -2 : 0, rotation: on ? 6 : 0, duration: .24, ease: 'power3.out', overwrite: 'auto'});
-        if (sheen) {
-          gsap.killTweensOf(sheen);
-          if (on) gsap.fromTo(sheen, {xPercent: -100, opacity: .8}, {xPercent: 100, opacity: 0, duration: .65, ease: 'power2.out'});
-          else gsap.to(sheen, {opacity: 0, duration: .15});
+        if (fill) {
+          gsap.to(fill, {scaleY:on?1:0, duration:.38, ease:'codexFlow', overwrite:true});
+          gsap.to(el, {color:on?activeColor:restColor, duration:.24, overwrite:'auto'});
         }
+        if (arrow && on !== engaged) {
+          gsap.killTweensOf(arrow);
+          if (on) gsap.timeline().to(arrow,{x:12,y:-12,opacity:0,duration:.14,ease:'power2.in'})
+            .set(arrow,{x:-10,y:10}).to(arrow,{x:0,y:0,opacity:1,duration:.25,ease:'codexFlow'});
+          else gsap.to(arrow,{x:0,y:0,opacity:1,duration:.2,overwrite:true});
+        }
+        engaged = on;
+
       }
       const reset = () => { over = down = false; state(); };
       const handlers = {
@@ -63,22 +70,25 @@
       Object.entries(handlers).forEach(([name, fn]) => el.addEventListener(name, fn));
       const routeReset = () => {
         if (!el.closest('.page.active') && !el.closest('.nav-holder') && !el.closest('dialog[open]')) {
-          over = down = false;
+          over = down = engaged = false;
           el.classList.remove('ui-action--engaged');
-          gsap.killTweensOf([el, arrow, sheen].filter(Boolean));
-          gsap.set(el, {clearProps: 'transform'});
-          if (arrow) gsap.set(arrow, {clearProps: 'transform'});
+          gsap.killTweensOf([el, arrow, fill].filter(Boolean));
+          gsap.set(el, {clearProps: 'transform,color'});
+          if (arrow) gsap.set(arrow, {clearProps: 'transform,opacity'});
+          if (fill) gsap.set(fill, {clearProps: 'transform'});
         }
       };
       window.addEventListener('hashchange', routeReset);
       cleanup.push(() => {
         x.tween.kill(); y.tween.kill();
-        gsap.killTweensOf([el, arrow, sheen].filter(Boolean));
+        gsap.killTweensOf([el, arrow, fill].filter(Boolean));
         gsap.set(el, {clearProps: 'transform'});
         if (arrow) gsap.set(arrow, {clearProps: 'transform'});
-        if (sheen) gsap.set(sheen, {clearProps: 'transform,opacity'});
         Object.entries(handlers).forEach(([name, fn]) => el.removeEventListener(name, fn));
         window.removeEventListener('hashchange', routeReset);
+        if (fill) gsap.set(fill,{clearProps:'transform'});
+        gsap.set(el,{clearProps:'color'});
+        if(arrow) gsap.set(arrow,{clearProps:'opacity'});
         el.classList.remove('ui-motion', 'ui-action--engaged');
       });
     });

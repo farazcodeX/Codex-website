@@ -17,7 +17,7 @@
   dialog.addEventListener('click', e => { if (e.target === dialog) { const r = dialog.getBoundingClientRect(); if(e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) dialog.close(); } });
   dialog.addEventListener('close', () => { if(opener?.closest('.page.active')) opener.focus({preventScroll:true}); });
   window.addEventListener('hashchange', () => {if(dialog.open) dialog.close();});
-  document.querySelector('.work-jump').addEventListener('click', e => {e.preventDefault();document.getElementById('selected-projects').scrollIntoView({behavior:motion.matches?'instant':'smooth',block:'start'});});
+  document.querySelector('.work-jump').addEventListener('click', e => {e.preventDefault();if(window.ScrollToPlugin&&!motion.matches){gsap.registerPlugin(ScrollToPlugin);gsap.to(window,{scrollTo:{y:'#selected-projects',offsetY:95,autoKill:true},duration:1,ease:'power3.inOut'});}else document.getElementById('selected-projects').scrollIntoView({behavior:'instant',block:'start'});});
 
   // Native DOM screenshots stay readable; only the image plane responds to the pointer.
   if(window.gsap) {
