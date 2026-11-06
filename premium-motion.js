@@ -6,11 +6,6 @@
   // One owner per transform: do not select books, orbit cards, captures or flip faces.
   const selector = '#page-home .section-head, #page-home .exhibit-item, .selected-project, .about-academic, .about-work-pointer, .page .mf-statement-wrap';
   document.querySelectorAll(selector).forEach(el => el.classList.add('motion-owned'));
-  const section = document.querySelector('#page-home > .section');
-  const field = document.createElement('div');
-  field.className = 'ambient-field'; field.setAttribute('aria-hidden', 'true');
-  field.innerHTML = '<div class="ambient-light"></div>';
-  section.prepend(field);
   let media;
   function mount() {
     media?.revert();
@@ -51,12 +46,6 @@
         gsap.from(parts,{y:14,opacity:0,stagger:.06,duration:.9,ease:'power3.out',
           scrollTrigger:{id:'premium-project',trigger:project,start:'top 85%',once:true}});
       });
-      if (page.id === 'page-home') {
-        gsap.fromTo(field.firstElementChild, {xPercent: -12, yPercent: -8}, {
-          xPercent: 16, yPercent: 12, ease: 'none',
-          scrollTrigger: {id: 'premium-ambient', trigger: section, start: 'top bottom', end: 'bottom top', scrub: 1}
-        });
-      }
       return () => {splits.forEach(split=>split.revert());document.querySelectorAll('.motion-words').forEach(el=>el.classList.remove('motion-words'));};
     });
     ScrollTrigger.refresh();

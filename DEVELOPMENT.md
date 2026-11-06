@@ -67,3 +67,7 @@ See the latest section of `DESIGN_SYSTEM.md` for typography roles, action varian
 Run `node tests/premium-ui.cjs` with Playwright installed and Chromium at `/usr/bin/chromium` (or set `CHROMIUM_PATH`). The test starts and closes its own local HTTP server. There is no build step for this static site.
 
 Typography now uses self-hosted DM Sans. The coordinated GSAP 3.15.1 vendor set adds SplitText, CustomEase and ScrollToPlugin. `tests/premium-ui.cjs` also checks visible fill completion, SplitText markup restoration and real scroll-driven masks. See the latest design-system note for superseding decisions and motion ownership.
+
+## Scroll controller
+
+Lenis 1.3.27 runs from GSAP's ticker through smooth-scroll.js. Use codexScroll.to/reset/resize instead of adding another scroll animator. Native touch and reduced motion retain browser behavior. Atmosphere animation is scoped by route in atmosphere.js. Run `node tests/scroll-experience.cjs` for wheel tuning, modal/route integration and preference cleanup. See DESIGN_SYSTEM.md for selected parameters and measured results.

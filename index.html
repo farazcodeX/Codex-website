@@ -2078,6 +2078,8 @@
   <link rel="stylesheet" href="design-system.css">
   <link rel="stylesheet" href="premium.css">
   <link rel="stylesheet" href="typography.css">
+  <link rel="stylesheet" href="vendor/lenis.css">
+  <link rel="stylesheet" href="atmosphere.css">
 </head>
 
 <body>
@@ -2727,7 +2729,8 @@
   <script src="vendor/ScrollTrigger.min.js"></script>
   <script src="vendor/SplitText.min.js"></script>
   <script src="vendor/CustomEase.min.js"></script>
-  <script src="vendor/ScrollToPlugin.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="smooth-scroll.js"></script>
   <script>
     (function () {
       "use strict";
@@ -2874,7 +2877,7 @@
         if (!reduceMotion) target.classList.add('page-enter');
         document.title = titles[route];
         setActiveNav(route);
-        if (!opts.skipScroll) window.scrollTo({ top: 0, behavior: 'auto' });
+        if (!opts.skipScroll) { if (window.codexScroll) window.codexScroll.reset(); else window.scrollTo({ top: 0, behavior: 'auto' }); }
         setupReveal(target);
         if (window.__onRouteChange) window.__onRouteChange(route);
       }
@@ -2933,6 +2936,7 @@
   <script src="ui-motion.js"></script>
   <script src="premium-motion.js"></script>
   <script src="asset-loading.js"></script>
+  <script src="atmosphere.js"></script>
 </body>
 
 </html>

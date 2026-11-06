@@ -1,0 +1,8 @@
+/* Native window scrolling remains the coordinate system for fixed/sticky UI. */
+html{scroll-behavior:auto}
+.page{position:relative;isolation:isolate}
+.living-atmosphere{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1;contain:paint}
+#page-home>.living-atmosphere{top:100svh}
+.atmosphere-light{position:absolute;left:0;top:8%;width:100%;height:min(900px,100svh);background:radial-gradient(ellipse at 35% 40%,#c5ced523,transparent 65%),radial-gradient(ellipse at 75% 65%,#e2d5c323,transparent 65%);transform-origin:center;will-change:transform}
+.atmosphere-light--lower{top:auto;bottom:12%;background:radial-gradient(ellipse at 65% 50%,#c5c8d523,transparent 65%)}
+@media(prefers-reduced-motion:reduce),(prefers-reduced-transparency:reduce){.living-atmosphere{display:none}.atmosphere-light{will-change:auto}}
