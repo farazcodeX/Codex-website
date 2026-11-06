@@ -24,7 +24,7 @@ const server = http.createServer((req, res) => {
     page.on('response', r => {if (r.status() >= 400) failed.push(r.url());});
     await page.goto(`http://127.0.0.1:${server.address().port}/#home`);
     await page.evaluate(() => document.fonts.ready);
-    assert(await page.evaluate(() => document.fonts.check('800 24px Nunito') && getComputedStyle(document.body).fontFamily.includes('Nunito')));
+    assert(await page.evaluate(() => document.fonts.check('600 24px Geist') && getComputedStyle(document.body).fontFamily.includes('Geist')));
     for (const width of [1440,1024,768,390,320]) {
       await page.setViewportSize({width,height:900});
       for (const route of ['home','work','neonbook','about','contact']) {
@@ -32,6 +32,8 @@ const server = http.createServer((req, res) => {
         await page.waitForTimeout(120);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${route} overflow at ${width}`);
         assert.equal(await page.locator('.nav-link:visible').count(),5);
+        assert(await page.locator('.page.active h1').evaluate(e=>getComputedStyle(e).fontFamily.includes('Geist')));
+        for(const button of await page.locator('.page.active .ui-action').all()) assert(await button.evaluate(e=>getComputedStyle(e).fontFamily.includes('Geist')));
         for (const label of await page.locator('.nav-link-label').all()) assert(await label.isVisible());
       }
     }
@@ -77,7 +79,7 @@ const server = http.createServer((req, res) => {
     console.log('PASS visible fill sweep, SplitText restoration and scroll-driven image masks');
     assert.equal(await page.locator('.ui-action .ui-arrow-svg,.contact-dock-link .dock-arrow').count(),0);
     assert.equal(await page.locator('.mf-icon-link').first().evaluate(e=>getComputedStyle(e).width),'20px');
-    assert.equal(await page.locator('.mf-statement').first().evaluate(e=>getComputedStyle(e).fontWeight),'800');
+    assert.equal(await page.locator('.mf-statement').first().evaluate(e=>getComputedStyle(e).fontWeight),'650');
     const slow = await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     let release;
     const gate = new Promise(resolve=>{release=resolve;});

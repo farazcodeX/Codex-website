@@ -56,3 +56,13 @@ Nunito variable (Fontsource 5.3.0, SIL OFL, integrity verified) supersedes DM Sa
 Entrances use shorter travel, lower stagger and longer easing. Project scroll masks use a smaller crop and smoother scrub. `asset-loading.js` adds placeholders only to images awaiting network readiness, waits for decode, then fades ready images in with a short stagger. Cached images display immediately. Failed downloads remove the placeholder and expose native alternative text; no arbitrary loading delay is imposed. Existing dimensions reserve image space. Reduced-motion users get static placeholders and instant readiness changes. Text and controls remain available while images load.
 
 The browser suite additionally verifies removed arrows, original footer icon sizes, bold footer weight, delayed-image placeholders and readiness, and failed-download recovery. Five-route responsive, keyboard, motion cleanup and missing-asset checks passed. Desktop and mobile were visually inspected locally.
+
+## Typography-only consistency pass
+
+The current typography authority is `typography.css`, loaded after the existing visual styles. Geist is the sole active font for headings, body, navigation, controls, card copy and the footer. Superseded Manrope/DM Sans/Nunito font registrations and family overrides were removed from premium.css; only Geist is preloaded. Original licensed files remain in source history/workspace but are not requested by the page.
+
+Roles: body 16px/400/1.65; lead 18px/400/1.65; bounded-card copy and controls 14px/400 or 500; labels 12px/500/1.55. Standard headings use 600, display titles/footer 650. Tight tracking is limited to headings; body and UI tracking is neutral. Heading size tokens preserve the existing display, section and card hierarchy. The existing compact mobile navigation and decorative book-object lettering retain their responsive sizing to preserve the layout.
+
+Shared text tokens separate primary #25272d, secondary #535b67 and muted #626975 from inverse white and #d4d8df. Dark opening/footer and the Contact chrome reveal keep their intentional inverse treatment. Accent artwork and the book covers are not recolored. The final typography layer changes no backgrounds, dimensions, positioning, spacing, transforms, transitions or animation logic.
+
+Verification: all five routes at 320/390/768/1024/1440px; heading and action font consistency; no horizontal overflow; six flip cards fit at 320px; pointer/keyboard actions; screenshot dialogs; Contact reveal; route/motion cleanup; slow-image states; no missing assets or JavaScript errors. Existing GSAP controllers and all page markup/content are unchanged apart from stylesheet loading and font preloading.

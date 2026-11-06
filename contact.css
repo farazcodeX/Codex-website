@@ -28,7 +28,7 @@
 .contact-closing{text-align:center;font-size:14px;line-height:1.8;color:#68717e;margin:45px 24px 0}
 .contact-redesign :focus-visible{outline:2px solid #405bc3;outline-offset:4px}
 @media(max-width:800px){.contact-dock{grid-template-columns:1fr}.contact-dock-link{min-height:84px}.contact-dock-heading{display:block}.contact-dock-heading>span{display:block;margin-top:12px}.contact-stage{min-height:560px}.contact-stage-bottom>span{display:none}.contact-stage-bottom{justify-content:center}.contact-dock-wrap{margin-top:45px}.contact-display{font-size:clamp(48px,9.5vw,80px)}}
-@media(max-width:420px){.contact-stage{min-height:480px}.contact-display{font-size:12vw;letter-spacing:-.07em}.contact-invitation{font-size:12px;max-width:250px;margin:auto}.contact-stage-copy{padding-left:15px;padding-right:15px}.contact-stage .eyebrow{font-size:8px!important}.contact-closing{font-size:12px}}
+@media(max-width:420px){.contact-stage{min-height:480px}.contact-display{font-size:12vw;letter-spacing:-.07em}.contact-invitation{font-size:12px;max-width:250px;margin:auto}.contact-stage-copy{padding-left:15px;padding-right:15px}.contact-stage .eyebrow{font-size:var(--type-label)}.contact-closing{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.contact-redesign *{transition:none!important;animation:none!important}.contact-dock-link:hover{transform:none}.contact-dock-link:hover .dock-icon{transform:none}}
 @media(prefers-reduced-transparency:reduce){.contact-dock,.contact-reveal-toggle{background:#fff;backdrop-filter:none}}
 @media(prefers-contrast:more){.contact-dock{border-color:#68717e}.dock-copy small,.contact-closing,.contact-invitation{color:#414a58}}

@@ -1,0 +1,45 @@
+/* Typography only. No dimensions, spacing, backgrounds, or motion ownership. */
+:root{
+ --font-ui:Geist,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+ --font-display:var(--font-ui);
+ --type-body:1rem;--type-lead:1.125rem;--type-compact:.875rem;--type-label:.75rem;
+ --type-section:clamp(2rem,4.2vw,3.75rem);--type-card:clamp(1.5rem,2.2vw,1.75rem);--type-project:clamp(2rem,3.3vw,3rem);
+ --weight-body:400;--weight-ui:500;--weight-heading:600;--weight-display:650;
+ --text-primary:#25272d;--text-secondary:#535b67;--text-muted:#626975;
+ --text-inverse:#fff;--text-inverse-secondary:#d4d8df;
+ --ink:var(--text-primary);--ink-soft:var(--text-secondary);--ink-faint:var(--text-muted);
+ --ui-ink:var(--text-primary);--ui-muted:var(--text-secondary)
+}
+body,button,input,select,textarea,dialog{font-family:var(--font-ui);font-synthesis:none}
+body{font-size:var(--type-body);font-weight:var(--weight-body);line-height:1.65;letter-spacing:0;color:var(--text-primary)}
+.page :is(h1,h2,h3,h4),.nb-book-detail h2{font-family:var(--font-display);font-weight:var(--weight-heading);letter-spacing:-.035em;line-height:1.12}
+#page-home .home-hero-title .display-huge,#page-neonbook .nb-book-hero h1{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:-.055em;line-height:.95}
+#page-home .section-head .display-lg,#page-about .about-hero h1,.selected-work-heading h1{font-weight:var(--weight-heading);letter-spacing:-.04em;line-height:1.1}
+.page .mf-statement{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:-.04em;line-height:.94;color:var(--text-inverse)}
+.page :is(.body-lg,.work-intro,.about-intro,.nb-hero-tagline){font-family:var(--font-ui);font-size:var(--type-lead);font-weight:var(--weight-body);line-height:1.65;letter-spacing:-.01em;color:var(--text-secondary)}
+.page :is(.body,.project-description,.project-tagline,.contact-invitation,.contact-closing),.nb-detail-description{font-family:var(--font-ui);font-size:var(--type-body);font-weight:var(--weight-body);line-height:1.7;letter-spacing:0;color:var(--text-secondary)}
+/* Compact copy belongs to bounded information cards; all use the same role. */
+#page-about .about-card .body,.nb-flip-description,.nb-flip-back-copy{font-size:var(--type-compact);font-weight:var(--weight-body);line-height:1.6;color:var(--text-secondary);letter-spacing:0}
+.page :is(.eyebrow,.caption,.project-kicker,.project-role,.nb-edition,.orbit-hint,.nb-flip-back-label,.nb-detail-subject,.nb-platform-toolbar,.nb-platform-frame figcaption,.about-study-status),.nb-book-detail :is(.nb-detail-subject,.nb-detail-context){font-family:var(--font-ui);font-size:var(--type-label);font-weight:var(--weight-ui);line-height:1.55;letter-spacing:.06em;color:var(--text-muted)}
+.page :is(.project-role,.orbit-hint,.about-study-status,.nb-platform-frame figcaption),.nb-book-detail .nb-detail-context{letter-spacing:0}
+.page :is(.ui-action,.ui-icon-action,.nav-link),.nav a.nav-link,.nb-book-detail :is(button,a){font-family:var(--font-ui);font-size:var(--type-compact);font-weight:var(--weight-ui);line-height:1.4;letter-spacing:0}
+#page-work :is(.project-link,.project-secondary),.orbit-controls button.ui-action,.contact-reveal-toggle.ui-action{font-size:var(--type-compact);font-weight:var(--weight-ui);letter-spacing:0}
+#page-about .about-card h4.caption{font-size:var(--type-label);font-weight:var(--weight-ui);letter-spacing:.06em;color:var(--text-secondary)}
+#page-about .about-card-title,.id-cycle .l1,.exhibit-name,.nb-flip-title,.contact-dock-heading p{font-family:var(--font-ui);font-weight:var(--weight-heading);letter-spacing:-.025em;line-height:1.2;color:var(--text-primary)}
+#page-about .about-card-title{font-size:var(--type-card)}
+.nb-flip-title{font-size:1.125rem}
+.page :is(.card-tag,.project-tech li,.nb-flip-cue,.about-card .body small){font-family:var(--font-ui);font-size:var(--type-label);font-weight:var(--weight-ui);line-height:1.4;letter-spacing:0;color:var(--text-secondary)}
+.page :is(.selected-work-heading h1 span,.about-hero h1 span,.about-academic h2>span){color:var(--text-secondary)}
+.page .selected-project h2{font-size:var(--type-project)}.page .about-academic h2{font-size:var(--type-section)}
+.page :is(.id-school,.id-cycle .l2){font-size:var(--type-compact);font-weight:var(--weight-body);line-height:1.5;color:var(--text-secondary)}
+.page .dock-copy strong{font-size:var(--type-compact);font-weight:var(--weight-heading);letter-spacing:0;color:var(--text-primary)}
+.page .dock-copy small,.contact-dock-heading>span,.contact-stage-bottom>span{font-size:var(--type-label);font-weight:var(--weight-body);letter-spacing:0;color:var(--text-secondary)}
+.page .mf-detail,.page .mf-name{font-size:var(--type-compact);font-weight:var(--weight-body);line-height:1.6;color:var(--text-inverse-secondary)}
+.page .mf-label,.page .mf-copyright{font-size:var(--type-label);font-weight:var(--weight-ui);line-height:1.5;letter-spacing:.06em;color:var(--text-inverse-secondary)}
+/* Preserve the intentional inverse and chrome treatments on dark surfaces. */
+.hero-dark .home-hero-title>.caption,.hero-dark .home-hero-title .display-huge{color:var(--text-inverse)}
+#page-contact .contact-underneath .eyebrow,.contact-underneath .contact-invitation{color:var(--text-inverse-secondary)}
+.contact-underneath .contact-display{color:transparent}
+.contact-dock-link.ui-action--engaged .dock-copy :is(strong,small){color:inherit}
+@media(max-width:720px){.nav a.nav-link{font-size:.6875rem;line-height:1.4}.hero-actions .ui-action{font-size:var(--type-compact)}}
+@media(max-width:350px){.nav a.nav-link{font-size:.625rem}}
