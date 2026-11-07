@@ -47,9 +47,7 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.evaluate(() => ScrollTrigger.getAll().filter(t=>(t.vars.id||'').startsWith('premium')).length),0);
     }
     console.log('PASS scroll completion and route cleanup without accumulating triggers');
-    const toggle=page.locator('.contact-reveal-toggle');
-    await toggle.click(); assert.match(await toggle.innerText(),/Back to the surface/);
-    await toggle.press('Escape'); assert.match(await toggle.innerText(),/Reveal the other side/);
+    assert.equal(await page.locator('.contact-stage button').count(),0);
     await page.evaluate(()=>location.hash='about'); await page.waitForTimeout(150);
     const action=page.locator('.about-work-link'); await action.hover(); await page.waitForTimeout(500);
     assert(await action.locator('.action-fill').evaluate(e=>gsap.getProperty(e,'scaleY')>.99));
@@ -60,7 +58,7 @@ const server = http.createServer((req, res) => {
     await page.mouse.up(); await page.waitForTimeout(150); assert.equal(await page.evaluate(()=>location.hash),'#work');
     await page.evaluate(()=>location.hash='about'); await page.waitForTimeout(150);
     await action.focus(); await action.press('Enter'); await page.waitForTimeout(150); assert.equal(await page.evaluate(()=>location.hash),'#work');
-    console.log('PASS hover, press, keyboard navigation and dynamic Contact labels');
+    console.log('PASS hover, press, keyboard navigation and Contact reveal controls removed');
     await page.emulateMedia({reducedMotion:'reduce'});
     await page.evaluate(()=>location.hash='home'); await page.waitForTimeout(150);
     assert.equal(await page.evaluate(()=>ScrollTrigger.getAll().filter(t=>(t.vars.id||'').startsWith('premium')).length),0);
