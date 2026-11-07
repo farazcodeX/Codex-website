@@ -30,7 +30,7 @@
       const colors = getComputedStyle(el);
       const restColor = colors.color;
       const activeColor = colors.getPropertyValue('--action-hover-ink').trim() || restColor;
-      const arrow = el.querySelector('.arrow,.dock-arrow') || el.querySelector(':scope > [aria-hidden="true"]:not(.action-sheen):not(.action-fill)');
+      const arrow = el.querySelector('.arrow,.dock-arrow') || el.querySelector(':scope > [aria-hidden="true"]:not(.action-sheen):not(.action-fill):not(.dock-icon)');
       const x = gsap.quickTo(el, 'x', {duration: .24, ease: 'power3.out'});
       const y = gsap.quickTo(el, 'y', {duration: .24, ease: 'power3.out'});
       const disabled = () => el.matches(':disabled,[aria-disabled="true"]');
