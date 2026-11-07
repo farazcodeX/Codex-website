@@ -12,7 +12,7 @@
     window.ScrollTrigger?.refresh();
   }
   // Only actual image requests get placeholders. Text stays available immediately.
-  document.querySelectorAll('.page img[src]').forEach(img => {
+  document.querySelectorAll('.page img[src]:not([aria-hidden="true"])').forEach(img => {
     if (img.complete && img.naturalWidth) return;
     const host = img.parentElement;
     const veil = document.createElement('span');
