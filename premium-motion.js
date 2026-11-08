@@ -4,7 +4,7 @@
   gsap.registerPlugin(ScrollTrigger);
   if(window.SplitText) gsap.registerPlugin(SplitText);
   // One owner per transform: do not select books, orbit cards, captures or flip faces.
-  const selector = '#page-home .section-head, #page-home .exhibit-item, .selected-project, .about-academic, .about-work-pointer, .page .mf-statement-wrap';
+  const selector = '#page-home .exhibit-item, .selected-project, .about-academic, .about-work-pointer, .page .mf-statement-wrap';
   document.querySelectorAll(selector).forEach(el => el.classList.add('motion-owned'));
   let media;
   function mount() {
@@ -15,7 +15,7 @@
       if (!page) return;
       const splits = [];
       // Word masks preserve readable phrases and the original accessible heading name.
-      if (window.SplitText) page.querySelectorAll('.section-head h2,.selected-work-heading h1,.about-hero h1,.about-academic h2,.nb-section-head h2').forEach(heading => {
+      if (window.SplitText) page.querySelectorAll('.section-head:not(.hero-next-heading) h2,.selected-work-heading h1,.about-hero h1,.about-academic h2,.nb-section-head h2').forEach(heading => {
         heading.classList.add('motion-words');
         const split = SplitText.create(heading, {
           type:'words', mask:'words', wordsClass:'split-word', aria:'auto',

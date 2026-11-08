@@ -2083,6 +2083,7 @@
   <link rel="stylesheet" href="academic.css">
   <link rel="stylesheet" href="social-links.css">
   <link rel="stylesheet" href="action-refinements.css">
+  <link rel="stylesheet" href="hero-transition.css">
 </head>
 
 <body>
@@ -2103,66 +2104,30 @@
 
     <!-- ======================= HOME ======================= -->
     <section class="page" id="page-home" data-route="home">
-      <div class="home-hero hero-dark">
-        <div class="hero-bg-layer" aria-hidden="true">
-          <div class="hero-bg-img"></div>
-          <div class="hero-bg-overlay"></div>
-        </div>
-        <div class="home-hero-grid">
-          <div class="home-hero-title reveal in">
-            <h1 class="display-huge">CODEX</h1>
-            <p class="caption" style="margin-top:14px;">FARAZ&nbsp;/&nbsp;COMPUTER&nbsp;SCIENCE</p>
-            <div class="home-hero-sub hero-actions">
-              <a class="ui-action ui-action--primary" href="#work">Explore my work <span class="arrow" aria-hidden="true">↗</span></a>
-              <a class="ui-action ui-action--secondary" href="#contact">Let’s talk <span class="arrow" aria-hidden="true">↗</span></a>
+      <div class="hero-journey">
+        <div class="home-hero hero-dark cosmic-stage">
+          <div class="hero-bg-layer" aria-hidden="true">
+            <div class="hero-bg-img"></div>
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-space-haze"></div>
+          </div>
+          <div class="hero-dawn" aria-hidden="true"></div>
+          <div class="hero-daylight" aria-hidden="true"></div>
+          <div class="home-hero-grid">
+            <div class="home-hero-title cosmic-copy">
+              <h1 class="display-huge">CODEX</h1>
+              <div class="home-hero-sub hero-actions">
+                <a class="ui-action ui-action--primary" href="#work">Explore my work</a>
+                <a class="ui-action ui-action--secondary" href="#contact">Let’s talk</a>
+              </div>
             </div>
           </div>
-          <div class="id-card card reveal in reveal-delay-2">
-            <div class="id-top">
-              <span class="caption">IDENTITY</span>
-              <span class="id-dot"></span>
-            </div>
-            <div class="id-cycle" id="idCycle">
-              <div class="id-cycle-line on">
-                <div class="l1">Faraz</div>
-                <div class="l2">CODEX · Computer Science</div>
-              </div>
-              <div class="id-cycle-line">
-                <div class="l1">Computer Science</div>
-                <div class="l2">C · C# · Java · Python</div>
-              </div>
-              <div class="id-cycle-line">
-                <div class="l1">Developer</div>
-                <div class="l2">Spring · Django · Web</div>
-              </div>
-              <div class="id-cycle-line">
-                <div class="l1">Builder</div>
-                <div class="l2">HTML · CSS · JavaScript · Tailwind</div>
-              </div>
-              <div class="id-cycle-line">
-                <div class="l1">Game Developer</div>
-                <div class="l2">Godot</div>
-              </div>
-              <div class="id-cycle-line">
-                <div class="l1">Currently</div>
-                <div class="l2">Learning Machine Learning</div>
-              </div>
-            </div>
-            <div class="id-foot">
-              <div class="id-school">Amirkabir University of Technology</div>
-              <div class="id-tags">
-                <span class="card-tag">C · C# · JAVA · PYTHON</span>
-                <span class="card-tag">SPRING · DJANGO</span>
-                <span class="card-tag">WEB · GAME · AI</span>
-              </div>
-              <p class="caption" style="margin-top:12px;">FULL-STACK&nbsp;/&nbsp;GAME&nbsp;DEV&nbsp;/&nbsp;ML</p>
-            </div>
-          </div>
+          <div class="hero-static-fade" aria-hidden="true"></div>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-head reveal">
+        <div class="section-head hero-next-heading">
           <div>
             <p class="eyebrow">SELECTED WORK</p>
             <h2 class="display-lg">Products, platforms, and the systems underneath them.</h2>
@@ -2888,18 +2853,6 @@
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
 
-      // identity card cycler
-      var cycle = document.getElementById('idCycle');
-      if (cycle && !reduceMotion) {
-        var lines = cycle.querySelectorAll('.id-cycle-line');
-        var idx = 0;
-        setInterval(function () {
-          lines[idx].classList.remove('on');
-          idx = (idx + 1) % lines.length;
-          lines[idx].classList.add('on');
-        }, 2800);
-      }
-
       // custom cursor (desktop only, contact page)
       var dot = document.getElementById('cursorDot');
       var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -2923,6 +2876,7 @@
   <dialog class="nb-book-detail" aria-labelledby="nb-detail-title"><button class="nb-detail-close" type="button">Close <span aria-hidden="true">×</span></button><div class="nb-detail-layout"><div class="nb-detail-copy"><p class="nb-detail-subject"></p><h2 id="nb-detail-title"></h2><p class="nb-detail-description"></p><p class="nb-detail-context">Read at your pace. Put your understanding to the test.</p><a href="https://neonbook.ir" target="_blank" rel="noopener noreferrer">Explore NeonBook <span aria-hidden="true">↗</span></a></div><svg class="nb-detail-art" viewBox="0 0 600 850" aria-hidden="true"><defs><filter id="nb-ink-filter"><feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="55" xChannelSelector="R" yChannelSelector="G"/></filter><mask id="nb-ink-mask" maskUnits="userSpaceOnUse" x="-150" y="-150" width="900" height="1150"><g fill="white" filter="url(#nb-ink-filter)"><circle cx="150" cy="330" r="0"/><circle cx="390" cy="590" r="0"/><circle cx="250" cy="120" r="0"/><circle cx="100" cy="740" r="0"/><circle cx="440" cy="250" r="0"/><circle cx="280" cy="810" r="0"/></g></mask></defs><image width="600" height="850" preserveAspectRatio="xMidYMid meet" mask="url(#nb-ink-mask)"/></svg></div></dialog>
   <script src="neonbook.js"></script>
   <script src="ui-motion.js"></script>
+  <script src="hero-transition.js"></script>
   <script src="premium-motion.js"></script>
   <script src="asset-loading.js"></script>
   <script src="atmosphere.js"></script>

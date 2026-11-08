@@ -71,3 +71,7 @@ Typography now uses self-hosted DM Sans. The coordinated GSAP 3.15.1 vendor set 
 ## Scroll controller
 
 Lenis 1.3.27 runs from GSAP's ticker through smooth-scroll.js. Use codexScroll.to/reset/resize instead of adding another scroll animator. Native touch and reduced motion retain browser behavior. Atmosphere animation is scoped by route in atmosphere.js. Run `node tests/scroll-experience.cjs` for wheel tuning, modal/route integration and preference cleanup. See DESIGN_SYSTEM.md for selected parameters and measured results.
+
+## Home space-to-light scene
+
+hero-transition.js owns the CODEX hero and first Selected Work heading. Do not add their elements back into premium-motion.js's general reveal selectors. The scene uses native sticky layout and a single scrubbed GSAP timeline; Lenis still has exactly one driver on GSAP's ticker. The Home page-enter transform is disabled to keep sticky measurements stable. Run `node tests/hero-transition.cjs` for progress/reversal, native touch, wheel, resizing, keyboard, route and reduced-motion behavior.

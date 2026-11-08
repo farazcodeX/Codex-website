@@ -22,6 +22,7 @@ Project descriptions distinguish personal work from contributions. NeonBook and 
 
 ## Features
 
+- **Space-to-light entrance:** a minimal CODEX title and two translucent actions sit beside the original Silver Surfer image; one reversible scroll timeline dissolves the scene into the light portfolio.
 - **Smooth scrolling:** Lenis is synchronized with GSAP's ticker and ScrollTrigger. Wheel interpolation is tuned for responsiveness; touch scrolling remains native.
 - **Coordinated motion:** masked heading reveals, scroll-linked image framing, subtle ambient lighting, and tactile button feedback.
 - **Interactive project media:** native screenshot dialogs with keyboard dismissal and focus restoration.
@@ -77,6 +78,7 @@ Codex-website/
 ├── atmosphere.css / .js        # Route-scoped ambient background
 ├── ui-motion.js                # Shared control hover, focus, and press feedback
 ├── premium-motion.js           # ScrollTrigger and heading-reveal lifecycle
+├── hero-transition.css / .js   # Home-only cinematic space-to-light scene
 ├── action-refinements.css      # Project and capture action treatments
 ├── asset-loading.js            # Image-readiness placeholders and reveals
 ├── fonts/                      # Local font assets and licenses
@@ -150,6 +152,7 @@ node tests/contact-reveal.cjs
 node tests/social-notifications.cjs
 node tests/project-actions.cjs
 node tests/neonbook-capture.cjs
+node tests/hero-transition.cjs
 ```
 
 Each script starts and closes its own local HTTP server. Coverage includes responsive routes, overflow, font consistency, keyboard actions, dialogs, scroll lifecycle, reduced motion, notification timing, image readiness, and email destinations. Some scripts write inspection screenshots to the system temporary directory.
