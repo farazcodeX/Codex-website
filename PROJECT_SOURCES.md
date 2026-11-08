@@ -23,3 +23,7 @@ Motion uses the existing locally bundled GSAP 3.12.5 and a small original canvas
 ## Design references
 
 Apple Design Skill: https://github.com/dickwu/apple-design-skill. Materials, motion, typography, accessibility and collections guidance informs the layout. Solid content surfaces carry the projects; translucency is limited to screenshot controls and dialog backdrop. No native Apple APIs or Apple-owned design assets are bundled.
+
+## Latest NeonBook capture — 2026-11-08
+
+The owner's `Screenshot 2026-11-08 214032.zip` supplies the original 1907×1077 PNG now stored as `images/projects/neonbook-fullsize.png`. This supersedes the older dashboard capture, short recording and Work editorial book illustration. The same unmodified PNG appears on Home, Work and NeonBook; full-resolution enlargement uses the native capture dialog. Book covers remain the separately supplied original assets. No live-site screenshot or product metrics were fabricated.

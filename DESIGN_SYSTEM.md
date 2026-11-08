@@ -128,3 +128,11 @@ The Inside NeonBook screenshot block is replaced with the supplied original MP4 
 A restrained inset frame preserves the full video aspect ratio at every width. Native controls, inline mobile playback and metadata preload are used; no autoplay or continuous loop is imposed. Playback pauses when offscreen, on a route exit or when the document is hidden. The screenshot lightbox continues to serve other captures.
 
 Validation: tests/neonbook-video.cjs checks actual media metadata/playback, 320/390/768/1440px aspect ratios and overflow, removed labels, route pause and reduced-motion default. The five-route UI regression suite passed without page errors or missing assets. Test HTTP servers now include the correct MP4 MIME type.
+
+## Full-size NeonBook capture replaces the recording
+
+The latest owner-supplied 1907×1077 PNG is now the single platform capture at images/projects/neonbook-fullsize.png. It is copied without editing or downscaling. Home, Work and NeonBook all use this image; Work's older illustrated book poster has also been replaced. Individual book-cover assets are retained because they are separate content, not platform screenshots.
+
+A shared neon-capture-frame uses a quiet cool-toned light field, inset border and restrained elevation. The complete screenshot remains visible without cropping. Work and NeonBook support keyboard/click enlargement through the existing native project dialog. The main showcase retains no heading, toolbar, caption or overlaid action label. The previous MP4, video poster, old dashboard PNG and video-specific lifecycle code/test are removed.
+
+Figma tools were not available; the implementation uses the established typography and material language directly. tests/neonbook-capture.cjs checks three placements, original intrinsic resolution, 320/390/768/1440px proportions, no overflow, keyboard enlargement/focus restoration and no errors or missing requests. The existing UI regression suite is also run against the new source.
