@@ -45,3 +45,12 @@
  const old=window.__onRouteChange;window.__onRouteChange=function(next){if(old)old(next);route=next==='neonbook';if(!route){if(dialog.open)dialog.close();mx=my=0;}if(route)requestAnimationFrame(build);sync();};
  new ResizeObserver(()=>{if(route)build();}).observe(shelf);new IntersectionObserver(es=>{inView=es[0].isIntersecting;sync();},{threshold:.05}).observe(shelf);document.addEventListener('visibilitychange',sync);reduce.addEventListener('change',()=>{mx=my=tiltX=tiltY=0;cancelDetailAnimations();if(dialog.open)circles.forEach(c=>c.setAttribute('r','1200'));sync();});route=!!document.querySelector('#page-neonbook.active');if(route)build();
 })();
+
+(() => {
+ const video=document.querySelector('.nb-platform-video');
+ if(!video)return;
+ const pause=()=>{if(document.hidden||!video.closest('.page.active'))video.pause();};
+ document.addEventListener('visibilitychange',pause);
+ window.addEventListener('hashchange',pause);
+ new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)video.pause();},{threshold:0}).observe(video);
+})();

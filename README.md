@@ -14,7 +14,7 @@ The site combines a chrome-inspired opening screen with quiet editorial layouts,
 | --- | --- | --- |
 | CODEX | `#home` | Introduction and selected NeonBook and Cinento Watch previews |
 | Work | `#work` | NeonBook, Cinento Watch, Tetris, Fmail, and the CODEX website |
-| NeonBook | `#neonbook` | Five-book interactive shelf, book details, learning flow, and platform screenshot |
+| NeonBook | `#neonbook` | Five-book interactive shelf, book details, learning flow, and platform recording |
 | About | `#about` | Background, technical interests, and an Amirkabir University academic folio |
 | Contact | `#contact` | Pointer-responsive chrome reveal and contact channels |
 
@@ -149,6 +149,7 @@ node tests/academic-folio.cjs
 node tests/contact-reveal.cjs
 node tests/social-notifications.cjs
 node tests/project-actions.cjs
+node tests/neonbook-video.cjs
 ```
 
 Each script starts and closes its own local HTTP server. Coverage includes responsive routes, overflow, font consistency, keyboard actions, dialogs, scroll lifecycle, reduced motion, notification timing, image readiness, and email destinations. Some scripts write inspection screenshots to the system temporary directory.

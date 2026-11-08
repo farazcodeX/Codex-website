@@ -120,3 +120,11 @@ The Home exhibition's second entry now presents Cinento Watch as an original fil
 The shared GSAP action controller now animates only actual hover/focus/press state changes. Pointer-follow x/y sampling, moving-button geometry reads, repeated fill restarts and capture-plane tilt listeners are removed. Short 180ms lift/press and 240ms fill transitions provide immediate feedback. Controls retain reduced-motion cleanup and keyboard press feedback. CustomEase is no longer loaded because the revised controller uses built-in easing exclusively.
 
 Tests: project-actions checks the Cinento preview, Project story styling/navigation, stable hover x position, capture placement and keyboard dialog flow, plus every email URL. Existing five-route 320–1440px responsive, interaction, notification and reduced-motion checks passed without missing assets or page errors.
+
+## NeonBook recording showcase
+
+The Inside NeonBook screenshot block is replaced with the supplied original MP4 at videos/neonbook-platform.mp4. The upload is H.264, 852×440, silent, approximately 1.209 seconds and 131,260 bytes; it is copied without re-encoding. A first-frame JPEG poster is extracted for the initial presentation. The former surrounding heading, toolbar, caption and capture button are removed from this block. The original screenshot remains available for the separate Home preview.
+
+A restrained inset frame preserves the full video aspect ratio at every width. Native controls, inline mobile playback and metadata preload are used; no autoplay or continuous loop is imposed. Playback pauses when offscreen, on a route exit or when the document is hidden. The screenshot lightbox continues to serve other captures.
+
+Validation: tests/neonbook-video.cjs checks actual media metadata/playback, 320/390/768/1440px aspect ratios and overflow, removed labels, route pause and reduced-motion default. The five-route UI regression suite passed without page errors or missing assets. Test HTTP servers now include the correct MP4 MIME type.

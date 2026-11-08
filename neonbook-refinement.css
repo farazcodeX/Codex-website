@@ -32,3 +32,9 @@
 
 #page-neonbook .nb-product-flow,#page-neonbook .nb-platform-showcase{padding-top:clamp(65px,7vw,105px);padding-bottom:clamp(65px,7vw,105px)}
 #page-neonbook .nb-product-flow .nb-section-head,#page-neonbook .nb-platform-showcase .nb-section-head{margin-bottom:40px}
+
+/* The original capture is now a clean, full-frame video presentation. */
+.nb-video-frame{padding:8px;border:1px solid #dce1e7;border-radius:24px;background:#fff;box-shadow:0 24px 55px -38px #26334f65;overflow:hidden}
+.nb-platform-video{display:block;width:100%;height:auto;aspect-ratio:852/440;object-fit:contain;background:#0b111c;border-radius:16px}
+.nb-platform-video:focus-visible{outline:2px solid var(--ui-focus);outline-offset:3px}
+@media(max-width:540px){.nb-video-frame{padding:4px;border-radius:16px}.nb-platform-video{border-radius:12px}}

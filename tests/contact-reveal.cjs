@@ -6,7 +6,7 @@ const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const root = path.resolve(__dirname, '..');
 assert.equal(require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,'images/academic/amirkabir-logo.png'))).digest('hex'),'69d7efe26e3e5c3a4539abed4a9c2bd3b0ae8ff881f719cceda45efcfbe49ead','Logo must remain byte-identical to the supplied PNG');
-const mime = {'.svg':'image/svg+xml','.html':'text/html', '.css':'text/css', '.js':'application/javascript', '.woff2':'font/woff2', '.jpg':'image/jpeg', '.png':'image/png'};
+const mime = {'.mp4':'video/mp4','.svg':'image/svg+xml','.html':'text/html', '.css':'text/css', '.js':'application/javascript', '.woff2':'font/woff2', '.jpg':'image/jpeg', '.png':'image/png'};
 const server = http.createServer((req, res) => {
   const name = new URL(req.url, 'http://localhost').pathname;
   const file = path.join(root, name === '/' ? 'index.html' : name);
