@@ -1,0 +1,17 @@
+/* Consistent secondary actions, without underlined text or screenshot overlays. */
+#page-work .project-secondary.ui-action{padding:12px 22px;min-height:48px;border:1px solid #cfd5de;border-radius:999px;background:#ffffffc9;color:var(--text-primary);text-decoration:none;box-shadow:none;--action-hover-fill:#e6ebf2;--action-hover-ink:#25272d}
+.capture-open{background:transparent;border:0;box-shadow:none;overflow:visible;text-align:center;cursor:zoom-in}
+.capture-open img{border:1px solid #ffffff90;border-radius:12px;box-shadow:0 18px 30px -24px #26334f70}
+.capture-affordance{position:static;display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:16px auto 0;padding:10px 20px;border:1px solid #d3dae4;border-radius:999px;background:#ffffffd9;color:var(--text-primary);font-family:var(--font-ui);font-size:var(--type-compact);font-weight:var(--weight-ui);line-height:1.4;backdrop-filter:none;box-shadow:none;transition:background .18s,border-color .18s}
+.capture-open:is(:hover,:focus-visible) .capture-affordance{background:#e6ebf2;border-color:#b7c4d6}
+.capture-open:focus-visible{outline:2px solid var(--ui-focus);outline-offset:5px;border-radius:12px}
+/* One transform controller per control; no CSS transform interpolation on top of GSAP. */
+.ui-motion{transition-property:background-color,border-color!important;transition-duration:160ms!important}
+.exhibit-img--cinento{display:grid;place-items:center;background:linear-gradient(135deg,#e8e5ed,#f2f0f5)}
+.cinento-study{display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center;color:#354052;padding:32px;width:100%}
+.cinento-study>strong{font-family:var(--font-display);font-size:clamp(36px,4.5vw,64px);font-weight:var(--weight-heading);letter-spacing:-.055em;line-height:1.05}
+.cinento-study>strong>span{display:block;font-weight:400;color:var(--text-secondary)}
+.cinento-reel{position:relative;width:76px;height:76px;border:1px solid #aab2c3;border-radius:50%;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px;transform:rotate(-12deg)}
+.cinento-reel i{border-radius:50%;background:#c2c7d1}
+@media(max-width:600px){.cinento-study{gap:24px;padding:24px}.cinento-study>strong{font-size:36px}.cinento-reel{width:60px;height:60px;padding:11px;gap:6px}}
+@media(prefers-reduced-motion:reduce){.capture-affordance{transition:none}}

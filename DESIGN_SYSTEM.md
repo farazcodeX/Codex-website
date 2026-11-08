@@ -110,3 +110,13 @@ The Contact reveal stage now extends upward by exactly the existing 145px top wh
 All placeholder LinkedIn/Telegram/Instagram destinations use focusable button-role anchors without href; Enter and Space open the toast. Working mailto and individual GitHub/project links remain functional. Bare footer GitHub URLs now use the confirmed farazcodeX profile, and NeonBook's placeholder Website row uses its confirmed neonbook.ir address. No unverified social URL was invented.
 
 Validation: tests/social-notifications.cjs checks keyboard activation, exact title, no navigation, working destinations, manual focus return, Escape, auto-dismiss, focus-paused timing, SVG rendering, 320–1440px and reduced motion. The existing five-route responsive and interaction suite also passed, with no missing requests or JavaScript errors. Source review confirms no placeholder # or bare social-domain destinations remain.
+
+## Project previews, capture actions and responsive control motion
+
+The Home exhibition's second entry now presents Cinento Watch as an original film-reel/wordmark composition with the verified application-contributor role. Its Work destination remains. All mailto destinations and the Contact dock's visible address now use the owner-supplied Farazn8564@gmail.com.
+
+`action-refinements.css` gives Project story the shared outlined pill treatment, removes its trailing arrow and underline, and puts View capture in normal flow below each screenshot instead of overlaying the image. Existing capture dialogs and native button labels/focus behavior remain.
+
+The shared GSAP action controller now animates only actual hover/focus/press state changes. Pointer-follow x/y sampling, moving-button geometry reads, repeated fill restarts and capture-plane tilt listeners are removed. Short 180ms lift/press and 240ms fill transitions provide immediate feedback. Controls retain reduced-motion cleanup and keyboard press feedback. CustomEase is no longer loaded because the revised controller uses built-in easing exclusively.
+
+Tests: project-actions checks the Cinento preview, Project story styling/navigation, stable hover x position, capture placement and keyboard dialog flow, plus every email URL. Existing five-route 320–1440px responsive, interaction, notification and reduced-motion checks passed without missing assets or page errors.

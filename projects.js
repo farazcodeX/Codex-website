@@ -19,22 +19,7 @@
   window.addEventListener('hashchange', () => {if(dialog.open) dialog.close();});
   document.querySelector('.work-jump').addEventListener('click', e => {e.preventDefault();if(window.codexScroll)window.codexScroll.to('#selected-projects');else document.getElementById('selected-projects').scrollIntoView({behavior:motion.matches?'instant':'smooth',block:'start'});});
 
-  // Native DOM screenshots stay readable; only the image plane responds to the pointer.
-  if(window.gsap) {
-    const mm = gsap.matchMedia();
-    mm.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
-      const cleanup = [];
-      document.querySelectorAll('.capture-open').forEach(el => {
-        const x = gsap.quickTo(el,'rotationX',{duration:.6,ease:'power3.out'});
-        const y = gsap.quickTo(el,'rotationY',{duration:.6,ease:'power3.out'});
-        const move = e => {const r=el.getBoundingClientRect();x((.5-(e.clientY-r.top)/r.height)*3);y(((e.clientX-r.left)/r.width-.5)*4);};
-        const leave = () => {x(0);y(0);};
-        el.addEventListener('pointermove',move);el.addEventListener('pointerleave',leave);
-        cleanup.push(()=>{el.removeEventListener('pointermove',move);el.removeEventListener('pointerleave',leave);});
-      });
-      return ()=>cleanup.forEach(fn=>fn());
-    });
-  }
+  // Capture planes stay still; shared controls own press and focus feedback.
   // Original particle study, not a copied MotionSites component. It only runs in view.
   const canvas=document.querySelector('.work-particles'),ctx=canvas.getContext('2d');
   let width=0,height=0,raf=0,last=0,time=0,visible=false,pointer=null;

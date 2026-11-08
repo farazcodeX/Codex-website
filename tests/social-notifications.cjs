@@ -37,7 +37,7 @@ const server = http.createServer((req, res) => {
     await page.locator('.construction-dismiss').press('Enter');await page.waitForTimeout(300);assert(!(await toast.isVisible()));assert(await trigger.evaluate(e=>document.activeElement===e));
     await trigger.press('Space');await toast.waitFor({state:'visible'});assert(await toast.isVisible());await page.keyboard.press('Escape');await page.waitForTimeout(250);assert(!(await toast.isVisible()));
     await page.mouse.move(50,100);await page.evaluate(()=>{document.activeElement.blur();CODEX.notifyUnavailable('Test feature');});await page.waitForTimeout(4850);assert(!(await toast.isVisible()));
-    assert.equal(await page.locator('.contact-dock-link[href="mailto:hello@faraz.dev"]').count(),1);
+    assert.equal(await page.locator('.contact-dock-link[href="mailto:Farazn8564@gmail.com"]').count(),1);
     assert.equal(await page.locator('.contact-dock-link[href="https://github.com/farazcodeX"]').count(),1);
     assert.equal(await page.locator('a[href="#"],a[href="https://linkedin.com/"],a[href="https://t.me/"],a[href="https://instagram.com/"]').count(),0);
     for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:1000});await page.evaluate(()=>CODEX.notifyUnavailable('Feature'));await page.waitForTimeout(300);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));const bounds=await toast.boundingBox();assert(bounds.x>=0&&bounds.x+bounds.width<=width+1);}
