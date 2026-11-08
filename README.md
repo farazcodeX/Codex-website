@@ -4,7 +4,7 @@
 
 CODEX presents selected projects, startup contributions, academic background, and contact information in a responsive, motion-led interface. It is built with plain HTML, CSS, and JavaScript, with self-hosted animation libraries and fonts.
 
-[Visit the website](https://farazcodex.github.io/Codex-website/) · [Explore the work](https://farazcodex.github.io/Codex-website/#work) · [Contact](https://farazcodex.github.io/Codex-website/#contact)
+[Visit the website](https://farazcodex.github.io/) · [Explore the work](https://farazcodex.github.io/#work) · [Contact](https://farazcodex.github.io/#contact)
 
 ## Overview
 
@@ -51,8 +51,8 @@ There is **no application build step, frontend framework, backend, or runtime pa
 Clone the repository and serve its root over HTTP:
 
 ```sh
-git clone https://github.com/farazcodeX/Codex-website.git
-cd Codex-website
+git clone https://github.com/farazcodeX/farazcodex.github.io.git
+cd farazcodex.github.io
 python3 -m http.server 8000
 ```
 
@@ -63,7 +63,7 @@ Use an HTTP server rather than opening `index.html` through `file://`, so asset 
 ## Project structure
 
 ```text
-Codex-website/
+farazcodex.github.io/
 ├── index.html                  # Page markup, route handling, and shared initialization
 ├── typography.css              # Current font hierarchy and text-color authority
 ├── design-system.css           # Shared interface tokens and controls
@@ -161,7 +161,7 @@ These checks do not certify external-service availability or replace testing on 
 
 ## Deployment
 
-The site is published at **https://farazcodex.github.io/Codex-website/** through GitHub Pages.
+The site is published at **https://farazcodex.github.io/** through GitHub Pages.
 
 To publish a compatible copy:
 
@@ -170,7 +170,7 @@ To publish a compatible copy:
 3. Choose **main** and **/ (root)**, then save.
 4. Wait for GitHub's Pages deployment to complete.
 
-Keep asset paths relative so the site works under a repository path such as `/Codex-website/`. Hash routes require no server rewrite rules. Branch deployment availability depends on repository visibility and the GitHub account plan.
+The repository name `farazcodex.github.io` publishes the site at the account’s root Pages address, without a repository-name suffix. Keep asset paths relative. Hash routes require no server rewrite rules. Branch deployment availability depends on repository visibility and the GitHub account plan.
 
 ## Credits and licensing
 
