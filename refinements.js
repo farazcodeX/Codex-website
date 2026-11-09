@@ -4,17 +4,21 @@
   const slider = document.getElementById('aboutSlider');
   const cards = Array.from(slider.querySelectorAll('.about-card'));
   const pause = document.getElementById('orbitPause');
+  const mobile = matchMedia('(max-width:700px), (max-width:1000px) and (pointer:coarse)');
+  const hint = document.querySelector('.orbit-hint');
+  const desktopHint = hint.textContent;
   const media = matchMedia('(prefers-reduced-motion: reduce)');
   let phase = 0, velocity = 0, width = 0, cardWidth = 350, spacing = 410;
   let active = false, hovered = false, paused = false, drag = null, frame = 0, last = 0;
   const wrap = (n, span) => ((n + span / 2) % span + span) % span - span / 2;
   function measure() {
-    if (!active) return;
+    if (!active || mobile.matches) return;
     width = slider.clientWidth; cardWidth = cards[0].offsetWidth;
     spacing = Math.max(cardWidth + 48, (width + cardWidth * 2) / (cards.length - 2));
     render();
   }
   function render() {
+    if (mobile.matches) return;
     const span = spacing * cards.length;
     phase = wrap(phase, span);
     cards.forEach((card, i) => {
@@ -40,10 +44,14 @@
   function sync() {
     active = document.getElementById('page-about').classList.contains('active') && !document.hidden;
     cancelAnimationFrame(frame); frame = 0; drag = null;
-    if (active) { measure(); last = performance.now(); frame = requestAnimationFrame(tick); }
+    if (mobile.matches) {
+      cards.forEach(card => {card.style.removeProperty('transform');card.style.removeProperty('opacity');card.style.removeProperty('z-index');});
+      hint.textContent = 'Swipe to explore four perspectives.';
+    } else hint.textContent = desktopHint;
+    if (active && !mobile.matches) { measure(); last = performance.now(); frame = requestAnimationFrame(tick); }
   }
   slider.addEventListener('pointerdown', e => {
-    if (e.button !== 0) return;
+    if (mobile.matches || e.button !== 0) return;
     drag = {x:e.clientX,t:performance.now(),id:e.pointerId}; velocity = 0;
     slider.setPointerCapture(e.pointerId);
   });
@@ -56,8 +64,9 @@
   function end(e) { if (!drag || e.pointerId !== drag.id) return; if (e.type==='pointercancel' || performance.now()-drag.t>100) velocity=0; drag=null; }
   slider.addEventListener('pointerup',end); slider.addEventListener('pointercancel',end); slider.addEventListener('lostpointercapture',end);
   slider.addEventListener('mouseenter',()=>{hovered=true}); slider.addEventListener('mouseleave',()=>{hovered=false});
-  slider.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();phase+=(e.key==='ArrowRight'?-1:1)*spacing;velocity=0;render();}});
+  slider.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();if(mobile.matches){slider.scrollBy({left:(e.key==='ArrowRight'?1:-1)*cards[0].offsetWidth,behavior:media.matches?'instant':'smooth'});return;}phase+=(e.key==='ArrowRight'?-1:1)*spacing;velocity=0;render();}});
   pause.addEventListener('click',()=>{paused=!paused;pause.setAttribute('aria-pressed',String(paused));pause.textContent=paused?'Resume motion':'Pause motion'});
+  mobile.addEventListener('change',sync);
   media.addEventListener('change',()=>{velocity=0;render()});
   new ResizeObserver(measure).observe(slider);
   document.addEventListener('visibilitychange',sync);

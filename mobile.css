@@ -1,0 +1,51 @@
+/* Mobile adaptations only: desktop geometry and typography stay authoritative. */
+@media (max-width:700px), (max-width:1000px) and (pointer:coarse) {
+ .nav-holder{top:max(12px,env(safe-area-inset-top))}
+ #nav.nav{max-width:calc(100vw - 24px);padding:5px;gap:0}
+ #nav.nav a.nav-link{font-size:12px;padding:10px 11px;min-height:44px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+ #page-about .about-slider{height:auto;overflow-x:auto;overflow-y:hidden;perspective:none;mask-image:none;-webkit-mask-image:none;scroll-snap-type:x mandatory;scroll-padding-inline:24px;touch-action:pan-x pan-y;overscroll-behavior-x:contain;padding:24px 24px 36px;cursor:auto}
+ #page-about .about-slider-track{display:flex;gap:16px;width:max-content;height:auto}
+ #page-about .about-card{position:relative;left:auto;top:auto;width:min(310px,calc(100vw - 64px));height:auto;min-height:340px;flex:none;scroll-snap-align:start;will-change:auto}
+ #page-about .about-card[aria-hidden="true"]{display:none}
+ #page-about .about-card-inner{height:100%;min-height:340px;padding:24px;gap:0;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+ #page-about .about-card:hover .about-card-inner{transform:none}
+ #page-about #orbitPause{display:none}
+ #page-about .about-cards-wrap{padding-bottom:32px}
+ #page-about .about-slider:focus-visible{outline:2px solid var(--ui-focus);outline-offset:-4px}
+ /* Five real cover buttons: native swipe and full-size, predictable touch targets. */
+ #page-neonbook .nb-shelf{height:auto;margin:72px 0 48px;perspective:none;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:24px;touch-action:pan-x pan-y;overscroll-behavior-x:contain;cursor:auto}
+ #page-neonbook .nb-shelf-stage{position:relative;left:auto;top:auto;display:flex;align-items:end;gap:26px;width:max-content;height:auto;padding:18px 24px 32px;transform-style:flat}
+ #page-neonbook .nb-shelf-book{position:relative;width:clamp(150px,48vw,220px);height:clamp(214px,68vw,312px);flex:none;transform:none!important;transform-style:flat;will-change:auto;scroll-snap-align:center;border-radius:4px}
+ #page-neonbook .nb-face-spine{display:none}
+ #page-neonbook .nb-face-cover{position:absolute;inset:0;width:100%;height:100%;transform:none;border-radius:4px;box-shadow:0 14px 24px -16px #18243880}
+ #page-neonbook .nb-face-cover::after{display:none}
+ #page-neonbook .nb-face-cover img,#page-neonbook .nb-face-cover.nb-cover-ml img{position:static;width:100%;height:100%;object-fit:contain;transform:none}
+ #page-neonbook .nb-book-hero{padding-bottom:48px}
+ .nb-book-detail{height:100vh;height:100dvh;max-height:100dvh;overscroll-behavior:contain}
+ .nb-detail-close{position:sticky;top:max(12px,env(safe-area-inset-top));margin-left:auto;margin-right:max(16px,env(safe-area-inset-right));z-index:4;min-height:44px;background:var(--book-paper,#f5f5f3)}
+ .nb-detail-layout{padding-top:28px;padding-bottom:max(40px,env(safe-area-inset-bottom))}
+ .nb-detail-copy h2{overflow-wrap:anywhere}
+ .nb-detail-art{max-height:42vh;max-height:42svh}
+ .project-lightbox{max-width:calc(100vw - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overscroll-behavior:contain;padding-top:56px}
+ .capture-close{position:sticky;top:0;margin:-48px 0 4px auto;z-index:3;background:#fff;border-radius:50%;flex:none}
+ .mf-icon-link{width:44px!important;height:44px!important;padding:12px;display:grid;place-items:center}
+ .mf-icon-link svg{width:20px;height:20px;flex:none}
+ .construction-notice{max-height:calc(100dvh - 32px);overflow-y:auto}
+ .ui-action{touch-action:manipulation}
+}
+@media(max-width:370px){#nav.nav a.nav-link{font-size:11px;padding-inline:6px}}
+/* Address-bar changes should not repeatedly resize the opening composition. */
+@media(max-height:500px) and (max-width:900px) and (orientation:landscape){
+ #page-home .cosmic-stage{min-height:100svh;padding-top:88px;padding-bottom:24px}
+ #page-home .cosmic-copy .display-huge{font-size:clamp(56px,12svh,76px)}
+ #page-home .cosmic-copy .hero-actions{margin-top:14px}
+ .nb-detail-art{max-height:55svh}
+}
+@media(hover:none) and (pointer:coarse){
+ .page .mf-icon-link:hover{transform:none}
+}
+@media (max-width:700px), (max-width:1000px) and (pointer:coarse) {
+ .page :is(button,a,[tabindex="0"]){scroll-margin-block:90px 24px}
+ .nb-shelf-book{scroll-margin-inline:24px}
+ .nb-shelf::after{content:'Swipe to browse · Tap a cover to explore';display:block;position:sticky;left:0;width:100%;padding:0 24px 18px;text-align:center;font-size:12px;line-height:1.6;color:var(--text-secondary);pointer-events:none}
+}

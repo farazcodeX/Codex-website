@@ -153,9 +153,12 @@ node tests/social-notifications.cjs
 node tests/project-actions.cjs
 node tests/neonbook-capture.cjs
 node tests/hero-transition.cjs
+node tests/mobile-responsive.cjs
 ```
 
 Each script starts and closes its own local HTTP server. Coverage includes responsive routes, overflow, font consistency, keyboard actions, dialogs, scroll lifecycle, reduced motion, notification timing, image readiness, and email destinations. Some scripts write inspection screenshots to the system temporary directory.
+
+On phones, the About cards and five-book shelf use native horizontal scroll snapping with full-size touch targets; desktop retains its orbit and physical shelf. Touch scrolling remains native through Lenis. Dialog controls account for safe areas and dynamic viewport height. The mobile suite covers 320–480px portrait screens, Android landscape, breakpoint changes, and a Samsung Internet user-agent profile in Chromium. This does not constitute testing in the Samsung Internet application.
 
 These checks do not certify external-service availability or replace testing on physical devices. See [DEVELOPMENT.md](DEVELOPMENT.md) for additional implementation notes and validation context.
 
